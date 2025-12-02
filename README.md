@@ -1,6 +1,8 @@
 # instancio-gis
 An instancio extension that will provide auto-registered custom generators for a popular gis libraries.
 
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=StevenPG_instancio-gis&metric=coverage)](https://sonarcloud.io/summary/new_code?id=StevenPG_instancio-gis)
+
 ### Tasks
 
 Tasks for v1.0.0:

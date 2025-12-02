@@ -1,3 +1,6 @@
+import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
+import org.gradle.testing.jacoco.tasks.JacocoReport
+
 plugins {
     java
     `maven-publish`
@@ -9,6 +12,7 @@ version = "0.0.1"
 
 subprojects {
     apply(plugin = "java")
+    apply(plugin = "jacoco")
     apply(plugin = "dev.yumi.gradle.licenser")
 
     group = rootProject.group
@@ -29,6 +33,20 @@ subprojects {
 
     tasks.withType<Test> {
         useJUnitPlatform()
+        finalizedBy(tasks.named("jacocoTestReport"))
+    }
+
+    tasks.withType<JacocoReport> {
+        reports {
+            xml.required.set(true)
+            csv.required.set(false)
+            html.required.set(false)
+        }
+        dependsOn(tasks.named("test"))
+    }
+
+    extensions.configure<JacocoPluginExtension>("jacoco") {
+        toolVersion = "0.8.12"
     }
 
     license {
