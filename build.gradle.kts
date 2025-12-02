@@ -5,6 +5,7 @@ plugins {
     java
     `maven-publish`
     id("dev.yumi.gradle.licenser") version "2.2.1"
+    id("org.sonarqube") version "7.1.0.6387"
 }
 
 group = "com.stevenpg.instancio"
@@ -61,4 +62,15 @@ subprojects {
 // Project-specific configurations
 configure<JavaPluginExtension> {
     sourceCompatibility = JavaVersion.VERSION_17
+}
+
+sonar {
+    properties {
+        property("sonar.projectName", "Instancio-GIS")
+        property("sonar.projectKey", "StevenPG_instancio-gis")
+        property("sonar.organization", "stevenpg-github")
+        property("sonar.token", System.getenv("SONAR_TOKEN"))
+        property("sonar.sources", "src/main")
+        property("sonar.tests", "src/test")
+    }
 }

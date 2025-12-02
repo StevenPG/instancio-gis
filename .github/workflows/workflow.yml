@@ -9,7 +9,7 @@ on:
 
 name: Build and Analyze
 jobs:
-  sonarqube:
+  build-and-analyze:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,8 +24,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: gradle
-
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v6.0.0
+          
+      - name: Build, Test and Analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew build test jacocoTestReport sonar
