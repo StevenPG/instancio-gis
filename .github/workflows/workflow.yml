@@ -24,7 +24,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: gradle
-          
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
       - name: Build, Test and Analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
