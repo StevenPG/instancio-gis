@@ -23,9 +23,9 @@ For there to be a checkmark, there must be:
 - [ ] CoordinateFilter.java
 - [ ] CoordinateList.java
 - [ ] CoordinateSequences.java
-- [ ] CoordinateXY.java
-- [ ] CoordinateXYM.java
-- [ ] CoordinateXYZM.java
+- [x] CoordinateXY.java
+- [x] CoordinateXYM.java
+- [x] CoordinateXYZM.java
 - [ ] Coordinates.java
 - [ ] Dimension.java
 - [ ] Envelope.java

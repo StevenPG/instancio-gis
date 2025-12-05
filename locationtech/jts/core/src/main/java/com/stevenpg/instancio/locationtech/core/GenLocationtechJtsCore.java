@@ -16,8 +16,7 @@
 
 package com.stevenpg.instancio.locationtech.core;
 
-import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateGenerator;
-import com.stevenpg.instancio.locationtech.core.internal.generator.geom.PointGenerator;
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.*;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.CoordinateArraySequenceGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.PointGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.CoordinateArraySequenceGeneratorSpec;
@@ -53,6 +52,30 @@ public class GenLocationtechJtsCore {
      */
     public static CoordinateGenerator coordinate() {
         return new CoordinateGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.core.geom.CoordinateXY.
+     * @return generator
+     */
+    public static CoordinateXYGenerator coordinateXY() {
+        return new CoordinateXYGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.core.geom.CoordinateXYM.
+     * @return generator
+     */
+    public static CoordinateXYMGenerator coordinateXYM() {
+        return new CoordinateXYMGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.core.geom.CoordinateXYZM.
+     * @return generator
+     */
+    public static CoordinateXYZMGenerator coordinateXYZM() {
+        return new CoordinateXYZMGenerator();
     }
 
     private GenLocationtechJtsCore() {
