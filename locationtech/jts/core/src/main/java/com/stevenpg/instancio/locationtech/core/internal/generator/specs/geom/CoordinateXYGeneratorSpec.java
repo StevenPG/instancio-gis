@@ -22,7 +22,6 @@ import org.locationtech.jts.geom.CoordinateXY;
 
 /**
  * Generator Spec for generating a CoordinateXY.
- * TODO
  *
  * @since 1.0.0
  */
