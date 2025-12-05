@@ -23,7 +23,6 @@ import org.locationtech.jts.geom.CoordinateXYM;
 
 /**
  * Generator Spec for generating a CoordinateXYM.
- * TODO
  *
  * @since 1.0.0
  */
