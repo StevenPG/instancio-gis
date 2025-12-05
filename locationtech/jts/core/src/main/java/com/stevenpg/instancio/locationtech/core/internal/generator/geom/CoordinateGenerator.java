@@ -16,6 +16,7 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateSpec;
 import org.instancio.Instancio;
@@ -26,13 +27,14 @@ import org.instancio.generators.Generators;
 import org.instancio.generators.SpatialGenerators;
 import org.instancio.internal.generator.AbstractGenerator;
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
 
 /**
  * Generator for creating a Coordinate.
  *
  * @since 1.0.0
  */
-public class CoordinateGenerator implements CoordinateSpec, CoordinateGeneratorSpec, Generator<Coordinate> {
+public class CoordinateGenerator implements CoordinateSpec, EnvelopableGenerator<Coordinate> {
 
     private Double inputLatitude;
     private Double inputLongitude;
@@ -48,6 +50,13 @@ public class CoordinateGenerator implements CoordinateSpec, CoordinateGeneratorS
         this.inputLongitude = longitude;
         return this;
     }
+
+    // TODO - review whether PointSpec and PointGeneratorSpec should both exist (check existing instancio for reference)
+//    @Override
+//    public Generator<Coordinate> within(Envelope validGenerationAreaEnvelope) {
+//        // TODO - helper methods to limit generation to a specific area
+//        return null;
+//    }
 
     @Override
     public Coordinate generate(Random random) {

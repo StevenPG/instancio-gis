@@ -16,6 +16,7 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateXYZMGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateXYZMSpec;
 import org.instancio.Instancio;
@@ -29,7 +30,7 @@ import org.locationtech.jts.geom.CoordinateXYZM;
  *
  * @since 1.0.0
  */
-public class CoordinateXYZMGenerator implements CoordinateXYZMSpec, CoordinateXYZMGeneratorSpec, Generator<CoordinateXYZM> {
+public class CoordinateXYZMGenerator implements CoordinateXYZMSpec, EnvelopableGenerator<CoordinateXYZM> {
 
     private Double inputLatitude;
     private Double inputLongitude;

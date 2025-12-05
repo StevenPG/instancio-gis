@@ -17,6 +17,7 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.CoordinateArraySequenceGenerator;
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.PointGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.PointSpec;
 import org.instancio.Random;
@@ -30,7 +31,7 @@ import org.locationtech.jts.geom.impl.CoordinateArraySequence;
  * Generator for creating a Point.
  * @since 1.0.0
  */
-public class PointGenerator implements PointSpec, PointGeneratorSpec, Generator<Point> {
+public class PointGenerator implements PointSpec, EnvelopableGenerator<Point> {
 
     private final GeometryFactory geometryFactory = new GeometryFactory();
 

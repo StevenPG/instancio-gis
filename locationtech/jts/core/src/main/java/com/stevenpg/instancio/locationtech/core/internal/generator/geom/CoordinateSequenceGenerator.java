@@ -18,6 +18,7 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.CoordinateArraySequenceGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.PackedCoordinateSequenceGenerator;
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateSequenceGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateSequenceSpec;
 import org.instancio.Random;
@@ -35,7 +36,7 @@ import org.locationtech.jts.geom.impl.CoordinateArraySequence;
  * coordinate array sequence or packed sequence.
  */
 public class CoordinateSequenceGenerator
-        implements CoordinateSequenceSpec, CoordinateSequenceGeneratorSpec, Generator<CoordinateSequence> {
+        implements CoordinateSequenceSpec, EnvelopableGenerator<CoordinateSequence> {
 
     // TODO - potentially ask why I need two of these, why was one inconsistent?
     private final CoordinateArraySequenceGenerator coordinateArraySequenceGenerator

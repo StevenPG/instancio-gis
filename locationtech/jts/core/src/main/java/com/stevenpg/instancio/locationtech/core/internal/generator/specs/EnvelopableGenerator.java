@@ -16,15 +16,24 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs;
 
+import org.instancio.generator.Generator;
+import org.locationtech.jts.geom.Envelope;
+
 /**
  * Specs that extend Envelopable allow the user to input an envelope that is taken into account when generating
  * values for the generator. The generator should not generate any sort of geometry that is outside of the envelope
  * unless the user overrides the envelope by providing their own explicit points.
- * TODO - add pointGenerator envelopable
+ * TODO - include all relevant things in envelopable
  */
-public interface T EnvelopableGenerator<T> {
+public interface EnvelopableGenerator<T> extends Generator<T> {
 
-// TODO - try to handle this in a clever way
-    GeneratorSpec<T> 
+    /**
+     * Generators that extend EnvelopableGeneratorSpec should be able to accept an envelope that defines the valid
+     * generation area. The generator should not generate any sort of geometry that is outside of the envelope unless
+     * the user overrides the envelope by providing their own explicit points.
+     * @param validGenerationAreaEnvelope the envelope that defines the valid generation area
+     * @return this generator
+     */
+    Generator<T> within(Envelope validGenerationAreaEnvelope);
 
 }
