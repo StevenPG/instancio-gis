@@ -22,6 +22,9 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.specs;
  * unless the user overrides the envelope by providing their own explicit points.
  * TODO - add pointGenerator envelopable
  */
-public interface Envelopable {
+public interface T EnvelopableGenerator<T> {
+
+// TODO - try to handle this in a clever way
+    GeneratorSpec<T> 
 
 }

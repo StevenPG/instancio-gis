@@ -40,11 +40,16 @@ public interface LineStringGeneratorSpec extends GeneratorSpec<LineString>, Enve
     // GeometryFactory (can be provided, otherwise default is used
 
     /**
-     * Generate a valid LineString
+     * Generate a valid LineString based on the provided coordinate sequence. Not compatible
+     * with providing a GeometryFactory.
      */
     CoordinateSequenceSpec coordinateSequence(CoordinateSequence coordinateSequence);
 
     
+    /**
+     * Provide an optional GeometryFactory to utilize to generate the LineString.
+     * Cannot be provided alongside the CoordinateSequence.
+     */
     CoordinateSequenceSpec geometryFactory(GeometryFactory geometryFactory);
 
 }
