@@ -101,7 +101,10 @@ class GenLocationtechJtsCoreTest {
 
         assertNotNull(linestring);
         assertInstanceOf(org.locationtech.jts.geom.LineString.class, linestring);
-        // TODO - check that all points are within lat/lng
+        for( var coordinate : linestring.getCoordinates()) {
+            assertTrue(coordinate.x > -180 && coordinate.x < 180);
+            assertTrue(coordinate.y > -90 && coordinate.y < 90);
+        }
     }
 
     @Test
