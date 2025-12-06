@@ -29,7 +29,7 @@ import org.locationtech.jts.geom.CoordinateXY;
  *
  * @since 1.0.0
  */
-public class CoordinateXYGenerator implements CoordinateXYSpec, EnvelopableGenerator<CoordinateXY> {
+public class CoordinateXYGenerator implements CoordinateXYSpec, CoordinateXYGeneratorSpec, Generator<CoordinateXY> {
 
     private Double inputLatitude;
     private Double inputLongitude;

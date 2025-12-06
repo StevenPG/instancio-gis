@@ -16,6 +16,7 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility.WithinUtility;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateSpec;
@@ -29,6 +30,8 @@ import org.instancio.internal.generator.AbstractGenerator;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
 
+import static com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility.WithinUtility.randomLonLatInBounds;
+
 /**
  * Generator for creating a Coordinate.
  *
@@ -38,6 +41,7 @@ public class CoordinateGenerator implements CoordinateSpec, EnvelopableGenerator
 
     private Double inputLatitude;
     private Double inputLongitude;
+    private Envelope inputEnvelope;
 
     @Override
     public CoordinateGenerator latitude(double latitude) {
@@ -51,18 +55,30 @@ public class CoordinateGenerator implements CoordinateSpec, EnvelopableGenerator
         return this;
     }
 
-    // TODO - review whether PointSpec and PointGeneratorSpec should both exist (check existing instancio for reference)
-//    @Override
-//    public Generator<Coordinate> within(Envelope validGenerationAreaEnvelope) {
-//        // TODO - helper methods to limit generation to a specific area
-//        return null;
-//    }
+    @Override
+    public Generator<Coordinate> within(Envelope validGenerationAreaEnvelope) {
+        this.inputEnvelope = validGenerationAreaEnvelope;
+        return this;
+    }
 
     @Override
     public Coordinate generate(Random random) {
-        return new Coordinate(
-                inputLongitude == null ? Instancio.gen().spatial().coordinate().lon().get() : inputLongitude,
-                inputLatitude == null ? Instancio.gen().spatial().coordinate().lat().get() : inputLatitude
-        );
+        if(envelopeProvided() && !coordinateProvided()) {
+            var lonLat = randomLonLatInBounds(inputEnvelope);
+            return new Coordinate(lonLat.longitude(), lonLat.latitude());
+        } else {
+            return new Coordinate(
+                    inputLongitude == null ? Instancio.gen().spatial().coordinate().lon().get() : inputLongitude,
+                    inputLatitude == null ? Instancio.gen().spatial().coordinate().lat().get() : inputLatitude
+            );
+        }
+    }
+
+    private boolean coordinateProvided() {
+        return inputLatitude != null || inputLongitude != null;
+    }
+
+    private boolean envelopeProvided() {
+        return inputEnvelope != null;
     }
 }

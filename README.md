@@ -9,7 +9,6 @@ An instancio extension that will provide auto-registered custom generators for a
 
 Tasks for v1.0.0:
 
-- Sonarcloud coverage integration
 - maven central release with first version
 - finalize locationtech-core module
 - finalize postgis-java postgis-jdbc module

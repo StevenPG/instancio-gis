@@ -14,14 +14,7 @@
  * limitations under the License.
  */
 
-package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
+package com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility;
 
-/**
- * TODO
- * Spec for generating a Point.
- *
- * @since 4.4.0
- */
-public interface PointSpec extends PointGeneratorSpec {
-
+public record LonLatRecord(double longitude, double latitude) {
 }
