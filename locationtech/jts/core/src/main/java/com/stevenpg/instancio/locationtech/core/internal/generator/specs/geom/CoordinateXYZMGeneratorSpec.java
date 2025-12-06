@@ -16,9 +16,8 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
-import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateXYZMGenerator;
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateXYZMGeneratorEnvelopable;
 import org.instancio.generator.GeneratorSpec;
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXYZM;
 
 /**
@@ -52,7 +51,7 @@ public interface CoordinateXYZMGeneratorSpec extends GeneratorSpec<CoordinateXYZ
      * @return spec builder
      * @since 1.0.0
      */
-    CoordinateXYZMGenerator altitude(double altitude);
+    CoordinateXYZMGeneratorEnvelopable altitude(double altitude);
 
     /**
      * Specifies the measure for the generated coordinate.
@@ -60,6 +59,6 @@ public interface CoordinateXYZMGeneratorSpec extends GeneratorSpec<CoordinateXYZ
      * @return spec builder
      * @since 1.0.0
      */
-    CoordinateXYZMGenerator measure(double measure);
+    CoordinateXYZMGeneratorEnvelopable measure(double measure);
 
 }

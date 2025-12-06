@@ -17,6 +17,7 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateGenerator;
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.CoordinateArraySequenceGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.CoordinateArraySequenceSpec;
 import org.instancio.Random;
@@ -25,6 +26,8 @@ import org.instancio.generator.GeneratorContext;
 import org.instancio.internal.generator.AbstractGenerator;
 import org.instancio.support.DefaultRandom;
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.CoordinateSequence;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 import org.locationtech.jts.geom.impl.CoordinateArraySequenceFactory;
 
@@ -38,11 +41,10 @@ import java.util.List;
  * @since 1.0.0
  */
 public class CoordinateArraySequenceGenerator
-        implements CoordinateArraySequenceSpec, CoordinateArraySequenceGeneratorSpec, Generator<CoordinateArraySequence> {
+        implements CoordinateArraySequenceSpec, CoordinateArraySequenceGeneratorSpec,
+        EnvelopableGenerator<CoordinateArraySequence> {
 
-    private final CoordinateGenerator coordinateGenerator =
-            new CoordinateGenerator();
-
+    private final CoordinateGenerator coordinateGenerator = new CoordinateGenerator();
     private final List<Coordinate> overriddenCoordinateSequence = new ArrayList<>();
 
     // Default 1..10 to preserve current behavior
@@ -50,6 +52,7 @@ public class CoordinateArraySequenceGenerator
     private int maxLength = 10;
     // When set, overrides min/max
     private Integer fixedLength;
+    private Envelope inputEnvelope;
 
     @Override
     public CoordinateArraySequenceGenerator coordinateArraySequence(List<Coordinate> coordinateSequence) {
@@ -98,6 +101,12 @@ public class CoordinateArraySequenceGenerator
         this.fixedLength = null;
         this.minLength = min;
         this.maxLength = max;
+        return this;
+    }
+
+    @Override
+    public CoordinateArraySequenceGenerator within(Envelope validGenerationAreaEnvelope) {
+        this.inputEnvelope = validGenerationAreaEnvelope;
         return this;
     }
 

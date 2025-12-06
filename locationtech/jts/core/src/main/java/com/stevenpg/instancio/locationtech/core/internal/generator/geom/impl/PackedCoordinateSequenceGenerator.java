@@ -17,11 +17,14 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateGenerator;
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.PackedCoordinateSequenceGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.PackedCoordinateSequenceSpec;
 import org.instancio.Random;
 import org.instancio.generator.Generator;
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.CoordinateSequence;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 import org.locationtech.jts.geom.impl.PackedCoordinateSequence;
 import org.locationtech.jts.geom.impl.PackedCoordinateSequenceFactory;
@@ -36,7 +39,8 @@ import java.util.List;
  * @since 1.0.0
  */
 public class PackedCoordinateSequenceGenerator
-        implements PackedCoordinateSequenceSpec, PackedCoordinateSequenceGeneratorSpec, Generator<PackedCoordinateSequence> {
+        implements PackedCoordinateSequenceSpec, PackedCoordinateSequenceGeneratorSpec,
+        EnvelopableGenerator<PackedCoordinateSequence> {
 
     private final CoordinateGenerator coordinateGenerator =
             new CoordinateGenerator();
@@ -48,6 +52,7 @@ public class PackedCoordinateSequenceGenerator
     private int maxLength = 10;
     // When set, overrides min/max
     private Integer fixedLength;
+    private Envelope inputEnvelope;
 
     @Override
     public PackedCoordinateSequenceGenerator coordinateSequence(List<Coordinate> coordinateSequence) {
@@ -98,7 +103,14 @@ public class PackedCoordinateSequenceGenerator
     }
 
     @Override
+    public Generator<PackedCoordinateSequence> within(Envelope validGenerationAreaEnvelope) {
+        this.inputEnvelope = validGenerationAreaEnvelope;
+        return this;
+    }
+
+    @Override
     public PackedCoordinateSequence generate(Random random) {
+        // TODO - handle within
         if(overriddenCoordinateSequence.isEmpty()) {
             int totalCoordinates = (fixedLength != null)
                     ? fixedLength

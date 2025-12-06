@@ -25,10 +25,7 @@ import org.instancio.Random;
 import org.instancio.generator.Generator;
 import org.instancio.generator.GeneratorContext;
 import org.instancio.internal.generator.AbstractGenerator;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.CoordinateSequence;
-import org.locationtech.jts.geom.CoordinateSequenceFactory;
-import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.*;
 import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 
 /**
@@ -37,13 +34,13 @@ import org.locationtech.jts.geom.impl.CoordinateArraySequence;
  */
 public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, CoordinateSequenceGeneratorSpec, Generator<CoordinateSequence>, EnvelopableGenerator<CoordinateSequence> {
 
-    // TODO - potentially ask why I need two of these, why was one inconsistent?
     private final CoordinateArraySequenceGenerator coordinateArraySequenceGenerator
             = new CoordinateArraySequenceGenerator();
     private final PackedCoordinateSequenceGenerator packedCoordinateSequenceGenerator
             = new PackedCoordinateSequenceGenerator();
 
     private CoordinateSequence coordinateSequence;
+    private Envelope inputEnvelope;
 
     // Default 1..10 to preserve current behavior
     private int minLength = 1;
@@ -100,22 +97,29 @@ public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, Coor
     }
 
     @Override
+    public Generator<CoordinateSequence> within(Envelope validGenerationAreaEnvelope) {
+        this.inputEnvelope = validGenerationAreaEnvelope;
+        return this;
+    }
+
+    @Override
     public CoordinateSequence generate(Random random) {
+        // TODO - handle within
         var randomInteger = random.intRange(1, 10);
         if(coordinateSequence != null) {
             return coordinateSequence;
         } else {
             if(randomInteger % 2 == 0) {
                 if(fixedLength != null) {
-                    return coordinateArraySequenceGenerator.length(fixedLength).generate(random);
+                    return coordinateArraySequenceGenerator.within(this.inputEnvelope).length(fixedLength).generate(random);
                 } else {
-                    return coordinateArraySequenceGenerator.length(minLength, maxLength).generate(random);
+                    return coordinateArraySequenceGenerator.within(this.inputEnvelope).length(minLength, maxLength).generate(random);
                 }
             } else {
                 if(fixedLength != null) {
-                    return packedCoordinateSequenceGenerator.length(fixedLength).generate(random);
+                    return packedCoordinateSequenceGenerator.within(this.inputEnvelope).length(fixedLength).generate(random);
                 } else {
-                    return packedCoordinateSequenceGenerator.length(minLength, maxLength).generate(random);
+                    return packedCoordinateSequenceGenerator.within(this.inputEnvelope).length(minLength, maxLength).generate(random);
                 }
             }
         }

@@ -19,48 +19,49 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.CoordinateArraySequenceGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 
-import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.PointGeneratorSpec;
-import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.PointSpec;
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.LineStringGeneratorSpec;
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.LineStringSpec;
 import org.instancio.Random;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 
 /**
  * Generator for creating a Point.
+ *
  * @since 1.0.0
  */
-public class LineStringGenerator
-//        implements PointSpec, PointGeneratorSpec
-        {
+public class LineStringGenerator implements LineStringSpec, LineStringGeneratorSpec, EnvelopableGenerator<LineString> {
 
-//    private final GeometryFactory geometryFactory = new GeometryFactory();
-//
-//    private Coordinate inputPointCoordinate;
-//
-//    private final CoordinateArraySequenceGenerator coordinateSequenceGenerator = new CoordinateArraySequenceGenerator();
-//
-//    /**
-//     * Configure the generator to generate a point with the specified coordinate.
-//     * @param longitude coordinate longitude
-//     * @param latitude coordinate latitude
-//     * @return spec builder
-//     */
-//    @Override
-//    public PointGenerator coordinate(final double longitude, final double latitude) {
-//        this.inputPointCoordinate = new Coordinate(longitude, latitude);
-//        return this;
-//    }
-//
-//    @Override
-//    public Point generate(Random random) {
-//        CoordinateArraySequence singularCoordinateSequence;
-//        if(inputPointCoordinate != null) {
-//            singularCoordinateSequence = new CoordinateArraySequence(new Coordinate[]{inputPointCoordinate});
-//        } else {
-//            singularCoordinateSequence = coordinateSequenceGenerator.length(1).generate(random);
-//        }
-//        return new Point(singularCoordinateSequence, geometryFactory);
-//    }
+    private final GeometryFactory geometryFactory = new GeometryFactory();
+
+    private Coordinate inputPointCoordinate;
+
+    private final CoordinateArraySequenceGenerator coordinateSequenceGenerator = new CoordinateArraySequenceGenerator();
+
+    /**
+     * Configure the generator to generate a point with the specified coordinate.
+     *
+     * @param longitude coordinate longitude
+     * @param latitude  coordinate latitude
+     * @return spec builder
+     */
+    @Override
+    public PointGenerator coordinate(final double longitude, final double latitude) {
+        this.inputPointCoordinate = new Coordinate(longitude, latitude);
+        return this;
+    }
+
+    @Override
+    public Point generate(Random random) {
+        CoordinateArraySequence singularCoordinateSequence;
+        if (inputPointCoordinate != null) {
+            singularCoordinateSequence = new CoordinateArraySequence(new Coordinate[]{inputPointCoordinate});
+        } else {
+            singularCoordinateSequence = coordinateSequenceGenerator.length(1).generate(random);
+        }
+        return new Point(singularCoordinateSequence, geometryFactory);
+    }
 }

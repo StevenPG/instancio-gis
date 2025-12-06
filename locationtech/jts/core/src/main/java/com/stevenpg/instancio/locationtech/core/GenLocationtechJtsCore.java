@@ -18,8 +18,6 @@ package com.stevenpg.instancio.locationtech.core;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.*;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.CoordinateArraySequenceGenerator;
-import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.PointGeneratorSpec;
-import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.CoordinateArraySequenceGeneratorSpec;
 
 /**
  * Provides access to the Locationtech JTS core generator provider.
@@ -74,8 +72,8 @@ public class GenLocationtechJtsCore {
      * Access to the Generator for org.locationtech.jts.core.geom.CoordinateXYZM.
      * @return generator
      */
-    public static CoordinateXYZMGenerator coordinateXYZM() {
-        return new CoordinateXYZMGenerator();
+    public static CoordinateXYZMGeneratorEnvelopable coordinateXYZM() {
+        return new CoordinateXYZMGeneratorEnvelopable();
     }
 
     private GenLocationtechJtsCore() {

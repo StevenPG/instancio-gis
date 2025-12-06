@@ -18,60 +18,69 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.LatLonEnvelopableBaseGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
-import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateXYMGeneratorSpec;
-import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateXYMSpec;
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateXYZMGeneratorSpec;
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateXYZMSpec;
 import org.instancio.Instancio;
 import org.instancio.Random;
 import org.instancio.generator.Generator;
 import org.locationtech.jts.geom.CoordinateXY;
-import org.locationtech.jts.geom.CoordinateXYM;
+import org.locationtech.jts.geom.CoordinateXYZM;
 import org.locationtech.jts.geom.Envelope;
 
 import static com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility.WithinUtility.randomLonLatInBounds;
 
 /**
- * Generator for creating a CoordinateXYM.
+ * Generator for creating a CoordinateXYZM.
  *
  * @since 1.0.0
  */
-public class CoordinateXYMGenerator extends LatLonEnvelopableBaseGenerator implements CoordinateXYMSpec, CoordinateXYMGeneratorSpec, Generator<CoordinateXYM>, EnvelopableGenerator<CoordinateXYM> {
+public class CoordinateXYZMGeneratorEnvelopable extends LatLonEnvelopableBaseGenerator implements CoordinateXYZMSpec, CoordinateXYZMGeneratorSpec, Generator<CoordinateXYZM>, EnvelopableGenerator<CoordinateXYZM> {
 
+    private Double inputAltitude;
     private Double measure;
 
     @Override
-    public CoordinateXYMGenerator latitude(double latitude) {
+    public CoordinateXYZMGeneratorEnvelopable latitude(double latitude) {
         this.setInputLatitude(latitude);
         return this;
     }
 
     @Override
-    public CoordinateXYMGenerator longitude(double longitude) {
+    public CoordinateXYZMGeneratorEnvelopable longitude(double longitude) {
         this.setInputLongitude(longitude);
         return this;
     }
 
     @Override
-    public CoordinateXYMGenerator measure(double measure) {
+    public CoordinateXYZMGeneratorEnvelopable altitude(double altitude) {
+        this.inputAltitude = altitude;
+        return this;
+    }
+
+    @Override
+    public CoordinateXYZMGeneratorEnvelopable measure(double measure) {
         this.measure = measure;
         return this;
     }
 
     @Override
-    public Generator<CoordinateXYM> within(Envelope validGenerationAreaEnvelope) {
+    public Generator<CoordinateXYZM> within(Envelope validGenerationAreaEnvelope) {
         this.setInputEnvelope(validGenerationAreaEnvelope);
         return this;
     }
 
     @Override
-    public CoordinateXYM generate(Random random) {
+    public CoordinateXYZM generate(Random random) {
         if (envelopeProvided() && !coordinateProvided()) {
             var lonLat = randomLonLatInBounds(getInputEnvelope());
-            return new CoordinateXYM(lonLat.longitude(), lonLat.latitude(),
+            return new CoordinateXYZM(lonLat.longitude(), lonLat.latitude(),
+                    inputAltitude == null ? Instancio.gen().doubles().get() : inputAltitude,
                     measure == null ? Instancio.gen().doubles().get() : measure);
         } else {
-            return new CoordinateXYM(
+            return new CoordinateXYZM(
                     getInputLongitude() == null ? Instancio.gen().spatial().coordinate().lon().get() : getInputLongitude(),
                     getInputLatitude() == null ? Instancio.gen().spatial().coordinate().lat().get() : getInputLatitude(),
+                    inputAltitude == null ? Instancio.gen().doubles().get() : inputAltitude,
                     measure == null ? Instancio.gen().doubles().get() : measure
             );
         }

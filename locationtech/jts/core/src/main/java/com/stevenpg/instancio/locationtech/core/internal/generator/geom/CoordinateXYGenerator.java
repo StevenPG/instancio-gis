@@ -16,6 +16,7 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.LatLonEnvelopableBaseGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateXYGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateXYSpec;
@@ -33,48 +34,36 @@ import static com.stevenpg.instancio.locationtech.core.internal.generator.geom.u
  *
  * @since 1.0.0
  */
-public class CoordinateXYGenerator implements CoordinateXYSpec, CoordinateXYGeneratorSpec, Generator<CoordinateXY>, EnvelopableGenerator<CoordinateXY> {
-
-    private Double inputLatitude;
-    private Double inputLongitude;
-    private Envelope inputEnvelope;
+public class CoordinateXYGenerator extends LatLonEnvelopableBaseGenerator implements CoordinateXYSpec, CoordinateXYGeneratorSpec, Generator<CoordinateXY>, EnvelopableGenerator<CoordinateXY> {
 
     @Override
     public CoordinateXYGenerator latitude(double latitude) {
-        this.inputLatitude = latitude;
+        this.setInputLatitude(latitude);
         return this;
     }
 
     @Override
     public CoordinateXYGenerator longitude(double longitude) {
-        this.inputLongitude = longitude;
+        this.setInputLongitude(longitude);
         return this;
     }
 
     @Override
     public Generator<CoordinateXY> within(Envelope validGenerationAreaEnvelope) {
-        this.inputEnvelope = validGenerationAreaEnvelope;
+        this.setInputEnvelope(validGenerationAreaEnvelope);
         return this;
     }
 
     @Override
     public CoordinateXY generate(Random random) {
         if(envelopeProvided() && !coordinateProvided()) {
-            var lonLat = randomLonLatInBounds(inputEnvelope);
+            var lonLat = randomLonLatInBounds(getInputEnvelope());
             return new CoordinateXY(lonLat.longitude(), lonLat.latitude());
         } else {
             return new CoordinateXY(
-                    inputLongitude == null ? Instancio.gen().spatial().coordinate().lon().get() : inputLongitude,
-                    inputLatitude == null ? Instancio.gen().spatial().coordinate().lat().get() : inputLatitude
+                    getInputLongitude() == null ? Instancio.gen().spatial().coordinate().lon().get() : getInputLongitude(),
+                    getInputLatitude() == null ? Instancio.gen().spatial().coordinate().lat().get() : getInputLatitude()
             );
         }
-    }
-
-    private boolean coordinateProvided() {
-        return inputLatitude != null || inputLongitude != null;
-    }
-
-    private boolean envelopeProvided() {
-        return inputEnvelope != null;
     }
 }
