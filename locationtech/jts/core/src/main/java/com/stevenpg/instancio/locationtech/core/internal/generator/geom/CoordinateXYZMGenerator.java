@@ -30,7 +30,7 @@ import org.locationtech.jts.geom.CoordinateXYZM;
  *
  * @since 1.0.0
  */
-public class CoordinateXYZMGenerator implements CoordinateXYZMSpec, CoordinateXYZMGeneratorSpec, Generator<CoordinateXYZM>{
+public class CoordinateXYZMGenerator implements CoordinateXYZMSpec, CoordinateXYZMGeneratorSpec, Generator<CoordinateXYZM>, EnvelopableGenerator<CoordinateXYZM>{
 
     private Double inputLatitude;
     private Double inputLongitude;

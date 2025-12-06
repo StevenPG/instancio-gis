@@ -22,17 +22,22 @@ import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.Co
 import org.instancio.Instancio;
 import org.instancio.Random;
 import org.instancio.generator.Generator;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXY;
+import org.locationtech.jts.geom.Envelope;
+
+import static com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility.WithinUtility.randomLonLatInBounds;
 
 /**
  * Generator for creating a CoordinateXY.
  *
  * @since 1.0.0
  */
-public class CoordinateXYGenerator implements CoordinateXYSpec, CoordinateXYGeneratorSpec, Generator<CoordinateXY> {
+public class CoordinateXYGenerator implements CoordinateXYSpec, CoordinateXYGeneratorSpec, Generator<CoordinateXY>, EnvelopableGenerator<CoordinateXY> {
 
     private Double inputLatitude;
     private Double inputLongitude;
+    private Envelope inputEnvelope;
 
     @Override
     public CoordinateXYGenerator latitude(double latitude) {
@@ -47,10 +52,29 @@ public class CoordinateXYGenerator implements CoordinateXYSpec, CoordinateXYGene
     }
 
     @Override
+    public Generator<CoordinateXY> within(Envelope validGenerationAreaEnvelope) {
+        this.inputEnvelope = validGenerationAreaEnvelope;
+        return this;
+    }
+
+    @Override
     public CoordinateXY generate(Random random) {
-        return new CoordinateXY(
-                inputLongitude == null ? Instancio.gen().spatial().coordinate().lon().get() : inputLongitude,
-                inputLatitude == null ? Instancio.gen().spatial().coordinate().lat().get() : inputLatitude
-        );
+        if(envelopeProvided() && !coordinateProvided()) {
+            var lonLat = randomLonLatInBounds(inputEnvelope);
+            return new CoordinateXY(lonLat.longitude(), lonLat.latitude());
+        } else {
+            return new CoordinateXY(
+                    inputLongitude == null ? Instancio.gen().spatial().coordinate().lon().get() : inputLongitude,
+                    inputLatitude == null ? Instancio.gen().spatial().coordinate().lat().get() : inputLatitude
+            );
+        }
+    }
+
+    private boolean coordinateProvided() {
+        return inputLatitude != null || inputLongitude != null;
+    }
+
+    private boolean envelopeProvided() {
+        return inputEnvelope != null;
     }
 }

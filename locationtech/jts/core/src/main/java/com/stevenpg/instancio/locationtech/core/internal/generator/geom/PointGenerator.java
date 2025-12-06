@@ -31,7 +31,7 @@ import org.locationtech.jts.geom.impl.CoordinateArraySequence;
  * Generator for creating a Point.
  * @since 1.0.0
  */
-public class PointGenerator implements PointSpec, PointGeneratorSpec, Generator<Point> {
+public class PointGenerator implements PointSpec, PointGeneratorSpec, Generator<Point>, EnvelopableGenerator<Point> {
 
     private final GeometryFactory geometryFactory = new GeometryFactory();
 

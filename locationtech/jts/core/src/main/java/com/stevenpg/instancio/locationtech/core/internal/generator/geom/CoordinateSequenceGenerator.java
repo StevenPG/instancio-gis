@@ -35,7 +35,7 @@ import org.locationtech.jts.geom.impl.CoordinateArraySequence;
  * This sequence generator returns a random coordinate sequence implemented by either
  * coordinate array sequence or packed sequence.
  */
-public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, CoordinateSequenceGeneratorSpec, Generator<CoordinateSequence> {
+public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, CoordinateSequenceGeneratorSpec, Generator<CoordinateSequence>, EnvelopableGenerator<CoordinateSequence> {
 
     // TODO - potentially ask why I need two of these, why was one inconsistent?
     private final CoordinateArraySequenceGenerator coordinateArraySequenceGenerator
