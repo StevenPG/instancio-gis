@@ -16,5 +16,10 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility;
 
+/**
+ * A record for holding longitude and latitude values.
+ * @param longitude value representing longitude
+ * @param latitude value representing latitude
+ */
 public record LonLatRecord(double longitude, double latitude) {
 }

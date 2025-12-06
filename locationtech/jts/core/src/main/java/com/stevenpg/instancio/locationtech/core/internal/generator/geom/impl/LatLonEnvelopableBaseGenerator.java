@@ -27,35 +27,71 @@ public class LatLonEnvelopableBaseGenerator {
     private Double inputLongitude;
     private Envelope inputEnvelope;
 
-    // TODO - review
-    protected boolean coordinateProvided() {
-        return inputLatitude != null || inputLongitude != null;
+    /**
+     * Default constructor.
+     */
+    public LatLonEnvelopableBaseGenerator() {}
+
+    /**
+     * Checks if a coordinate is missing.
+     * @return true if a coordinate was not provided, false otherwise.
+     */
+    protected boolean coordinateMissing() {
+        return inputLatitude == null || inputLongitude == null;
     }
 
+    /**
+     * Checks if an envelope has been provided.
+     * @return true if an envelope has been provided, false otherwise.
+     */
     protected boolean envelopeProvided() {
         return inputEnvelope != null;
     }
 
+    /**
+     * Returns the latitude input value.
+     * @return latitude value
+     */
     public Double getInputLatitude() {
         return inputLatitude;
     }
 
+    /**
+     * Sets the latitude input value.
+     * @param inputLatitude latitude value
+     */
     public void setInputLatitude(Double inputLatitude) {
         this.inputLatitude = inputLatitude;
     }
 
+    /**
+     * Returns the longitude input value.
+     * @return longitude value
+     */
     public Double getInputLongitude() {
         return inputLongitude;
     }
 
+    /**
+     * Sets the longitude input value.
+     * @param inputLongitude longitude value
+     */
     public void setInputLongitude(Double inputLongitude) {
         this.inputLongitude = inputLongitude;
     }
 
+    /**
+     * Returns the envelope input value.
+     * @return envelope value
+     */
     public Envelope getInputEnvelope() {
         return inputEnvelope;
     }
 
+    /**
+     * Sets the envelope input value.
+     * @param inputEnvelope envelope value
+     */
     public void setInputEnvelope(Envelope inputEnvelope) {
         this.inputEnvelope = inputEnvelope;
     }

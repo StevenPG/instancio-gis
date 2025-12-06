@@ -24,6 +24,7 @@ import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.Po
 import org.instancio.Random;
 import org.instancio.generator.Generator;
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.impl.CoordinateArraySequence;
@@ -37,8 +38,14 @@ public class PointGenerator extends LatLonEnvelopableBaseGenerator implements Po
     private final GeometryFactory geometryFactory = new GeometryFactory();
 
     private Coordinate inputPointCoordinate;
+    private Envelope inputEnvelope;
 
     private final CoordinateArraySequenceGenerator coordinateSequenceGenerator = new CoordinateArraySequenceGenerator();
+
+    /**
+     * Default constructor.
+     */
+    public PointGenerator() {}
 
     /**
      * Configure the generator to generate a point with the specified coordinate.
@@ -53,12 +60,22 @@ public class PointGenerator extends LatLonEnvelopableBaseGenerator implements Po
     }
 
     @Override
+    public PointGenerator within(Envelope validGenerationAreaEnvelope) {
+        this.inputEnvelope = validGenerationAreaEnvelope;
+        return this;
+    }
+
+    @Override
     public Point generate(Random random) {
         CoordinateArraySequence singularCoordinateSequence;
         if(inputPointCoordinate != null) {
             singularCoordinateSequence = new CoordinateArraySequence(new Coordinate[]{inputPointCoordinate});
         } else {
-            singularCoordinateSequence = coordinateSequenceGenerator.length(1).generate(random);
+            if(this.inputEnvelope != null) {
+                singularCoordinateSequence = coordinateSequenceGenerator.within(this.inputEnvelope).length(1).generate(random);
+            } else {
+                singularCoordinateSequence = coordinateSequenceGenerator.length(1).generate(random);
+            }
         }
         return new Point(singularCoordinateSequence, geometryFactory);
     }

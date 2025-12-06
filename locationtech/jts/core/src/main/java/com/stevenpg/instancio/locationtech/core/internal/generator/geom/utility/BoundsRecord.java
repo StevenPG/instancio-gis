@@ -16,5 +16,12 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility;
 
+/**
+ * Record for storing bounds in a clearer way than pulling them from a geometry.
+ * @param minLon minimum longitude of a bounding box
+ * @param maxLon maximum longitude of a bounding box
+ * @param minLat minimum latitude of a bounding box
+ * @param maxLat maximum latitude of a bounding box
+ */
 public record BoundsRecord(double minLon, double maxLon, double minLat, double maxLat) {
 }

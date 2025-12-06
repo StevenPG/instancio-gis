@@ -54,6 +54,11 @@ public class CoordinateArraySequenceGenerator
     private Integer fixedLength;
     private Envelope inputEnvelope;
 
+    /**
+     * Default constructor.
+     */
+    public CoordinateArraySequenceGenerator() {}
+
     @Override
     public CoordinateArraySequenceGenerator coordinateArraySequence(List<Coordinate> coordinateSequence) {
         overriddenCoordinateSequence.addAll(coordinateSequence);
@@ -122,7 +127,11 @@ public class CoordinateArraySequenceGenerator
                     : random.intRange(minLength, maxLength);
             var coordinates = new ArrayList<Coordinate>();
             for (int i = 0; i < totalCoordinates; i++) {
-                coordinates.add(coordinateGenerator.generate(random));
+                if (this.inputEnvelope != null) {
+                    coordinates.add(coordinateGenerator.within(this.inputEnvelope).generate(random));
+                } else {
+                    coordinates.add(coordinateGenerator.generate(random));
+                }
             }
 
             var factory = CoordinateArraySequenceFactory.instance();

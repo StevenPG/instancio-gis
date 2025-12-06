@@ -48,6 +48,11 @@ public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, Coor
     // When set, overrides min/max
     private Integer fixedLength;
 
+    /**
+     * Default constructor.
+     */
+    public CoordinateSequenceGenerator() {}
+
     @Override
     public CoordinateSequenceGenerator coordinateSequence(CoordinateSequence coordinateSequence) {
         this.coordinateSequence = coordinateSequence;

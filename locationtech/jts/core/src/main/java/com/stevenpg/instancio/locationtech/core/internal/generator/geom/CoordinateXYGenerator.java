@@ -23,7 +23,6 @@ import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.Co
 import org.instancio.Instancio;
 import org.instancio.Random;
 import org.instancio.generator.Generator;
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXY;
 import org.locationtech.jts.geom.Envelope;
 
@@ -35,6 +34,11 @@ import static com.stevenpg.instancio.locationtech.core.internal.generator.geom.u
  * @since 1.0.0
  */
 public class CoordinateXYGenerator extends LatLonEnvelopableBaseGenerator implements CoordinateXYSpec, CoordinateXYGeneratorSpec, Generator<CoordinateXY>, EnvelopableGenerator<CoordinateXY> {
+
+    /**
+     * Default constructor.
+     */
+    public CoordinateXYGenerator() {}
 
     @Override
     public CoordinateXYGenerator latitude(double latitude) {
@@ -56,7 +60,7 @@ public class CoordinateXYGenerator extends LatLonEnvelopableBaseGenerator implem
 
     @Override
     public CoordinateXY generate(Random random) {
-        if(envelopeProvided() && !coordinateProvided()) {
+        if(envelopeProvided() && coordinateMissing()) {
             var lonLat = randomLonLatInBounds(getInputEnvelope());
             return new CoordinateXY(lonLat.longitude(), lonLat.latitude());
         } else {

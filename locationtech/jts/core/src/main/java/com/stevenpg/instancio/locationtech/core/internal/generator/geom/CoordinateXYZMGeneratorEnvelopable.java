@@ -23,7 +23,6 @@ import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.Co
 import org.instancio.Instancio;
 import org.instancio.Random;
 import org.instancio.generator.Generator;
-import org.locationtech.jts.geom.CoordinateXY;
 import org.locationtech.jts.geom.CoordinateXYZM;
 import org.locationtech.jts.geom.Envelope;
 
@@ -38,6 +37,11 @@ public class CoordinateXYZMGeneratorEnvelopable extends LatLonEnvelopableBaseGen
 
     private Double inputAltitude;
     private Double measure;
+
+    /**
+     * Default constructor.
+     */
+    public CoordinateXYZMGeneratorEnvelopable() {}
 
     @Override
     public CoordinateXYZMGeneratorEnvelopable latitude(double latitude) {
@@ -71,7 +75,7 @@ public class CoordinateXYZMGeneratorEnvelopable extends LatLonEnvelopableBaseGen
 
     @Override
     public CoordinateXYZM generate(Random random) {
-        if (envelopeProvided() && !coordinateProvided()) {
+        if (envelopeProvided() && coordinateMissing()) {
             var lonLat = randomLonLatInBounds(getInputEnvelope());
             return new CoordinateXYZM(lonLat.longitude(), lonLat.latitude(),
                     inputAltitude == null ? Instancio.gen().doubles().get() : inputAltitude,

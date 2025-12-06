@@ -43,6 +43,11 @@ public class CoordinateGenerator implements CoordinateSpec, EnvelopableGenerator
     private Double inputLongitude;
     private Envelope inputEnvelope;
 
+    /**
+     * Default constructor.
+     */
+    public CoordinateGenerator() {}
+
     @Override
     public CoordinateGenerator latitude(double latitude) {
         this.inputLatitude = latitude;

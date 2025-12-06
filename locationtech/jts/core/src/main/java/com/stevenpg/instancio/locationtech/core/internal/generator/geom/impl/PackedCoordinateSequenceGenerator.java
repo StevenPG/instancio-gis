@@ -54,6 +54,11 @@ public class PackedCoordinateSequenceGenerator
     private Integer fixedLength;
     private Envelope inputEnvelope;
 
+    /**
+     * Default constructor.
+     */
+    public PackedCoordinateSequenceGenerator() {}
+
     @Override
     public PackedCoordinateSequenceGenerator coordinateSequence(List<Coordinate> coordinateSequence) {
         overriddenCoordinateSequence.addAll(coordinateSequence);
@@ -103,7 +108,7 @@ public class PackedCoordinateSequenceGenerator
     }
 
     @Override
-    public Generator<PackedCoordinateSequence> within(Envelope validGenerationAreaEnvelope) {
+    public PackedCoordinateSequenceGenerator within(Envelope validGenerationAreaEnvelope) {
         this.inputEnvelope = validGenerationAreaEnvelope;
         return this;
     }
@@ -117,9 +122,12 @@ public class PackedCoordinateSequenceGenerator
                     : random.intRange(minLength, maxLength);
             var coordinates = new ArrayList<Coordinate>();
             for (int i = 0; i < totalCoordinates; i++) {
-                coordinates.add(coordinateGenerator.generate(random));
+                if(this.inputEnvelope != null) {
+                    coordinates.add(coordinateGenerator.within(this.inputEnvelope).generate(random));
+                } else {
+                    coordinates.add(coordinateGenerator.generate(random));
+                }
             }
-
             var factory = new PackedCoordinateSequenceFactory();
             return (PackedCoordinateSequence) factory.create(coordinates.toArray(Coordinate[]::new));
         } else {

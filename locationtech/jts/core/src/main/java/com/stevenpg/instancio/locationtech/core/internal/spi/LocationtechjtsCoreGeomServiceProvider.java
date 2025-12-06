@@ -39,6 +39,11 @@ public class LocationtechjtsCoreGeomServiceProvider implements InstancioServiceP
 
     private GeneratorContext generatorContext;
 
+    /**
+     * Default constructor.
+     */
+    public LocationtechjtsCoreGeomServiceProvider() {}
+
     @Override
     public void init(final ServiceProviderContext providerContext) {
         this.generatorContext = new GeneratorContext(

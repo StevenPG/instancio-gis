@@ -26,6 +26,11 @@ import java.util.Random;
 public class WithinUtility {
 
     /**
+     * Private constructor to prevent instantiation.
+     */
+    private WithinUtility() {}
+
+    /**
      * Returns a BoundsRecord containing the envelope's bounds.
      * @param envelope - envelope to extract bounds from
      * @return - a BoundsRecord containing the envelope's bounds
@@ -40,6 +45,12 @@ public class WithinUtility {
      * @return - a LonLatRecord containing the generated longitude and latitude
      */
     public static LonLatRecord randomLonLatInBounds(Envelope envelope) {
+        if(envelope == null) {
+            return new LonLatRecord(
+                    new Random().nextDouble(),
+                    new Random().nextDouble()
+            );
+        }
         var longitude = new Random().nextDouble(envelope.getMinX(), envelope.getMaxX());
         var latitude = new Random().nextDouble(envelope.getMinY(), envelope.getMaxY());
         return new LonLatRecord(longitude, latitude);

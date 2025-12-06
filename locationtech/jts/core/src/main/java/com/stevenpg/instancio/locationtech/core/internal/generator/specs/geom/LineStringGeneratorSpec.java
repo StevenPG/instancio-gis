@@ -27,31 +27,21 @@ import org.locationtech.jts.geom.LineString;
  */
 public interface LineStringGeneratorSpec extends GeneratorSpec<LineString> {
 
-    // /**
-    //  * Generate a valid LineString.
-    //  *
-    //  * @param latitude the latitude of the point
-    //  * @param longitude the longitude of the point
-    //  * @return spec builder
-    //  * @since 4.4.0
-    //  */
-    // PointGeneratorSpec coordinate(double longitude, double latitude);
-
-    // CoordinateSequence
-
-    // GeometryFactory (can be provided, otherwise default is used
-
     /**
      * Generate a valid LineString based on the provided coordinate sequence. Not compatible
      * with providing a GeometryFactory.
+     * @param coordinateSequence the coordinate sequence to generate
+     * @return spec builder
      */
-    CoordinateSequenceSpec coordinateSequence(CoordinateSequence coordinateSequence);
+    LineStringSpec coordinateSequence(CoordinateSequence coordinateSequence);
 
     
     /**
-     * Provide an optional GeometryFactory to utilize to generate the LineString.
+     * Provide an optional GeometryFactory to use to generate the LineString.
      * Cannot be provided alongside the CoordinateSequence.
+     * @param geometryFactory the geometry factory to use
+     * @return spec builder
      */
-    CoordinateSequenceSpec geometryFactory(GeometryFactory geometryFactory);
+    LineStringSpec geometryFactory(GeometryFactory geometryFactory);
 
 }
