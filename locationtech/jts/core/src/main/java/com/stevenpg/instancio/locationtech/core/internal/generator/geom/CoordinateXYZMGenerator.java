@@ -33,7 +33,7 @@ import static com.stevenpg.instancio.locationtech.core.internal.generator.geom.u
  *
  * @since 1.0.0
  */
-public class CoordinateXYZMGeneratorEnvelopable extends LatLonEnvelopableBaseGenerator implements CoordinateXYZMSpec, CoordinateXYZMGeneratorSpec, Generator<CoordinateXYZM>, EnvelopableGenerator<CoordinateXYZM> {
+public class CoordinateXYZMGenerator extends LatLonEnvelopableBaseGenerator implements CoordinateXYZMSpec, CoordinateXYZMGeneratorSpec, Generator<CoordinateXYZM>, EnvelopableGenerator<CoordinateXYZM> {
 
     private Double inputAltitude;
     private Double measure;
@@ -41,28 +41,28 @@ public class CoordinateXYZMGeneratorEnvelopable extends LatLonEnvelopableBaseGen
     /**
      * Default constructor.
      */
-    public CoordinateXYZMGeneratorEnvelopable() {}
+    public CoordinateXYZMGenerator() {}
 
     @Override
-    public CoordinateXYZMGeneratorEnvelopable latitude(double latitude) {
+    public CoordinateXYZMGenerator latitude(double latitude) {
         this.setInputLatitude(latitude);
         return this;
     }
 
     @Override
-    public CoordinateXYZMGeneratorEnvelopable longitude(double longitude) {
+    public CoordinateXYZMGenerator longitude(double longitude) {
         this.setInputLongitude(longitude);
         return this;
     }
 
     @Override
-    public CoordinateXYZMGeneratorEnvelopable altitude(double altitude) {
+    public CoordinateXYZMGenerator altitude(double altitude) {
         this.inputAltitude = altitude;
         return this;
     }
 
     @Override
-    public CoordinateXYZMGeneratorEnvelopable measure(double measure) {
+    public CoordinateXYZMGenerator measure(double measure) {
         this.measure = measure;
         return this;
     }

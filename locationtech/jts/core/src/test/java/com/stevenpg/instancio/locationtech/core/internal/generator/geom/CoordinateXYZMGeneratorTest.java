@@ -36,7 +36,7 @@ class CoordinateXYZMGeneratorTest {
 
     @RepeatedTest(5)
     void latitude() {
-        var coordinate = new CoordinateXYZMGeneratorEnvelopable().latitude(10d).generate(null);
+        var coordinate = new CoordinateXYZMGenerator().latitude(10d).generate(null);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -47,7 +47,7 @@ class CoordinateXYZMGeneratorTest {
 
     @RepeatedTest(5)
     void longitude() {
-        var coordinate = new CoordinateXYZMGeneratorEnvelopable().longitude(20d).generate(null);
+        var coordinate = new CoordinateXYZMGenerator().longitude(20d).generate(null);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -58,7 +58,7 @@ class CoordinateXYZMGeneratorTest {
 
     @RepeatedTest(5)
     void altitude() {
-        var coordinate = new CoordinateXYZMGeneratorEnvelopable().altitude(40d).generate(null);
+        var coordinate = new CoordinateXYZMGenerator().altitude(40d).generate(null);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -68,7 +68,7 @@ class CoordinateXYZMGeneratorTest {
 
     @RepeatedTest(5)
     void measure() {
-        var coordinate = new CoordinateXYZMGeneratorEnvelopable().measure(5d).generate(null);
+        var coordinate = new CoordinateXYZMGenerator().measure(5d).generate(null);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -78,7 +78,7 @@ class CoordinateXYZMGeneratorTest {
 
     @RepeatedTest(5)
     void generate() {
-        var coordinate = new CoordinateXYZMGeneratorEnvelopable().generate(null);
+        var coordinate = new CoordinateXYZMGenerator().generate(null);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);

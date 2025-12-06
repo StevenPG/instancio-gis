@@ -31,7 +31,6 @@ class CoordinateSequenceGeneratorTest {
 
     @RepeatedTest(5)
     void create() {
-        // TODO could not create an instance of interface org.locationtech.jts.geom.CoordinateSequence
         var coordinateSequence = Instancio.create(CoordinateSequence.class);
         assertNotNull(coordinateSequence);
         assertTrue(coordinateSequence.size() >= 0);

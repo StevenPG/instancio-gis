@@ -24,19 +24,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class GenLocationtechJtsCoreTest {
 
     @Test
-    void point() {
-        var generator = GenLocationtechJtsCore.point();
-        assertNotNull(generator);
-
-        var coordinate = generator.generate(new DefaultRandom());
-
-        assertNotNull(coordinate);
-        assertInstanceOf(org.locationtech.jts.geom.Point.class, coordinate);
-        assertTrue(coordinate.getCoordinate().x > -180 && coordinate.getCoordinate().x < 180);
-        assertTrue(coordinate.getCoordinate().y > -90 && coordinate.getCoordinate().y < 90);
-    }
-
-    @Test
     void coordinateArraySequence() {
         var generator = GenLocationtechJtsCore.coordinateArraySequence();
         assertNotNull(generator);
@@ -64,5 +51,69 @@ class GenLocationtechJtsCoreTest {
         assertNotNull(result);
         assertTrue(result.x > -180 && result.x < 180);
         assertTrue(result.y > -90 && result.y < 90);
+    }
+
+    @Test
+    void coordinateXY() {
+        var generator = GenLocationtechJtsCore.coordinateXY();
+        assertNotNull(generator);
+
+        var result = generator.generate(null);
+
+        assertInstanceOf(org.locationtech.jts.geom.CoordinateXY.class, result);
+        assertNotNull(result);
+        assertTrue(result.x > -180 && result.x < 180);
+        assertTrue(result.y > -90 && result.y < 90);
+    }
+
+    @Test
+    void coordinateXYM() {
+        var generator = GenLocationtechJtsCore.coordinateXYM();
+        assertNotNull(generator);
+
+        var result = generator.generate(null);
+
+        assertInstanceOf(org.locationtech.jts.geom.CoordinateXYM.class, result);
+        assertNotNull(result);
+        assertTrue(result.x > -180 && result.x < 180);
+        assertTrue(result.y > -90 && result.y < 90);
+    }
+
+    @Test
+    void coordinateXYZM() {
+        var generator = GenLocationtechJtsCore.coordinateXYZM();
+        assertNotNull(generator);
+
+        var result = generator.generate(null);
+
+        assertInstanceOf(org.locationtech.jts.geom.CoordinateXYZM.class, result);
+        assertNotNull(result);
+        assertTrue(result.x > -180 && result.x < 180);
+        assertTrue(result.y > -90 && result.y < 90);
+    }
+
+    @Test
+    void lineString() {
+        var generator = GenLocationtechJtsCore.lineString();
+        assertNotNull(generator);
+
+        var linestring = generator.generate(new DefaultRandom());
+
+        assertNotNull(linestring);
+        assertInstanceOf(org.locationtech.jts.geom.LineString.class, linestring);
+        // TODO - check that all points are within lat/lng
+    }
+
+    @Test
+    void point() {
+        var generator = GenLocationtechJtsCore.point();
+        assertNotNull(generator);
+
+        var coordinate = generator.generate(new DefaultRandom());
+
+        assertNotNull(coordinate);
+        assertInstanceOf(org.locationtech.jts.geom.Point.class, coordinate);
+        assertTrue(coordinate.getCoordinate().x > -180 && coordinate.getCoordinate().x < 180);
+        assertTrue(coordinate.getCoordinate().y > -90 && coordinate.getCoordinate().y < 90);
     }
 }
