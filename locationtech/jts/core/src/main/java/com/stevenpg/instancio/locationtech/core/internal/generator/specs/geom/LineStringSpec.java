@@ -17,7 +17,6 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
 /**
- * TODO
  * Spec for generating a LineString.
  *
  * @since 4.4.0

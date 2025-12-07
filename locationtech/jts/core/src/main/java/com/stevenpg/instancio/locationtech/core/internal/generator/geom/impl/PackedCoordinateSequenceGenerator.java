@@ -115,7 +115,6 @@ public class PackedCoordinateSequenceGenerator
 
     @Override
     public PackedCoordinateSequence generate(Random random) {
-        // TODO - handle within
         if(overriddenCoordinateSequence.isEmpty()) {
             int totalCoordinates = (fixedLength != null)
                     ? fixedLength

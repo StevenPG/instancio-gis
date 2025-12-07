@@ -25,6 +25,8 @@ import java.util.Random;
  */
 public class WithinUtility {
 
+    private static final Random random = new Random();
+
     /**
      * Private constructor to prevent instantiation.
      */
@@ -48,8 +50,8 @@ public class WithinUtility {
      */
     public static LonLatRecord randomLonLatInBounds() {
         return new LonLatRecord(
-                new Random().nextDouble(),
-                new Random().nextDouble()
+                random.nextDouble(),
+                random.nextDouble()
         );
     }
 
@@ -63,8 +65,8 @@ public class WithinUtility {
         if (envelope == null) {
             return randomLonLatInBounds();
         }
-        var longitude = new Random().nextDouble(envelope.getMinX(), envelope.getMaxX());
-        var latitude = new Random().nextDouble(envelope.getMinY(), envelope.getMaxY());
+        var longitude = random.nextDouble(envelope.getMinX(), envelope.getMaxX());
+        var latitude = random.nextDouble(envelope.getMinY(), envelope.getMaxY());
         return new LonLatRecord(longitude, latitude);
     }
 

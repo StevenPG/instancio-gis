@@ -23,7 +23,6 @@ import org.locationtech.jts.geom.Envelope;
  * Specs that extend Envelopable allow the user to input an envelope that is taken into account when generating
  * values for the generator. The generator should not generate any sort of geometry that is outside of the envelope
  * unless the user overrides the envelope by providing their own explicit points.
- * TODO - include all relevant things in envelopable
  * @param <T> the type of geometry that the generator will generate
  */
 public interface EnvelopableGenerator<T> extends Generator<T> {
