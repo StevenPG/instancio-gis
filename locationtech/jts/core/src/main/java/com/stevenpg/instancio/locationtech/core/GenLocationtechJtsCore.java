@@ -94,16 +94,22 @@ public class GenLocationtechJtsCore {
         return new PointGenerator();
     }
 
+    /**
+     * Access to the Generator for org.locationtech.jts.core.geom.MultiLineString.
+     * @return generator
+     * @since 1.0.0
+     */
     public static MultiLineStringGenerator multiLineString() {
         return new MultiLineStringGenerator();
     }
 
+    /**
+     * Access to the Generator for org.locationtech.jts.core.geom.MultiPoint.
+     * @return generator
+     * @since 1.0.0
+     */
     public static MultiPointGenerator multiPoint() {
         return new MultiPointGenerator();
-    }
-
-    public static MultiPolygonGenerator MultiPolygon() {
-        return new MultiPolygonGenerator();
     }
 
     private GenLocationtechJtsCore() {

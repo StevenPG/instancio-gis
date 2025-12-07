@@ -1,12 +1,25 @@
+/*
+ * Copyright 2025 Steven Gantz.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.MultiLineStringGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.MultiPointGenerator;
 import org.instancio.generator.GeneratorSpec;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.MultiLineString;
-import org.locationtech.jts.geom.MultiPoint;
-import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.*;
 
 import java.util.List;
 
@@ -16,11 +29,11 @@ import java.util.List;
 public interface MultiLineStringGeneratorSpec extends GeneratorSpec<MultiLineString> {
 
     /**
-     * Provide a list of points to load into a multi-point.
-     * @param points the points to load
+     * Provide a list of linestrings to load into a multi-linestring.
+     * @param lineStrings the linestrings to load
      * @return spec builder
      */
-    MultiLineStringGenerator points(List<Point> points);
+    MultiLineStringGenerator lineStrings(List<LineString> lineStrings);
 
     /**
      * Provide an optional GeometryFactory to use to generate the LineString.

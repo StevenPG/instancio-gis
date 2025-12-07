@@ -31,8 +31,8 @@ For there to be a checkmark, there must be:
 - [ ] LineSegment.java
 - [x] LineString.java
 - [ ] LinearRing.java
-- [ ] MultiLineString.java
-- [ ] MultiPoint.java
+- [x] MultiLineString.java
+- [x] MultiPoint.java
 - [ ] MultiPolygon.java
 - [ ] OctagonalEnvelope.java
 - [ ] Point.java
