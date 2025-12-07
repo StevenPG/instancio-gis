@@ -45,7 +45,7 @@ public interface MultiPointGeneratorSpec extends GeneratorSpec<MultiPoint> {
     MultiPointGenerator geometryFactory(GeometryFactory geometryFactory);
 
     /**
-     * Set the length of the generated LineString.
+     * Set the length of the generated MultiPoint.
      * @param length the number of coordinates must be >= 2
      * @return spec builder
      */
