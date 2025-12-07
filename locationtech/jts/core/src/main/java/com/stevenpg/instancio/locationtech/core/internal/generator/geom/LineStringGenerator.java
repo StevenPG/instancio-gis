@@ -78,7 +78,9 @@ public class LineStringGenerator implements LineStringSpec, LineStringGeneratorS
             return geometryFactory.createLineString(inputCoordinateSequence);
         } else {
             var sequenceGenerator = new CoordinateSequenceGenerator();
-            var length = random.intRange(2, 10);
+            var length = random != null
+                    ? random.intRange(2, 10)
+                    : LineStringGenerator.random.nextInt(2, 10);
             if (inputLength != null) {
                 length = inputLength;
             }

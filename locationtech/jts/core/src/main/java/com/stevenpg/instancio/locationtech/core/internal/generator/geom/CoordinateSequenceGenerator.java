@@ -52,7 +52,8 @@ public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, Coor
     /**
      * Default constructor.
      */
-    public CoordinateSequenceGenerator() {}
+    public CoordinateSequenceGenerator() {
+    }
 
     @Override
     public CoordinateSequenceGenerator coordinateSequence(CoordinateSequence coordinateSequence) {
@@ -62,6 +63,7 @@ public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, Coor
 
     /**
      * Sets a fixed length for the generated {@link CoordinateArraySequence}.
+     *
      * @param length the number of coordinates must be >= 1
      * @return this generator
      */
@@ -81,6 +83,7 @@ public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, Coor
 
     /**
      * Sets a range for the number of coordinates generated.
+     *
      * @param min minimum number of coordinates, must be >= 1
      * @param max maximum number of coordinates, must be >= min
      * @return this generator
@@ -110,18 +113,20 @@ public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, Coor
 
     @Override
     public CoordinateSequence generate(Random random) {
-        var randomInteger = random.intRange(1, 10);
-        if(coordinateSequence != null) {
+        var randomInteger = random != null
+                ? random.intRange(1, 10)
+                : CoordinateSequenceGenerator.random.nextInt(1, 10);
+        if (coordinateSequence != null) {
             return coordinateSequence;
         } else {
-            if(randomInteger % 2 == 0) {
-                if(fixedLength != null) {
+            if (randomInteger % 2 == 0) {
+                if (fixedLength != null) {
                     return coordinateArraySequenceGenerator.within(this.inputEnvelope).length(fixedLength).generate(random);
                 } else {
                     return coordinateArraySequenceGenerator.within(this.inputEnvelope).length(minLength, maxLength).generate(random);
                 }
             } else {
-                if(fixedLength != null) {
+                if (fixedLength != null) {
                     return packedCoordinateSequenceGenerator.within(this.inputEnvelope).length(fixedLength).generate(random);
                 } else {
                     return packedCoordinateSequenceGenerator.within(this.inputEnvelope).length(minLength, maxLength).generate(random);
