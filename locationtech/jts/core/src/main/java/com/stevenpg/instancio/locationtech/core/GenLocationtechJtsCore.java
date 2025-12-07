@@ -104,7 +104,7 @@ public class GenLocationtechJtsCore {
     }
 
     /**
-     * Access to the Generator for org.locationtech.jts.core.geom.MultiPoint.
+     * Access to the Generator for org.locationtech.jts.geom.MultiPoint.
      * @return generator
      * @since 1.0.0
      */
