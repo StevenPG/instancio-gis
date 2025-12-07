@@ -42,7 +42,7 @@ class LatLonEnvelopableBaseGeneratorTest {
         var latitudeLongitudeProvidedGenerator = new LatLonEnvelopableBaseGenerator();
         
         latitudeProvidedGenerator.setInputLatitude(10d);
-        longitudeProvidedGenerator.setInputLatitude(20d);
+        longitudeProvidedGenerator.setInputLongitude(20d);
 
         latitudeLongitudeProvidedGenerator.setInputLatitude(20d);
         latitudeLongitudeProvidedGenerator.setInputLongitude(30d);
