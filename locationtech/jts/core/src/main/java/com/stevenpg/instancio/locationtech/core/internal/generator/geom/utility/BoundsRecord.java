@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
+package com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility;
 
 /**
- * TODO
- * Spec for generating a Point.
- *
- * @since 4.4.0
+ * Record for storing bounds in a clearer way than pulling them from a geometry.
+ * @param minLon minimum longitude of a bounding box
+ * @param maxLon maximum longitude of a bounding box
+ * @param minLat minimum latitude of a bounding box
+ * @param maxLat maximum latitude of a bounding box
  */
-public interface PointSpec extends PointGeneratorSpec {
-
+public record BoundsRecord(double minLon, double maxLon, double minLat, double maxLat) {
 }

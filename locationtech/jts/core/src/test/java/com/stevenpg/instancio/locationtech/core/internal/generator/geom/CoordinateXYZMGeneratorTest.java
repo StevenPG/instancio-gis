@@ -18,8 +18,8 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
 import org.instancio.Instancio;
 import org.junit.jupiter.api.RepeatedTest;
-import org.locationtech.jts.geom.CoordinateXYM;
 import org.locationtech.jts.geom.CoordinateXYZM;
+import org.locationtech.jts.geom.Envelope;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -75,6 +75,17 @@ class CoordinateXYZMGeneratorTest {
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
         assertTrue(coordinate.getZ() >= 0);
         assertEquals(5d, coordinate.getM());
+    }
+
+    @RepeatedTest(5)
+    void within() {
+        var bounds = new Envelope(-90, 90, -45, 45);
+        var coordinate = new CoordinateXYZMGenerator().within(bounds).generate(null);
+        assertNotNull(coordinate);
+        assertTrue(coordinate.x > -90 && coordinate.x < 90);
+        assertTrue(coordinate.y > -45 && coordinate.y < 45);
+        assertFalse(Double.isNaN(coordinate.z));
+        assertFalse(Double.isNaN(coordinate.getM()));
     }
 
     @RepeatedTest(5)

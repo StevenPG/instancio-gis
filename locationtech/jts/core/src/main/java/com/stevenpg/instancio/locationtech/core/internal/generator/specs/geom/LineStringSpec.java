@@ -17,11 +17,10 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
 /**
- * TODO
- * Spec for generating a Point.
+ * Spec for generating a LineString.
  *
  * @since 4.4.0
  */
-public interface PointSpec extends PointGeneratorSpec {
+public interface LineStringSpec {
 
 }

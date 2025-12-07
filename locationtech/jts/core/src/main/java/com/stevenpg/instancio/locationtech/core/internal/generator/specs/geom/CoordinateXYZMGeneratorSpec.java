@@ -18,7 +18,6 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateXYZMGenerator;
 import org.instancio.generator.GeneratorSpec;
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXYZM;
 
 /**

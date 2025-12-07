@@ -16,40 +16,58 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.LatLonEnvelopableBaseGenerator;
+import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateXYGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateXYSpec;
 import org.instancio.Instancio;
 import org.instancio.Random;
 import org.instancio.generator.Generator;
 import org.locationtech.jts.geom.CoordinateXY;
+import org.locationtech.jts.geom.Envelope;
+
+import static com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility.WithinUtility.randomLonLatInBounds;
 
 /**
  * Generator for creating a CoordinateXY.
  *
  * @since 1.0.0
  */
-public class CoordinateXYGenerator implements CoordinateXYSpec, CoordinateXYGeneratorSpec, Generator<CoordinateXY> {
+public class CoordinateXYGenerator extends LatLonEnvelopableBaseGenerator implements CoordinateXYSpec, CoordinateXYGeneratorSpec, Generator<CoordinateXY>, EnvelopableGenerator<CoordinateXY> {
 
-    private Double inputLatitude;
-    private Double inputLongitude;
+    /**
+     * Default constructor.
+     */
+    public CoordinateXYGenerator() {}
 
     @Override
     public CoordinateXYGenerator latitude(double latitude) {
-        this.inputLatitude = latitude;
+        this.setInputLatitude(latitude);
         return this;
     }
 
     @Override
     public CoordinateXYGenerator longitude(double longitude) {
-        this.inputLongitude = longitude;
+        this.setInputLongitude(longitude);
+        return this;
+    }
+
+    @Override
+    public Generator<CoordinateXY> within(Envelope validGenerationAreaEnvelope) {
+        this.setInputEnvelope(validGenerationAreaEnvelope);
         return this;
     }
 
     @Override
     public CoordinateXY generate(Random random) {
-        return new CoordinateXY(
-                inputLongitude == null ? Instancio.gen().spatial().coordinate().lon().get() : inputLongitude,
-                inputLatitude == null ? Instancio.gen().spatial().coordinate().lat().get() : inputLatitude
-        );
+        if(envelopeProvided() && coordinateMissing()) {
+            var lonLat = randomLonLatInBounds(getInputEnvelope());
+            return new CoordinateXY(lonLat.longitude(), lonLat.latitude());
+        } else {
+            return new CoordinateXY(
+                    getInputLongitude() == null ? Instancio.gen().spatial().coordinate().lon().get() : getInputLongitude(),
+                    getInputLatitude() == null ? Instancio.gen().spatial().coordinate().lat().get() : getInputLatitude()
+            );
+        }
     }
 }

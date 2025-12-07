@@ -18,8 +18,6 @@ package com.stevenpg.instancio.locationtech.core;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.*;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.CoordinateArraySequenceGenerator;
-import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.PointGeneratorSpec;
-import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.CoordinateArraySequenceGeneratorSpec;
 
 /**
  * Provides access to the Locationtech JTS core generator provider.
@@ -28,15 +26,6 @@ import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.im
  */
 public class GenLocationtechJtsCore {
 
-    /**
-     * Access to the Generator for org.locationtech.jts.core.geom.Point.
-     *
-     * @return generator spec
-     * @since 1.0.0
-     */
-    public static PointGenerator point() {
-        return new PointGenerator();
-    }
 
     /**
      * Access to the Generator Spec for org.locationtech.jts.core.geom.CoordinateArraySequence.
@@ -52,6 +41,14 @@ public class GenLocationtechJtsCore {
      */
     public static CoordinateGenerator coordinate() {
         return new CoordinateGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.core.geom.CoordinateSequence.
+     * @return generator
+     */
+    public static CoordinateSequenceGenerator coordinateSequence() {
+        return new CoordinateSequenceGenerator();
     }
 
     /**
@@ -76,6 +73,24 @@ public class GenLocationtechJtsCore {
      */
     public static CoordinateXYZMGenerator coordinateXYZM() {
         return new CoordinateXYZMGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.core.geom.LineString.
+     * @return generator
+     */
+    public static LineStringGenerator lineString() {
+        return new LineStringGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.core.geom.Point.
+     *
+     * @return generator spec
+     * @since 1.0.0
+     */
+    public static PointGenerator point() {
+        return new PointGenerator();
     }
 
     private GenLocationtechJtsCore() {

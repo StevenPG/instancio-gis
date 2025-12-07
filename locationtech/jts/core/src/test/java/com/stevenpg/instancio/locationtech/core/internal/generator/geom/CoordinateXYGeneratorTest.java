@@ -20,6 +20,7 @@ import org.instancio.Instancio;
 import org.junit.jupiter.api.RepeatedTest;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXY;
+import org.locationtech.jts.geom.Envelope;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,6 +53,16 @@ class CoordinateXYGeneratorTest {
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
         assertEquals(20d, coordinate.x);
         assertEquals(Double.NaN, coordinate.z);
+    }
+
+    @RepeatedTest(5)
+    void within() {
+        var bounds = new Envelope(-90, 90, -45, 45);
+        var coordinate = new CoordinateXYGenerator().within(bounds).generate(null);
+        assertNotNull(coordinate);
+        assertTrue(coordinate.x > -90 && coordinate.x < 90);
+        assertTrue(coordinate.y > -45 && coordinate.y < 45);
+        assertTrue(Double.isNaN(coordinate.z));
     }
 
     @RepeatedTest(5)

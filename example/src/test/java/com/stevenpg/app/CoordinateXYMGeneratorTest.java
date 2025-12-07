@@ -17,14 +17,18 @@
 package com.stevenpg.app;
 
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateGenerator;
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateXYMGenerator;
 import org.instancio.Instancio;
 import org.instancio.support.DefaultRandom;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXYM;
+import org.locationtech.jts.geom.Envelope;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoordinateXYMGeneratorTest {
 
@@ -57,4 +61,13 @@ public class CoordinateXYMGeneratorTest {
         assertInstanceOf(CoordinateXYM.class, Instancio.create(CoordinateXYM.class));
     }
 
+    @RepeatedTest(5)
+    void within() {
+        var bounds = new Envelope(-90, 90, -45, 45);
+        var coordinate = new CoordinateXYMGenerator().within(bounds).generate(null);
+        assertNotNull(coordinate);
+        assertTrue(coordinate.x > -90 && coordinate.x < 90);
+        assertTrue(coordinate.y > -45 && coordinate.y < 45);
+        assertTrue(Double.isNaN(coordinate.z));
+    }
 }
