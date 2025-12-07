@@ -44,7 +44,7 @@ public interface MultiLineStringGeneratorSpec extends GeneratorSpec<MultiLineStr
     MultiLineStringGenerator geometryFactory(GeometryFactory geometryFactory);
 
     /**
-     * Set the length of the generated LineString.
+     * Set the length of the generated MultiLineString.
      * @param length the number of coordinates must be >= 2
      * @return spec builder
      */
