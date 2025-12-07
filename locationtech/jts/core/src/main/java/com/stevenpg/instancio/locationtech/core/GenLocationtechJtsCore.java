@@ -112,6 +112,24 @@ public class GenLocationtechJtsCore {
         return new MultiPointGenerator();
     }
 
+    /**
+     * Access to the Generator for org.locationtech.jts.geom.Envelope.
+     * @return generator
+     * @since 1.0.0
+     */
+    public static EnvelopeGenerator envelope() {
+        return new EnvelopeGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.geom.OctagonalEnvelope.
+     * @return generator
+     * @since 1.0.0
+     */
+    public static OctagonalEnvelopeGenerator octagonalEnvelope() {
+        return new OctagonalEnvelopeGenerator();
+    }
+
     private GenLocationtechJtsCore() {
         // private constructor to prevent instantiation
     }
