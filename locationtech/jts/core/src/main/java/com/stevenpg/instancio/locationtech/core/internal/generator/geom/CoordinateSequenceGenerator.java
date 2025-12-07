@@ -109,7 +109,7 @@ public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, Coor
 
     @Override
     public CoordinateSequence generate(Random random) {
-        var randomInteger = random.intRange(1, 10);
+        var randomInteger = new java.util.Random().nextInt(0, 10);
         if(coordinateSequence != null) {
             return coordinateSequence;
         } else {

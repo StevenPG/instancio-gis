@@ -37,6 +37,7 @@ public class LineStringGenerator implements LineStringSpec, LineStringGeneratorS
 
     private GeometryFactory inputGeometryFactory;
     private CoordinateSequence inputCoordinateSequence;
+    private Integer inputLength;
     private Envelope inputEnvelope;
 
     /**
@@ -47,6 +48,12 @@ public class LineStringGenerator implements LineStringSpec, LineStringGeneratorS
     @Override
     public LineStringGenerator coordinateSequence(CoordinateSequence coordinateSequence) {
         this.inputCoordinateSequence = coordinateSequence;
+        return this;
+    }
+
+    @Override
+    public LineStringGenerator length(int length) {
+        this.inputLength = length;
         return this;
     }
 
@@ -65,16 +72,20 @@ public class LineStringGenerator implements LineStringSpec, LineStringGeneratorS
     @Override
     public LineString generate(Random random) {
         var geometryFactory = inputGeometryFactory != null ? inputGeometryFactory : defaultGeometryFactory;
-
         if (inputCoordinateSequence != null) {
             return geometryFactory.createLineString(inputCoordinateSequence);
         } else {
             var sequenceGenerator = new CoordinateSequenceGenerator();
-
+            var length = new java.util.Random().nextInt(0, 10);
+            if (inputLength != null) {
+                length = inputLength;
+            } else if(length == 1 || length == 0) {
+                length = 2;
+            } // Otherwise, we use the random length value.
             if (inputEnvelope != null) {
-                return geometryFactory.createLineString(sequenceGenerator.within(inputEnvelope).generate(random));
+                return geometryFactory.createLineString(sequenceGenerator.length(length).within(inputEnvelope).generate(random));
             } else {
-                return geometryFactory.createLineString(sequenceGenerator.generate(random));
+                return geometryFactory.createLineString(sequenceGenerator.length(length).generate(random));
             }
         }
     }

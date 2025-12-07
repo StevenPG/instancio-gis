@@ -54,4 +54,14 @@ class WithinUtilityTest {
         assertTrue(lon >= -180 && lon <= 180);
         assertTrue(lat >= -90 && lat <= 90);
     }
+
+    @RepeatedTest(10)
+    void randomLongitudeNullBounds() {
+        var record = WithinUtility.randomLonLatInBounds(null);
+        var lon = record.longitude();
+        var lat = record.latitude();
+
+        assertTrue(lon >= -180 && lon <= 180);
+        assertTrue(lat >= -90 && lat <= 90);
+    }
 }

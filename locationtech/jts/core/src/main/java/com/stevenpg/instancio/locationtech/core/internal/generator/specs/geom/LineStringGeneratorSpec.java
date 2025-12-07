@@ -16,6 +16,7 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.LineStringGenerator;
 import org.instancio.generator.GeneratorSpec;
 import org.instancio.generator.specs.NullableGeneratorSpec;
 import org.locationtech.jts.geom.CoordinateSequence;
@@ -43,5 +44,12 @@ public interface LineStringGeneratorSpec extends GeneratorSpec<LineString> {
      * @return spec builder
      */
     LineStringSpec geometryFactory(GeometryFactory geometryFactory);
+
+    /**
+     * Set the length of the generated LineString.
+     * @param length the number of coordinates must be >= 2
+     * @return spec builder
+     */
+    LineStringGenerator length(int length);
 
 }

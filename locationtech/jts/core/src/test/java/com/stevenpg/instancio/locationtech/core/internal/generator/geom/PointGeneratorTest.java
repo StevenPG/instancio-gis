@@ -22,6 +22,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.CoordinateSequence;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Point;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,6 +42,19 @@ class PointGeneratorTest {
                 .generate(new DefaultRandom());
 
         assertNotNull(result);
+    }
+
+    @Test
+    void within() {
+        var result = new PointGenerator()
+                .within(new Envelope(0, 10, 0, 10))
+                .generate(new DefaultRandom());
+
+        assertNotNull(result);
+        assertTrue(result.getCoordinateSequence().getCoordinate(0).getX() >= 0 &&
+                result.getCoordinateSequence().getCoordinate(0).getX() <= 10);
+        assertTrue(result.getCoordinateSequence().getCoordinate(0).getY() >= 0 &&
+                result.getCoordinateSequence().getCoordinate(0).getY() <= 10);
     }
 
     @Test
