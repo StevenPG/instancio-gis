@@ -47,10 +47,10 @@ public class WithinUtility {
      * @return - a LonLatRecord containing the generated longitude and latitude
      */
     public static LonLatRecord randomLonLatInBounds() {
-        return new LonLatRecord(
-                new Random().nextDouble(),
-                new Random().nextDouble()
-        );
+        Random rand = new Random();
+        double longitude = -180 + 360 * rand.nextDouble();
+        double latitude = -90 + 180 * rand.nextDouble();
+        return new LonLatRecord(longitude, latitude);
     }
 
     /**
