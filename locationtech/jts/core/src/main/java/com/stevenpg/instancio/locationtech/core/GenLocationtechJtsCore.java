@@ -95,7 +95,7 @@ public class GenLocationtechJtsCore {
     }
 
     /**
-     * Access to the Generator for org.locationtech.jts.core.geom.MultiLineString.
+     * Access to the Generator for org.locationtech.jts.geom.MultiLineString.
      * @return generator
      * @since 1.0.0
      */
