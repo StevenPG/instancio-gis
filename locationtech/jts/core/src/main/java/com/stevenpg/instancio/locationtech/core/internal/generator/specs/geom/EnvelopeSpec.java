@@ -17,10 +17,7 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
 /**
- * Spec for generating a Point.
- *
- * @since 4.4.0
+ * Spec for generating an Envelope.
  */
-public interface PointSpec extends PointGeneratorSpec {
-
+public interface EnvelopeSpec extends EnvelopeGeneratorSpec {
 }
