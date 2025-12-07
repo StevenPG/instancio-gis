@@ -24,7 +24,7 @@ import org.locationtech.jts.geom.*;
 import java.util.List;
 
 /**
- * Spec for generating a MultiPoint.
+ * Spec for generating a MultiLineString.
  */
 public interface MultiLineStringGeneratorSpec extends GeneratorSpec<MultiLineString> {
 
