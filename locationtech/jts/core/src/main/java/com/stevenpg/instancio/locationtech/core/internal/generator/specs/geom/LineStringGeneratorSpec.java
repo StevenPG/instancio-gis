@@ -35,6 +35,7 @@ public interface LineStringGeneratorSpec extends GeneratorSpec<LineString> {
      * @return spec builder
      */
     LineStringSpec coordinateSequence(CoordinateSequence coordinateSequence);
+
     /**
      * Provide an optional GeometryFactory to use to generate the LineString.
      * Cannot be provided alongside the CoordinateSequence.
