@@ -45,8 +45,8 @@ public class MultiLineStringGenerator implements MultiLineStringSpec, MultiLineS
     }
 
     @Override
-    public MultiLineStringGenerator lineStrings(List<LineString> points) {
-        this.inputLineStrings = points;
+    public MultiLineStringGenerator lineStrings(List<LineString> lineStrings) {
+        this.inputLineStrings = lineStrings;
         return this;
     }
 
