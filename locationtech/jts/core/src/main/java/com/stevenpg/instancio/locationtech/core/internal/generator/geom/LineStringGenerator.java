@@ -44,7 +44,8 @@ public class LineStringGenerator implements LineStringSpec, LineStringGeneratorS
     /**
      * Default constructor.
      */
-    public LineStringGenerator() {}
+    public LineStringGenerator() {
+    }
 
     @Override
     public LineStringGenerator coordinateSequence(CoordinateSequence coordinateSequence) {
@@ -77,12 +78,10 @@ public class LineStringGenerator implements LineStringSpec, LineStringGeneratorS
             return geometryFactory.createLineString(inputCoordinateSequence);
         } else {
             var sequenceGenerator = new CoordinateSequenceGenerator();
-            var length = random.intRange(0, 10);
+            var length = random.intRange(2, 10);
             if (inputLength != null) {
                 length = inputLength;
-            } else if(length == 1 || length == 0) {
-                length = 2;
-            } // Otherwise, we use the random length value.
+            }
             if (inputEnvelope != null) {
                 return geometryFactory.createLineString(sequenceGenerator.length(length).within(inputEnvelope).generate(random));
             } else {
