@@ -16,25 +16,24 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
-import com.stevenpg.instancio.locationtech.core.internal.generator.geom.LineStringGenerator;
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.MultiLineStringGenerator;
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.MultiPointGenerator;
 import org.instancio.generator.GeneratorSpec;
-import org.instancio.generator.specs.NullableGeneratorSpec;
-import org.locationtech.jts.geom.CoordinateSequence;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.*;
+
+import java.util.List;
 
 /**
- * Spec for generating a LineString.
+ * Spec for generating a MultiLineString.
  */
-public interface LineStringGeneratorSpec extends GeneratorSpec<LineString> {
+public interface MultiLineStringGeneratorSpec extends GeneratorSpec<MultiLineString> {
 
     /**
-     * Generate a valid LineString based on the provided coordinate sequence. Not compatible
-     * with providing a GeometryFactory.
-     * @param coordinateSequence the coordinate sequence to generate
+     * Provide a list of linestrings to load into a multi-linestring.
+     * @param lineStrings the linestrings to load
      * @return spec builder
      */
-    LineStringSpec coordinateSequence(CoordinateSequence coordinateSequence);
+    MultiLineStringGenerator lineStrings(List<LineString> lineStrings);
 
     /**
      * Provide an optional GeometryFactory to use to generate the LineString.
@@ -42,13 +41,12 @@ public interface LineStringGeneratorSpec extends GeneratorSpec<LineString> {
      * @param geometryFactory the geometry factory to use
      * @return spec builder
      */
-    LineStringSpec geometryFactory(GeometryFactory geometryFactory);
+    MultiLineStringGenerator geometryFactory(GeometryFactory geometryFactory);
 
     /**
-     * Set the length of the generated LineString.
+     * Set the length of the generated MultiLineString.
      * @param length the number of coordinates must be >= 2
      * @return spec builder
      */
-    LineStringGenerator length(int length);
-
+    MultiLineStringGenerator length(int length);
 }

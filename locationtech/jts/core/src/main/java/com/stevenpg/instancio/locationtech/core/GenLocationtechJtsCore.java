@@ -18,6 +18,7 @@ package com.stevenpg.instancio.locationtech.core;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.*;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.CoordinateArraySequenceGenerator;
+import org.locationtech.jts.geom.*;
 
 /**
  * Provides access to the Locationtech JTS core generator provider.
@@ -91,6 +92,24 @@ public class GenLocationtechJtsCore {
      */
     public static PointGenerator point() {
         return new PointGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.geom.MultiLineString.
+     * @return generator
+     * @since 1.0.0
+     */
+    public static MultiLineStringGenerator multiLineString() {
+        return new MultiLineStringGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.geom.MultiPoint.
+     * @return generator
+     * @since 1.0.0
+     */
+    public static MultiPointGenerator multiPoint() {
+        return new MultiPointGenerator();
     }
 
     private GenLocationtechJtsCore() {

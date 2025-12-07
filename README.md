@@ -24,6 +24,7 @@ Tasks for v1.0.0:
 - each sub project should get published to maven central
 - add badges (maven central, javadoc, sonarcloud)
 - mirror justfile: https://github.com/instancio/instancio/blob/main/justfile
+- Add script to validate existence of files based on implemented types
 
 
 ## What is this Repository for?

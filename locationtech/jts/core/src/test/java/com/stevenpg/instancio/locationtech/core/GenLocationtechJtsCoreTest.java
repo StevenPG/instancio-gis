@@ -119,4 +119,40 @@ class GenLocationtechJtsCoreTest {
         assertTrue(coordinate.getCoordinate().x > -180 && coordinate.getCoordinate().x < 180);
         assertTrue(coordinate.getCoordinate().y > -90 && coordinate.getCoordinate().y < 90);
     }
+
+    @Test
+    void multiPoint() {
+        var generator = GenLocationtechJtsCore.multiPoint();
+        assertNotNull(generator);
+
+        var multipoint = generator.generate(new DefaultRandom());
+
+        assertNotNull(multipoint);
+        assertInstanceOf(org.locationtech.jts.geom.MultiPoint.class, multipoint);
+        for (int i = 0; i < multipoint.getNumGeometries(); i++) {
+            var point = (org.locationtech.jts.geom.Point) multipoint.getGeometryN(i);
+            assertTrue(point.getCoordinate().x > -180 && point.getCoordinate().x < 180);
+            assertTrue(point.getCoordinate().y > -90 && point.getCoordinate().y < 90);
+        }
+    }
+
+    @Test
+    void multiLineString() {
+        var generator = GenLocationtechJtsCore.multiLineString();
+        assertNotNull(generator);
+
+        var multilinestring = generator.generate(new DefaultRandom());
+
+        assertNotNull(multilinestring);
+        assertInstanceOf(org.locationtech.jts.geom.MultiLineString.class, multilinestring);
+        for (int i = 0; i < multilinestring.getNumGeometries(); i++) {
+            var linestring = (org.locationtech.jts.geom.LineString) multilinestring.getGeometryN(i);
+            for (var coordinate : linestring.getCoordinates()) {
+                assertTrue(coordinate.x > -180 && coordinate.x < 180);
+                assertTrue(coordinate.y > -90 && coordinate.y < 90);
+            }
+        }
+    }
+
+    
 }
