@@ -41,7 +41,7 @@ public class SamplePoints {
     public static final Point MOUNT_EVEREST = POINT_GENERATOR.coordinate(86.9253406,27.9880593).generate(null);
 
     /**
-     * Angkor Wat is a city in Thailand.
+     * Angkor Wat is a temple complex in Cambodia.
      */
     public static final Point ANGKOR_WAT = POINT_GENERATOR.coordinate(103.8669767,13.4124568).generate(null);
 
