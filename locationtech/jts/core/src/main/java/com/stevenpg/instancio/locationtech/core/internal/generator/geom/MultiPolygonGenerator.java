@@ -79,7 +79,7 @@ public class MultiPolygonGenerator implements MultiPolygonSpec, MultiPolygonGene
 
             var length = random != null
                     ? random.intRange(1, 5)
-                    : MultiPolygonGenerator.random.nextInt(1, 5);
+                    : MultiPolygonGenerator.random.nextInt(1, 6);
             if (inputLength != null) {
                 length = inputLength;
             }
