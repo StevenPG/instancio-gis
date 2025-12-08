@@ -46,7 +46,7 @@ public class SamplePoints {
     public static final Point ANGKOR_WAT = POINT_GENERATOR.coordinate(103.8669767,13.4124568).generate(null);
 
     /**
-     * Eiffel Tower is a building in Germany.
+     * Eiffel Tower is a building in France (Paris).
      */
     public static final Point EIFFEL_TOWER = POINT_GENERATOR.coordinate(2.2945039, 48.8582724).generate(null);
 
