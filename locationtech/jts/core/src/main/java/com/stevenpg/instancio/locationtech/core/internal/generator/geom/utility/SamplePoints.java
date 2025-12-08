@@ -31,7 +31,7 @@ public class SamplePoints {
     private static final PointGenerator POINT_GENERATOR = new PointGenerator();
 
     /**
-     * Macchu Picchu is a city in Peru.
+     * Machu Picchu is a city in Peru.
      */
     public static final Point MACHU_PICCHU = POINT_GENERATOR.coordinate(-72.5453874,-13.1631601).generate(null);
 
