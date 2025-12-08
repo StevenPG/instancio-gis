@@ -70,7 +70,7 @@ public class SampleLineStrings {
 
 
     /**
-     * geat wall of china (straight segment)
+     * great wall of china (straight segment)
      */
 
     /**
