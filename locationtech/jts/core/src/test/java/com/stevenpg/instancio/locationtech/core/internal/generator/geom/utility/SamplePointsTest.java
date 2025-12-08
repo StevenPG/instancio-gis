@@ -34,7 +34,7 @@ class SamplePointsTest {
             SamplePoints.MOUNT_EVEREST,
             SamplePoints.ANGKOR_WAT,
             SamplePoints.EIFFEL_TOWER,
-            SamplePoints.MOUNT_KILLIMANJARO,
+            SamplePoints.MOUNT_KILIMANJARO,
             SamplePoints.CENTRAL_PARK_NYC,
             SamplePoints.SPACE_NEEDLE_SEATTLE,
             SamplePoints.SYDNEY_OPERA_HOUSE
@@ -62,7 +62,7 @@ class SamplePointsTest {
                         SamplePoints.MOUNT_EVEREST,
                         SamplePoints.ANGKOR_WAT,
                         SamplePoints.EIFFEL_TOWER,
-                        SamplePoints.MOUNT_KILLIMANJARO,
+                        SamplePoints.MOUNT_KILIMANJARO,
                         SamplePoints.CENTRAL_PARK_NYC,
                         SamplePoints.SPACE_NEEDLE_SEATTLE,
                         SamplePoints.SYDNEY_OPERA_HOUSE
