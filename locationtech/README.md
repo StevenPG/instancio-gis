@@ -33,10 +33,10 @@ For there to be a checkmark, there must be:
 - [x] LinearRing.java
 - [x] MultiLineString.java
 - [x] MultiPoint.java
-- [ ] MultiPolygon.java
+- [x] MultiPolygon.java
 - [x] OctagonalEnvelope.java
 - [x] Point.java
-- [ ] Polygon.java
+- [x] Polygon.java
 - [ ] Position.java
 - [ ] Triangle.java
 

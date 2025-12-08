@@ -138,6 +138,24 @@ public class GenLocationtechJtsCore {
         return new OctagonalEnvelopeGenerator();
     }
 
+    /**
+     * Access to the Generator for org.locationtech.jts.geom.Polygon.
+     * @return generator
+     * @since 1.0.0
+     */
+    public static PolygonGenerator polygon() {
+        return new PolygonGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.geom.MultiPolygon.
+     * @return generator
+     * @since 1.0.0
+     */
+    public static MultiPolygonGenerator multiPolygon() {
+        return new MultiPolygonGenerator();
+    }
+
     private GenLocationtechJtsCore() {
         // private constructor to prevent instantiation
     }
