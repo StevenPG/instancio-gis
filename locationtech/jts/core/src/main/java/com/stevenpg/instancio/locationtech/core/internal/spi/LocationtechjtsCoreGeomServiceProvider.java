@@ -66,8 +66,10 @@ public class LocationtechjtsCoreGeomServiceProvider implements InstancioServiceP
         generators.put(LinearRing.class, new LinearRingGenerator());
         generators.put(MultiLineString.class, new MultiLineStringGenerator());
         generators.put(MultiPoint.class, new MultiPointGenerator());
+        generators.put(MultiPolygon.class, new MultiPolygonGenerator());
         generators.put(OctagonalEnvelope.class, new OctagonalEnvelopeGenerator());
         generators.put(Point.class, new PointGenerator());
+        generators.put(Polygon.class, new PolygonGenerator());
 
 
         // Impls
