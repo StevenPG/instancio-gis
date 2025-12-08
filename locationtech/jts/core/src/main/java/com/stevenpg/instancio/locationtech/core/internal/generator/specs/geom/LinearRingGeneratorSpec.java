@@ -46,7 +46,8 @@ public interface LinearRingGeneratorSpec extends GeneratorSpec<LinearRing> {
     /**
      * Set the number of unique coordinates in the generated LinearRing. The actual ring will have
      * this many unique coordinates plus one additional coordinate to close the ring (first coordinate repeated at the end).
-     * @param length the number of unique coordinates must be >= 3 (minimum for a valid LinearRing)
+     * If a value less than 3 is specified, the minimum of 3 unique coordinates will be used.
+     * @param length the number of unique coordinates (minimum of 3 will be enforced)
      * @return spec builder
      */
     LinearRingGenerator length(int length);

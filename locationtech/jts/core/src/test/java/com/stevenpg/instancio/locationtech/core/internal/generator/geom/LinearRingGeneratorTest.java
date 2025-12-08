@@ -154,8 +154,9 @@ class LinearRingGeneratorTest {
 
         var generator = new LinearRingGenerator().coordinateSequence(sequence);
 
-        assertThrows(IllegalArgumentException.class, () ->
-                generator.generate(null));
+        assertTrue(generator.generate(null).isClosed());
+        assertTrue(generator.generate(null).isRing());
+        assertEquals(4, generator.generate(null).getCoordinates().length);
     }
 
     @Test

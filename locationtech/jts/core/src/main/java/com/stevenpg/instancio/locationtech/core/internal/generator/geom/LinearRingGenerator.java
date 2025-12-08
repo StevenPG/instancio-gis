@@ -79,19 +79,37 @@ public class LinearRingGenerator implements LinearRingSpec, LinearRingGeneratorS
             return geometryFactory.createLinearRing(ensureClosedRing(inputCoordinateSequence, geometryFactory));
         } else {
             var sequenceGenerator = new CoordinateSequenceGenerator();
-            // Default range for number of unique coordinates (not including closing coordinate)
+            // When generating from scratch, always generate at least 3 unique coordinates
             var uniqueCoordinateCount = random != null
                     ? random.intRange(3, 9)
                     : LinearRingGenerator.random.nextInt(3, 9);
             if (inputLength != null) {
-                uniqueCoordinateCount = Math.max(3, inputLength); // LinearRing must have at least 3 unique points
+                // User requested specific number of unique coordinates - ensure minimum of 3
+                uniqueCoordinateCount = Math.max(3, inputLength);
             }
+
+            // Generate exactly the number of unique coordinates requested
+            // We'll close the ring in ensureClosedRing
+            var coordinateCount = uniqueCoordinateCount;
 
             CoordinateSequence sequence;
             if (inputEnvelope != null) {
-                sequence = sequenceGenerator.length(uniqueCoordinateCount).within(inputEnvelope).generate(random);
+                sequence = sequenceGenerator.length(coordinateCount).within(inputEnvelope).generate(random);
             } else {
-                sequence = sequenceGenerator.length(uniqueCoordinateCount).generate(random);
+                sequence = sequenceGenerator.length(coordinateCount).generate(random);
+            }
+
+            // Safeguard: if we accidentally generated a closed sequence with too few coordinates,
+            // adjust the last coordinate to ensure it's not closed before passing to ensureClosedRing
+            if (coordinateCount >= 3 && sequence.size() >= 3) {
+                Coordinate first = sequence.getCoordinate(0);
+                Coordinate last = sequence.getCoordinate(sequence.size() - 1);
+                if (first.equals2D(last) && sequence.size() < 4) {
+                    // Adjust the last coordinate slightly to break the accidental closure
+                    Coordinate[] coords = sequence.toCoordinateArray();
+                    coords[coords.length - 1] = new Coordinate(last.x + 0.1, last.y + 0.1, last.getZ());
+                    sequence = geometryFactory.getCoordinateSequenceFactory().create(coords);
+                }
             }
 
             return geometryFactory.createLinearRing(ensureClosedRing(sequence, geometryFactory));
@@ -103,8 +121,8 @@ public class LinearRingGenerator implements LinearRingSpec, LinearRingGeneratorS
      * If the sequence is already closed, returns it as-is. Otherwise, creates a new sequence with the closing coordinate.
      */
     private CoordinateSequence ensureClosedRing(CoordinateSequence sequence, GeometryFactory geometryFactory) {
-        if (sequence.size() < 4) {
-            throw new IllegalArgumentException("LinearRing must have at least 4 coordinates");
+        if (sequence.size() < 3) {
+            throw new IllegalArgumentException("LinearRing must have at least 3 unique coordinates");
         }
 
         // Check if already closed
@@ -112,7 +130,11 @@ public class LinearRingGenerator implements LinearRingSpec, LinearRingGeneratorS
         Coordinate last = sequence.getCoordinate(sequence.size() - 1);
 
         if (first.equals2D(last)) {
-            return sequence; // Already closed
+            // Already closed - ensure we have at least 4 coordinates total
+            if (sequence.size() < 4) {
+                throw new IllegalArgumentException("LinearRing must have at least 4 coordinates");
+            }
+            return sequence;
         }
 
         // Create a new sequence with the closing coordinate
