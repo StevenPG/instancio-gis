@@ -30,7 +30,7 @@ For there to be a checkmark, there must be:
 - [ ] GeometryFactory.java
 - [ ] LineSegment.java
 - [x] LineString.java
-- [ ] LinearRing.java
+- [x] LinearRing.java
 - [x] MultiLineString.java
 - [x] MultiPoint.java
 - [ ] MultiPolygon.java

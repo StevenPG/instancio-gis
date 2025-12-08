@@ -108,6 +108,23 @@ class GenLocationtechJtsCoreTest {
     }
 
     @Test
+    void linearRing() {
+        var generator = GenLocationtechJtsCore.linearRing();
+        assertNotNull(generator);
+
+        var linearRing = generator.generate(new DefaultRandom());
+
+        assertNotNull(linearRing);
+        assertInstanceOf(org.locationtech.jts.geom.LinearRing.class, linearRing);
+        assertTrue(linearRing.isClosed());
+        assertTrue(linearRing.getCoordinates().length >= 4);
+        for( var coordinate : linearRing.getCoordinates()) {
+            assertTrue(coordinate.x > -180 && coordinate.x < 180);
+            assertTrue(coordinate.y > -90 && coordinate.y < 90);
+        }
+    }
+
+    @Test
     void point() {
         var generator = GenLocationtechJtsCore.point();
         assertNotNull(generator);
