@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 Steven Gantz.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.LineStringGenerator;
@@ -8,8 +24,14 @@ import org.locationtech.jts.geom.LineString;
 
 import java.util.List;
 
+/**
+ * Sample LineStrings for testing.
+ */
 public class SampleLineStrings {
 
+    /**
+     * A short piece of desert road in New Mexico.
+     */
     public static final LineString DESERT_ROAD_NEW_MEXICO = new LineStringGenerator()
             .coordinateSequence(new CoordinateArraySequenceGenerator().coordinateArraySequence(
                     List.of(
@@ -25,6 +47,9 @@ public class SampleLineStrings {
             ).generate(new DefaultRandom()))
             .generate(new DefaultRandom());
 
+    /**
+     * Dover Motor Speedway in Delaware.
+     */
     public static final LineString DOVER_MOTOR_SPEEDWAY_DELAWARE = new LineStringGenerator()
             .coordinateSequence(new CoordinateArraySequenceGenerator().coordinateArraySequence(
                     List.of(
@@ -45,10 +70,11 @@ public class SampleLineStrings {
 
 
     /**
-     * find famous straightaways and paths
-     *
      * geat wall of china (straight segment)
-     *
-     *
      */
+
+    /**
+     * Private constructor.
+     */
+    private SampleLineStrings() {}
 }

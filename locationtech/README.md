@@ -37,7 +37,6 @@ For there to be a checkmark, there must be:
 - [x] OctagonalEnvelope.java
 - [x] Point.java
 - [ ] Polygon.java
-- [ ] Polygonal.java
 - [ ] Position.java
 - [ ] Triangle.java
 
