@@ -85,6 +85,14 @@ public class GenLocationtechJtsCore {
     }
 
     /**
+     * Access to the Generator for org.locationtech.jts.core.geom.LinearRing.
+     * @return generator
+     */
+    public static LinearRingGenerator linearRing() {
+        return new LinearRingGenerator();
+    }
+
+    /**
      * Access to the Generator for org.locationtech.jts.core.geom.Point.
      *
      * @return generator spec
