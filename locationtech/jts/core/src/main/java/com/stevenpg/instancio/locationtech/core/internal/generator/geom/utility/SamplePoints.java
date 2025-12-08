@@ -53,7 +53,7 @@ public class SamplePoints {
     /**
      * Mount Kilimanjaro is a mountain in Tanzania.
      */
-    public static final Point MOUNT_KILLIMANJARO = POINT_GENERATOR.coordinate(37.3556716,-3.0674646).generate(null);
+    public static final Point MOUNT_KILIMANJARO = POINT_GENERATOR.coordinate(37.3556716,-3.0674646).generate(null);
 
     /**
      * Central Park in New York City.
