@@ -58,8 +58,7 @@ public class LocationtechjtsCoreGeomServiceProvider implements InstancioServiceP
         // Base Geoms
         generators.put(Coordinate.class, new CoordinateGenerator());
         generators.put(CoordinateSequence.class, new CoordinateSequenceGenerator());
-        generators.put(CoordinateList.class, null);
-        generators.put(CoordinateSequences.class, null);
+        generators.put(CoordinateList.class, new CoordinateListGenerator());
 
         generators.put(CoordinateXY.class, new CoordinateXYGenerator());
         generators.put(CoordinateXYM.class, new CoordinateXYMGenerator());

@@ -19,8 +19,7 @@ For there to be a checkmark, there must be:
 
 - [x] Coordinate.java
 - [x] CoordinateSequence.java
-- [ ] CoordinateList.java
-- [ ] CoordinateSequences.java
+- [x] CoordinateList.java
 - [x] CoordinateXY.java
 - [x] CoordinateXYM.java
 - [x] CoordinateXYZM.java
