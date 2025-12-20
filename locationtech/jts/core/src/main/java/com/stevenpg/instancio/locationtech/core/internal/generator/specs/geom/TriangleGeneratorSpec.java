@@ -16,11 +16,24 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.TriangleGenerator;
+import org.instancio.generator.GeneratorSpec;
+import org.locationtech.jts.geom.*;
+
 /**
- * Spec for generating a Polygon.
- *
- * @since 1.0.0
+ * Spec for generating a Triangle.
  */
-public interface PolygonSpec {
+public interface TriangleGeneratorSpec extends GeneratorSpec<Triangle> {
+
+    /**
+     * Provide a list of points to load into a triangle. If all three points are not provided, a random
+     * triangle will be created.
+     *
+     * @param p0 the first point in the triangle
+     * @param p1 the second point in the triangle
+     * @param p2 the third point in the triangle
+     * @return spec builder
+     */
+    TriangleGenerator points(Point p0, Point p1, Point p2);
 
 }

@@ -31,7 +31,7 @@ public interface PointGeneratorSpec extends GeneratorSpec<Point> {
      * @param latitude the latitude of the point
      * @param longitude the longitude of the point
      * @return spec builder
-     * @since 4.4.0
+     * @since 1.0.0
      */
     PointGeneratorSpec coordinate(double longitude, double latitude);
 

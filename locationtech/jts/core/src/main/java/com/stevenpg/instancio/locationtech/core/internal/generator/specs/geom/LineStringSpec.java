@@ -19,7 +19,7 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 /**
  * Spec for generating a LineString.
  *
- * @since 4.4.0
+ * @since 1.0.0
  */
 public interface LineStringSpec {
 
