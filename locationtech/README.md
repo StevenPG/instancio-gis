@@ -28,7 +28,7 @@ For there to be a checkmark, there must be:
 - [ ] Geometry.java
 - [ ] GeometryCollection.java
 - [ ] GeometryFactory.java
-- [ ] LineSegment.java
+- [x] LineSegment.java
 - [x] LineString.java
 - [x] LinearRing.java
 - [x] MultiLineString.java

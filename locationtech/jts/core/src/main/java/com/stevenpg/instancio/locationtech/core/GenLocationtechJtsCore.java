@@ -156,6 +156,15 @@ public class GenLocationtechJtsCore {
         return new MultiPolygonGenerator();
     }
 
+    /**
+     * Access to the Generator for org.locationtech.jts.geom.LineSegment.
+     * @return generator
+     * @since 1.0.0
+     */
+    public static LineSegmentGenerator lineSegment() {
+        return new LineSegmentGenerator();
+    }
+
     private GenLocationtechJtsCore() {
         // private constructor to prevent instantiation
     }
