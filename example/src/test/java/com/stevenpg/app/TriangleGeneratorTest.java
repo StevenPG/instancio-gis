@@ -14,13 +14,26 @@
  * limitations under the License.
  */
 
-package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
+package com.stevenpg.app;
 
-/**
- * Spec for generating a Polygon.
- *
- * @since 1.0.0
- */
-public interface PolygonSpec {
+import org.instancio.Instancio;
+import org.junit.jupiter.api.Test;
+import org.locationtech.jts.geom.Triangle;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+class TriangleGeneratorTest {
+
+    @Test
+    void shouldGenerateTriangleUsingInstancio() {
+        var tri = Instancio.create(Triangle.class);
+        assertNotNull(tri);
+    }
+
+    @Test
+    void shouldGenerateTriangleUsingGenerator() {
+        var tri = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.TriangleGenerator()
+                .generate(null);
+        assertNotNull(tri);
+    }
 }

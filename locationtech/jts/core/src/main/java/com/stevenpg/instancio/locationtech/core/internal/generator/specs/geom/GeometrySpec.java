@@ -17,10 +17,9 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
 /**
- * Spec for generating a Polygon.
+ * Spec for generating a Geometry.
  *
  * @since 1.0.0
  */
-public interface PolygonSpec {
-
+public interface GeometrySpec extends GeometryGeneratorSpec {
 }

@@ -16,11 +16,23 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
-/**
- * Spec for generating a Polygon.
- *
- * @since 1.0.0
- */
-public interface PolygonSpec {
+import com.stevenpg.instancio.locationtech.core.internal.generator.geom.LineSegmentGenerator;
+import org.instancio.generator.GeneratorSpec;
+import org.locationtech.jts.geom.LineSegment;
+import org.locationtech.jts.geom.Point;
 
+/**
+ * Spec for generating a LineSegment.
+ */
+public interface LineSegmentGeneratorSpec extends GeneratorSpec<LineSegment> {
+
+    /**
+     * Provide the two {@link Point} endpoints for the line segment.
+     * If either is null, random points will be generated instead.
+     *
+     * @param p0 the start point
+     * @param p1 the end point
+     * @return spec builder
+     */
+    LineSegmentGenerator points(Point p0, Point p1);
 }

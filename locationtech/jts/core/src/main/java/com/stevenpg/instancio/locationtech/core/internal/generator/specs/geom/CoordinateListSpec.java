@@ -16,11 +16,19 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
+import org.instancio.generator.GeneratorSpec;
+import org.locationtech.jts.geom.CoordinateList;
+
 /**
- * Spec for generating a Polygon.
+ * Spec for generating a CoordinateList.
  *
  * @since 1.0.0
  */
-public interface PolygonSpec {
+public interface CoordinateListSpec extends GeneratorSpec<CoordinateList>, CoordinateListGeneratorSpec {
 
+    @Override
+    CoordinateListSpec length(int length);
+
+    @Override
+    CoordinateListSpec length(int min, int max);
 }

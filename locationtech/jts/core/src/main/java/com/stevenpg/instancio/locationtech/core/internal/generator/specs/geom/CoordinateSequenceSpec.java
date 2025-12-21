@@ -23,7 +23,7 @@ import org.locationtech.jts.geom.CoordinateSequence;
 /**
  * Spec for generating a CoordinateSequence.
  *
- * @since 4.4.0
+ * @since 1.0.0
  */
 public interface CoordinateSequenceSpec extends GeneratorSpec<CoordinateSequence>, CoordinateSequenceGeneratorSpec {
 

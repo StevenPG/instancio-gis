@@ -19,16 +19,14 @@ For there to be a checkmark, there must be:
 
 - [x] Coordinate.java
 - [x] CoordinateSequence.java
-- [ ] CoordinateList.java
-- [ ] CoordinateSequences.java
+- [x] CoordinateList.java
 - [x] CoordinateXY.java
 - [x] CoordinateXYM.java
 - [x] CoordinateXYZM.java
 - [x] Envelope.java
-- [ ] Geometry.java
-- [ ] GeometryCollection.java
-- [ ] GeometryFactory.java
-- [ ] LineSegment.java
+- [x] Geometry.java
+- [x] GeometryCollection.java
+- [x] LineSegment.java
 - [x] LineString.java
 - [x] LinearRing.java
 - [x] MultiLineString.java
@@ -37,8 +35,7 @@ For there to be a checkmark, there must be:
 - [x] OctagonalEnvelope.java
 - [x] Point.java
 - [x] Polygon.java
-- [ ] Position.java
-- [ ] Triangle.java
+- [x] Triangle.java
 
 ### impl
 

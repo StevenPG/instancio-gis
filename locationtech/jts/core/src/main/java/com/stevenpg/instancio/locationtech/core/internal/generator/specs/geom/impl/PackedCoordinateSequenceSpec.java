@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Spec for generating a PackedCoordinateSequence.
  *
- * @since 4.4.0
+ * @since 1.0.0
  */
 public interface PackedCoordinateSequenceSpec extends PackedCoordinateSequenceGeneratorSpec {
 

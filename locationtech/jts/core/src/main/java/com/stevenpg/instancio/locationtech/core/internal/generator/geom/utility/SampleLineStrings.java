@@ -30,9 +30,9 @@ import java.util.List;
 public class SampleLineStrings {
 
     /**
-     * A short piece of desert road in New Mexico.
+     * A short piece of desert road in New Mexico, United States.
      */
-    public static final LineString DESERT_ROAD_NEW_MEXICO = new LineStringGenerator()
+    public static final LineString DESERT_ROAD_NEW_MEXICO_USA = new LineStringGenerator()
             .coordinateSequence(new CoordinateArraySequenceGenerator().coordinateArraySequence(
                     List.of(
                             new Coordinate(-103.83824088381995,35.26271184639255),
@@ -48,9 +48,9 @@ public class SampleLineStrings {
             .generate(new DefaultRandom());
 
     /**
-     * Dover Motor Speedway in Delaware.
+     * Dover Motor Speedway in Delaware, United States.
      */
-    public static final LineString DOVER_MOTOR_SPEEDWAY_DELAWARE = new LineStringGenerator()
+    public static final LineString DOVER_MOTOR_SPEEDWAY_DELAWARE_USA = new LineStringGenerator()
             .coordinateSequence(new CoordinateArraySequenceGenerator().coordinateArraySequence(
                     List.of(
                             new Coordinate(-75.53110117512355,39.192512575395284),
@@ -67,11 +67,6 @@ public class SampleLineStrings {
                     )
             ).generate(new DefaultRandom()))
             .generate(new DefaultRandom());
-
-
-    /**
-     * great wall of china (straight segment)
-     */
 
     /**
      * Private constructor.

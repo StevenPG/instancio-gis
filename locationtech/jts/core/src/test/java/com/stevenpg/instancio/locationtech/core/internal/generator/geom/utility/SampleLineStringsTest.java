@@ -30,8 +30,8 @@ class SampleLineStringsTest {
         var multiLineString = new MultiLineStringGenerator()
                 .lineStrings(
                         List.of(
-                                SampleLineStrings.DOVER_MOTOR_SPEEDWAY_DELAWARE,
-                                SampleLineStrings.DESERT_ROAD_NEW_MEXICO
+                                SampleLineStrings.DOVER_MOTOR_SPEEDWAY_DELAWARE_USA,
+                                SampleLineStrings.DESERT_ROAD_NEW_MEXICO_USA
                         )
                 )
                 .generate(null);
