@@ -26,7 +26,6 @@ For there to be a checkmark, there must be:
 - [x] Envelope.java
 - [X] Geometry.java
 - [X] GeometryCollection.java
-- [ ] GeometryFactory.java
 - [x] LineSegment.java
 - [x] LineString.java
 - [x] LinearRing.java
