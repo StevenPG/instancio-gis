@@ -24,8 +24,8 @@ For there to be a checkmark, there must be:
 - [x] CoordinateXYM.java
 - [x] CoordinateXYZM.java
 - [x] Envelope.java
-- [X] Geometry.java
-- [X] GeometryCollection.java
+- [x] Geometry.java
+- [x] GeometryCollection.java
 - [x] LineSegment.java
 - [x] LineString.java
 - [x] LinearRing.java
