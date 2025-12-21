@@ -113,7 +113,7 @@ public class SamplePolygons {
             ).toArray(Coordinate[]::new)
     );
 
-    private static final Polygon ROMAN_COLISEIUM_ITALY = GF.createPolygon(List.of(
+    private static final Polygon ROMAN_COLOSSEUM_ITALY = GF.createPolygon(List.of(
             new Coordinate(12.492651931486648,
                     41.8902839371533),
             new Coordinate(12.4924914154129,
