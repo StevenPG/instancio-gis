@@ -29,28 +29,54 @@ import java.util.List;
  */
 public interface GeometryCollectionGeneratorSpec extends GeneratorSpec<GeometryCollection> {
 
-    /** Provide an optional GeometryFactory to use to generate the GeometryCollection. */
+    /**
+     * Provide an optional GeometryFactory to use to generate the GeometryCollection.
+     * @param geometryFactory the geometry factory
+     * @return spec builder
+     */
     GeometryCollectionGenerator geometryFactory(GeometryFactory geometryFactory);
 
     /**
      * Specify the number of members for a heterogeneous GeometryCollection.
      * For Multi* subtypes selected during random generation, member counts are
      * controlled by their respective generators.
+     * @param length the number of members in the collection
+     * @return spec builder
      */
     GeometryCollectionGenerator length(int length);
 
-    /** Provide an explicit list of geometries to include in the collection (heterogeneous). */
+    /**
+     * Provide an explicit list of geometries to include in the collection (heterogeneous).
+     * @param geometries the geometries to include
+     * @return spec builder
+     */
     GeometryCollectionGenerator geometries(List<Geometry> geometries);
 
-    /** Use the provided MultiPoint as the GeometryCollection result. */
+    /**
+     * Use the provided MultiPoint as the GeometryCollection result.
+     * @param multiPoint the multi-point to use as the geometry
+     * @return spec builder
+     */
     GeometryCollectionGenerator multiPoint(MultiPoint multiPoint);
 
-    /** Use the provided MultiLineString as the GeometryCollection result. */
+    /**
+     * Use the provided MultiLineString as the GeometryCollection result.
+     * @param multiLineString the multi-line-string to use as the geometry
+     * @return spec builder
+     */
     GeometryCollectionGenerator multiLineString(MultiLineString multiLineString);
 
-    /** Use the provided MultiPolygon as the GeometryCollection result. */
+    /**
+     * Use the provided MultiPolygon as the GeometryCollection result.
+     * @param multiPolygon the multi-polygon to use as the geometry
+     * @return spec builder
+     */
     GeometryCollectionGenerator multiPolygon(MultiPolygon multiPolygon);
 
-    /** Use the provided GeometryCollection as the result. */
+    /**
+     * Use the provided GeometryCollection as the result.
+     * @param geometryCollection the collection to use as the geometry
+     * @return spec builder
+     */
     GeometryCollectionGenerator geometryCollection(GeometryCollection geometryCollection);
 }

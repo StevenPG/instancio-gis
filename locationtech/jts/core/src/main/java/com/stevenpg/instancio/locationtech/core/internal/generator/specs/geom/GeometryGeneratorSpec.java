@@ -28,18 +28,38 @@ import org.locationtech.jts.geom.*;
  */
 public interface GeometryGeneratorSpec extends GeneratorSpec<Geometry> {
 
-    /** Use the provided Point as the Geometry result. */
+    /**
+     * Use the provided Point as the Geometry result.
+     * @param point the point to use as the geometry
+     * @return spec builder
+     */
     GeometryGeneratorSpec point(Point point);
 
-    /** Use the provided LineString as the Geometry result. */
+    /**
+     * Use the provided LineString as the Geometry result.
+     * @param lineString the point to use as the geometry
+     * @return spec builder
+     */
     GeometryGeneratorSpec lineString(LineString lineString);
 
-    /** Use the provided LinearRing as the Geometry result. */
+    /**
+     * Use the provided LinearRing as the Geometry result.
+     * @param linearRing the point to use as the geometry
+     * @return spec builder
+     */
     GeometryGeneratorSpec linearRing(LinearRing linearRing);
 
-    /** Use the provided Polygon as the Geometry result. */
+    /**
+     * Use the provided Polygon as the Geometry result.
+     * @param polygon the point to use as the geometry
+     * @return spec builder
+     */
     GeometryGeneratorSpec polygon(Polygon polygon);
 
-    /** Use the provided GeometryCollection as the Geometry result. */
+    /**
+     * Use the provided GeometryCollection as the Geometry result.
+     * @param geometryCollection the collection to use as the geometry
+     * @return spec builder
+     */
     GeometryGeneratorSpec geometryCollection(GeometryCollection geometryCollection);
 }

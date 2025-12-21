@@ -47,6 +47,9 @@ public class GeometryCollectionGenerator implements GeometryCollectionSpec, Geom
     private MultiPolygon inputMultiPolygon;
     private GeometryCollection inputGeometryCollection;
 
+    /**
+     * Default constructor.
+     */
     public GeometryCollectionGenerator() {}
 
     @Override
