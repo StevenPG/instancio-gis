@@ -25,7 +25,7 @@ import org.locationtech.jts.geom.*;
 import java.util.Objects;
 
 /**
- * Generator for creating a MultiPoint.
+ * Generator for creating a Triangle.
  *
  * @since 1.0.0
  */
