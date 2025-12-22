@@ -12,6 +12,10 @@ dependencies {
     // Pull instancio extension
     implementation(project(":locationtech-core"))
 
+    // Postgres JDBC geometric generators
+    testImplementation(project(":postgis-java-jdbc"))
+    testImplementation(project(":postgis-java-jdbc-geometry"))
+
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.12.1")
 
