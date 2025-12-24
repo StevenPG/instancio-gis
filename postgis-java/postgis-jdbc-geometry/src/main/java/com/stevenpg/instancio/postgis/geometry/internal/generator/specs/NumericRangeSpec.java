@@ -18,4 +18,7 @@ package com.stevenpg.instancio.postgis.geometry.internal.generator.specs;
 public interface NumericRangeSpec<T> {
     T xRange(double minX, double maxX);
     T yRange(double minY, double maxY);
+    default T zRange(double minZ, double maxZ) {
+        return (T) this;
+    }
 }

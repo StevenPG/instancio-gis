@@ -13,15 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.stevenpg.instancio.postgis.jdbc.jts.internal.spi;
 
-package com.stevenpg.instancio.postgis.geometry.internal.spi;
-
-import com.stevenpg.instancio.postgis.geometry.internal.generator.*;
-import net.postgis.jdbc.PGgeometry;
-import net.postgis.jdbc.geometry.*;
-import net.postgis.jdbc.geometry.Point;
-import net.postgis.jdbc.geometry.Polygon;
-import net.postgis.jdbc.geometry.LineString;
+import com.stevenpg.instancio.postgis.jdbc.jts.internal.generator.JTSGeometryGenerator;
+import net.postgis.jdbc.jts.JTSGeometry;
 import org.instancio.Node;
 import org.instancio.generator.Generator;
 import org.instancio.generator.GeneratorContext;
@@ -32,28 +27,19 @@ import org.instancio.spi.ServiceProviderContext;
 import java.util.HashMap;
 import java.util.Map;
 
-/** SPI provider for org.postgis geometry generators. */
-public class PostgisGeometryServiceProvider implements InstancioServiceProvider {
-
-    private GeneratorContext ctx;
+/**
+ * SPI provider for PostGIS JTS geometry generators.
+ */
+public class PostgisJdbcJtsServiceProvider implements InstancioServiceProvider {
 
     @Override
     public void init(ServiceProviderContext providerContext) {
-        this.ctx = new GeneratorContext(providerContext.getSettings(), providerContext.random());
     }
 
     @Override
     public GeneratorProvider getGeneratorProvider() {
         final Map<Class<?>, Generator<?>> map = new HashMap<>();
-        map.put(PGgeometry.class, new PGgeometryGenerator());
-        map.put(Geometry.class, new GeometryGenerator());
-        map.put(Point.class, new PointGenerator());
-        map.put(LineString.class, new LineStringGenerator());
-        map.put(Polygon.class, new PolygonGenerator());
-        map.put(MultiPoint.class, new MultiPointGenerator());
-        map.put(MultiLineString.class, new MultiLineStringGenerator());
-        map.put(MultiPolygon.class, new MultiPolygonGenerator());
-        map.put(GeometryCollection.class, new GeometryCollectionGenerator());
+        map.put(JTSGeometry.class, new JTSGeometryGenerator());
         return (Node node, Generators gen) -> map.get(node.getTargetClass());
     }
 }

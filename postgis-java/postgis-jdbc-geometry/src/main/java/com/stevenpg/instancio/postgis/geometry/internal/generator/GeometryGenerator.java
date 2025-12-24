@@ -39,6 +39,13 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
     }
 
     @Override
+    public GeometryGenerator zRange(double minZ, double maxZ) {
+        // Z not supported in random WKT generation for now to keep it simple,
+        // but we could add it if needed.
+        return this;
+    }
+
+    @Override
     public Geometry generate(Random random) {
         final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
         int pick = r.nextInt(7); // 0..6 (POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION)

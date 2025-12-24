@@ -26,4 +26,9 @@ public interface NumericRangeSpec<T> {
 
     /** Set inclusive Y range. */
     T yRange(double minY, double maxY);
+
+    /** Set inclusive Z range. */
+    default T zRange(double minZ, double maxZ) {
+        return (T) this;
+    }
 }

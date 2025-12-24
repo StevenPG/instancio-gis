@@ -26,6 +26,8 @@ import org.instancio.generator.Generator;
 public class PointGenerator implements Generator<Point>, NumericRangeSpec<PointGenerator> {
     private double minX = -180d, maxX = 180d;
     private double minY = -90d, maxY = 90d;
+    private double minZ = 0d, maxZ = 0d;
+    private boolean useZ = false;
 
     @Override
     public PointGenerator xRange(double minX, double maxX) { this.minX = minX; this.maxX = maxX; return this; }
@@ -34,11 +36,26 @@ public class PointGenerator implements Generator<Point>, NumericRangeSpec<PointG
     public PointGenerator yRange(double minY, double maxY) { this.minY = minY; this.maxY = maxY; return this; }
 
     @Override
+    public PointGenerator zRange(double minZ, double maxZ) {
+        this.minZ = minZ;
+        this.maxZ = maxZ;
+        this.useZ = true;
+        return this;
+    }
+
+    @Override
     public Point generate(Random random) {
         final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
         double x = minX + (maxX - minX) * r.nextDouble();
         double y = minY + (maxY - minY) * r.nextDouble();
-        String wkt = String.format("POINT(%f %f)", x, y);
+
+        String wkt;
+        if (useZ) {
+            double z = minZ + (maxZ - minZ) * r.nextDouble();
+            wkt = String.format("POINT(%f %f %f)", x, y, z);
+        } else {
+            wkt = String.format("POINT(%f %f)", x, y);
+        }
         try {
             return (Point) new PGgeometry(wkt).getGeometry();
         } catch (java.sql.SQLException e) {

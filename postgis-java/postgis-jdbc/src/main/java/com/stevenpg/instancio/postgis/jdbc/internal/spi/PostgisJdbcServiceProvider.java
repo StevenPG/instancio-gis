@@ -16,6 +16,8 @@
 package com.stevenpg.instancio.postgis.jdbc.internal.spi;
 
 import com.stevenpg.instancio.postgis.jdbc.internal.generator.pg.*;
+import net.postgis.jdbc.PGbox2d;
+import net.postgis.jdbc.PGbox3d;
 import org.instancio.Node;
 import org.instancio.generator.Generator;
 import org.instancio.generator.GeneratorContext;
@@ -42,6 +44,10 @@ public class PostgisJdbcServiceProvider implements InstancioServiceProvider {
     @Override
     public GeneratorProvider getGeneratorProvider() {
         final Map<Class<?>, Generator<?>> map = new HashMap<>();
+
+        // net.postgis.jdbc.*
+        map.put(PGbox2d.class, new PGBox2dGenerator());
+        map.put(PGbox3d.class, new PGBox3dGenerator());
 
         // org.postgresql.geometric.*
         map.put(PGpoint.class, new PGPointGenerator());
