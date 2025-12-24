@@ -4,6 +4,7 @@
 
 | instancio-gis | locationtech-jts                                                                  |
 |---------------|-----------------------------------------------------------------------------------|
+| 0.x.x         | [1.20.0](https://mvnrepository.com/artifact/org.locationtech.jts/jts-core/1.20.0) |
 | 1.0.0         | [1.20.0](https://mvnrepository.com/artifact/org.locationtech.jts/jts-core/1.20.0) |
 
 For there to be a checkmark, there must be:

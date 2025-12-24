@@ -3,7 +3,8 @@
 ## Version Mapping:
 
 | instancio-gis | postgis-java |
-| ------------- | ------------ |
+|---------------| ------------ |
+| 0.x.x         | v2025.1.0    |
 | 1.0.0         | v2025.1.0    |
 
 TODO - add license at the top of each file
