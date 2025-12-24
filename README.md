@@ -10,12 +10,6 @@ An instancio extension that will provide auto-registered custom generators for a
 Tasks for v1.0.0:
 
 - maven central release with first version
-- finalize locationtech-core module
-- finalize postgis-java postgis-jdbc module
-- finalize postgis-java postgis-jdbc-geometry module
-- finalize postgis-java postgis-java2d-geometry module
-- finalize postgis-java postgis-jts-geometry module
-- Find more future gis libraries
 - upload with sources
 - Add javadoc
 - deploy to maven central (set up plugin)
