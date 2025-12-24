@@ -159,7 +159,7 @@ public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, Enve
         // Position holes to avoid overlapping too much
         // Use holeIndex to distribute holes across the envelope
         var xOffset = (holeIndex % 2) * 0.3;
-        var yOffset = (((double) holeIndex / 2) % 2) * 0.3;
+        var yOffset = ((holeIndex / 2) % 2) * 0.3;
         var offsetX = (width - holeWidth) * (0.1 + xOffset + 0.3 * PolygonGenerator.random.nextDouble());
         var offsetY = (height - holeHeight) * (0.1 + yOffset + 0.3 * PolygonGenerator.random.nextDouble());
 
