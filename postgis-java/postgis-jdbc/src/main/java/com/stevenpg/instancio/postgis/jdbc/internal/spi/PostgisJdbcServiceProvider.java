@@ -34,6 +34,11 @@ public class PostgisJdbcServiceProvider implements InstancioServiceProvider {
 
     private GeneratorContext generatorContext;
 
+    /**
+     * Default constructor.
+     */
+    public PostgisJdbcServiceProvider() {}
+
     @Override
     public void init(ServiceProviderContext providerContext) {
         this.generatorContext = new GeneratorContext(

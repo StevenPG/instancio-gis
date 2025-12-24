@@ -26,6 +26,11 @@ import org.instancio.generator.Generator;
  */
 public class PGBox2dGenerator implements Generator<PGbox2d>, NumericRangeSpec<PGBox2dGenerator> {
 
+    /**
+     * Default constructor.
+     */
+    public PGBox2dGenerator() {}
+
     private double minX = -180d;
     private double maxX = 180d;
     private double minY = -90d;

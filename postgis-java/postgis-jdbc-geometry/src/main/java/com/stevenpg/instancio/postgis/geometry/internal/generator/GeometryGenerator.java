@@ -27,6 +27,8 @@ import org.instancio.generator.Hints;
 /** Generator that returns a random org.postgis Geometry subtype using WKT parsing. */
 public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<GeometryGenerator> {
 
+    private static final java.util.Random backupRandom = new java.util.Random();
+
     private double minX = -180d, maxX = 180d;
     private double minY = -90d, maxY = 90d;
     private int srid = 0;
@@ -63,7 +65,7 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
 
     @Override
     public Geometry generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
+        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : backupRandom;
         int pick = r.nextInt(7); // 0..6 (POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION)
         String wkt = switch (pick) {
             case 0 -> pointWkt(r);

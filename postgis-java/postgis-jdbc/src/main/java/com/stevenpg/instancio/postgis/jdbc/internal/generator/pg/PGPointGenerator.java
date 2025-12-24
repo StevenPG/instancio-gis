@@ -32,6 +32,11 @@ public class PGPointGenerator implements Generator<PGpoint>, NumericRangeSpec<PG
     private double minY = -90d;
     private double maxY = 90d;
 
+    /**
+     * Default constructor.
+     */
+    public PGPointGenerator() {}
+
     @Override
     public Hints hints() {
         return Hints.builder()

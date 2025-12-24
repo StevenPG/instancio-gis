@@ -16,11 +16,38 @@
 package com.stevenpg.instancio.postgis.geometry.internal.generator.specs;
 
 public interface NumericRangeSpec<T> {
+
+    /**
+     * Sets the xRange of the spec
+     * @param minX min X value for xRange
+     * @param maxX max X value for xRange
+     * @return reference to incoming spec
+     */
     T xRange(double minX, double maxX);
+
+    /**
+     * Sets the yRange of the spec
+     * @param minY min Y value for yRange
+     * @param maxY max Y value for yRange
+     * @return reference to incoming spec
+     */
     T yRange(double minY, double maxY);
+
+    /**
+     * Sets the zRange
+     * @param minZ min Z value
+     * @param maxZ max Z value
+     * @return reference to incoming spec
+     */
     default T zRange(double minZ, double maxZ) {
         return (T) this;
     }
+
+    /**
+     * Sets the SRID
+     * @param srid SRID
+     * @return reference to incoming spec
+     */
     default T srid(int srid) {
         return (T) this;
     }

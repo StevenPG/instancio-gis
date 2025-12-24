@@ -29,11 +29,27 @@ public class PGPathGenerator implements Generator<PGpath>, NumericRangeSpec<PGPa
     private int maxVertices = 8;
     private boolean open = true;
 
+    /**
+     * Default constructor.
+     */
+    public PGPathGenerator() {}
+
+    /**
+     * sets whether the path is open
+     * @param open open or closed
+     * @return spec builder
+     */
     public PGPathGenerator open(boolean open) {
         this.open = open;
         return this;
     }
 
+    /**
+     * sets the number of vertices in the path
+     * @param min minimum
+     * @param max maximum
+     * @return spec builder
+     */
     public PGPathGenerator vertices(int min, int max) {
         this.minVertices = Math.max(2, min);
         this.maxVertices = Math.max(this.minVertices, max);

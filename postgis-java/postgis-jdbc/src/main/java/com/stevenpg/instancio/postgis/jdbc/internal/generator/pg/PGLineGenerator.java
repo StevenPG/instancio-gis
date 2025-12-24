@@ -26,6 +26,11 @@ public class PGLineGenerator implements Generator<PGline>, NumericRangeSpec<PGLi
 
     private final PGPointGenerator pointGen = new PGPointGenerator();
 
+    /**
+     * Default constructor.
+     */
+    public PGLineGenerator() {}
+
     @Override
     public PGLineGenerator xRange(double minX, double maxX) {
         pointGen.xRange(minX, maxX);

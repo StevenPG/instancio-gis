@@ -26,6 +26,11 @@ public class PGBoxGenerator implements Generator<PGbox>, NumericRangeSpec<PGBoxG
 
     private final PGPointGenerator pointGen = new PGPointGenerator();
 
+    /**
+     * Default constructor.
+     */
+    public PGBoxGenerator() {}
+
     @Override
     public PGBoxGenerator xRange(double minX, double maxX) {
         pointGen.xRange(minX, maxX);

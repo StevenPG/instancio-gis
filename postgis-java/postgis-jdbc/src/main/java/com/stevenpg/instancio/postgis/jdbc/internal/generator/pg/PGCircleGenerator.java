@@ -28,6 +28,17 @@ public class PGCircleGenerator implements Generator<PGcircle>, NumericRangeSpec<
     private double minRadius = 0.1d;
     private double maxRadius = 100d;
 
+    /**
+     * Default constructor.
+     */
+    public PGCircleGenerator() {}
+
+    /**
+     * set raidusRange for generator
+     * @param min min radius range
+     * @param max max radius range
+     * @return generator
+     */
     public PGCircleGenerator radiusRange(double min, double max) {
         this.minRadius = Math.max(0.0d, min);
         this.maxRadius = Math.max(this.minRadius, max);

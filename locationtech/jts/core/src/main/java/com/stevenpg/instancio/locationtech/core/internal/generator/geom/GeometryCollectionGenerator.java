@@ -37,6 +37,7 @@ public class GeometryCollectionGenerator implements GeometryCollectionSpec, Geom
         EnvelopableGenerator<GeometryCollection>, Generator<GeometryCollection> {
 
     private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
+    private static final java.util.Random backupRandom = new java.util.Random();
 
     private GeometryFactory inputGeometryFactory;
     private Envelope inputEnvelope;
@@ -103,7 +104,6 @@ public class GeometryCollectionGenerator implements GeometryCollectionSpec, Geom
     @Override
     public GeometryCollection generate(Random random) {
 
-        var backupRandom = new java.util.Random();
         var gf = inputGeometryFactory != null ? inputGeometryFactory : defaultGeometryFactory;
 
         // Explicit instances: return as-is
@@ -112,7 +112,7 @@ public class GeometryCollectionGenerator implements GeometryCollectionSpec, Geom
         if (inputMultiLineString != null) return inputMultiLineString;
         if (inputMultiPolygon != null) return inputMultiPolygon;
 
-        // Provided component list: build heterogeneous collection
+        // Provided component list: build a heterogeneous collection
         if (inputGeometries != null) {
             return new GeometryCollection(inputGeometries.toArray(new Geometry[0]), gf);
         }

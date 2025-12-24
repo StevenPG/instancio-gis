@@ -28,15 +28,27 @@ public class PGPolygonGenerator implements Generator<PGpolygon>, NumericRangeSpe
 
     private final PGPointGenerator pointGen = new PGPointGenerator();
 
+    /**
+     * Default constructor.
+     */
+    public PGPolygonGenerator() {}
+
     @Override
     public Hints hints() {
         return Hints.builder()
                 .afterGenerate(AfterGenerate.DO_NOT_MODIFY)
                 .build();
     }
+
     private int minVertices = 3;
     private int maxVertices = 8;
 
+    /**
+     * Sets the total number of vertices generated.
+     * @param min minimum number of vertices
+     * @param max maximum number of vertices
+     * @return this generator
+     */
     public PGPolygonGenerator vertices(int min, int max) {
         this.minVertices = Math.max(3, min);
         this.maxVertices = Math.max(this.minVertices, max);
