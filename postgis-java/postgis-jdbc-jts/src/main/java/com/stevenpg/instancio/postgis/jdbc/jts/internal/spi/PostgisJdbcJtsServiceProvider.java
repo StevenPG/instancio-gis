@@ -31,9 +31,10 @@ import java.util.Map;
  */
 public class PostgisJdbcJtsServiceProvider implements InstancioServiceProvider {
 
-    private PostgisJdbcJtsServiceProvider() {
-        // private constructor to prevent instantiation
-    }
+    /**
+     * Default constructor.
+     */
+    public PostgisJdbcJtsServiceProvider(){}
 
     @Override
     public void init(ServiceProviderContext providerContext) {

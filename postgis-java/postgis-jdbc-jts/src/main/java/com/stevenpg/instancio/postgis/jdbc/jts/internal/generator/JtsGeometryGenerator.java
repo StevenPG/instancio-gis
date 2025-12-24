@@ -26,9 +26,10 @@ import org.locationtech.jts.geom.Geometry;
  */
 public class JtsGeometryGenerator implements Generator<JtsGeometry> {
 
-    private JtsGeometryGenerator() {
-        // private constructor to prevent instantiation
-    }
+    /**
+     * Default constructor.
+     */
+    public JtsGeometryGenerator() {}
 
     @Override
     public JtsGeometry generate(Random random) {
