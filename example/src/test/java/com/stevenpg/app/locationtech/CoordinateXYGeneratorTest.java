@@ -14,43 +14,49 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.instancio.support.DefaultRandom;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.CoordinateXY;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
-public class CoordinateGeneratorTest {
+public class CoordinateXYGeneratorTest {
 
     @Test
-    void coordinateGenerator() {
-        assertInstanceOf(Coordinate.class, GenLocationtechJtsCore.coordinate().generate(null));
+    void coordinateXYGenerator() {
+        assertInstanceOf(CoordinateXY.class, GenLocationtechJtsCore.coordinateXY().generate(null));
     }
 
     @Test
-    void coordinateGeneratorLatLng() {
-        var coordinate = GenLocationtechJtsCore.coordinate()
+    void coordinateXYGeneratorLatLng() {
+        var coordinate = GenLocationtechJtsCore.coordinateXY()
                 .latitude(30)
                 .longitude(-60)
                 .generate(null);
-        assertInstanceOf(Coordinate.class, coordinate);
+        assertInstanceOf(CoordinateXY.class, coordinate);
         assertEquals(30, coordinate.y);
         assertEquals(-60, coordinate.x);
+        assertEquals(Double.NaN, coordinate.z);
     }
 
     @Test
-    void coordinateGeneratorWithRandom() {
-        assertInstanceOf(Coordinate.class, GenLocationtechJtsCore.coordinate().generate(new DefaultRandom()));
+    void coordinateXYGeneratorWithRandom() {
+        assertInstanceOf(CoordinateXY.class, GenLocationtechJtsCore.coordinateXY().generate(new DefaultRandom()));
     }
 
     @Test
-    void coordinateGeneratorSpi() {
-        assertInstanceOf(Coordinate.class, Instancio.create(Coordinate.class));
+    void coordinateXYGeneratorSpi() {
+        var coordinate = Instancio.create(CoordinateXY.class);
+        assertInstanceOf(CoordinateXY.class, coordinate);
+        assertNotEquals(0, coordinate.x);
+        assertNotEquals(0, coordinate.y);
     }
 
 }

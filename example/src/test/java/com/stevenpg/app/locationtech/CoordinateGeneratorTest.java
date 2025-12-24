@@ -14,45 +14,45 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.instancio.support.DefaultRandom;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.CoordinateXY;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class CoordinateXYGeneratorTest {
+public class CoordinateGeneratorTest {
 
     @Test
-    void coordinateXYGenerator() {
-        assertInstanceOf(CoordinateXY.class, GenLocationtechJtsCore.coordinateXY().generate(null));
+    void coordinateGenerator() {
+        assertInstanceOf(Coordinate.class, GenLocationtechJtsCore.coordinate().generate(null));
     }
 
     @Test
-    void coordinateXYGeneratorLatLng() {
-        var coordinate = GenLocationtechJtsCore.coordinateXY()
+    void coordinateGeneratorLatLng() {
+        var coordinate = GenLocationtechJtsCore.coordinate()
                 .latitude(30)
                 .longitude(-60)
                 .generate(null);
-        assertInstanceOf(CoordinateXY.class, coordinate);
+        assertInstanceOf(Coordinate.class, coordinate);
         assertEquals(30, coordinate.y);
         assertEquals(-60, coordinate.x);
-        assertEquals(Double.NaN, coordinate.z);
     }
 
     @Test
-    void coordinateXYGeneratorWithRandom() {
-        assertInstanceOf(CoordinateXY.class, GenLocationtechJtsCore.coordinateXY().generate(new DefaultRandom()));
+    void coordinateGeneratorWithRandom() {
+        assertInstanceOf(Coordinate.class, GenLocationtechJtsCore.coordinate().generate(new DefaultRandom()));
     }
 
     @Test
-    void coordinateXYGeneratorSpi() {
-        assertInstanceOf(CoordinateXY.class, Instancio.create(CoordinateXY.class));
+    void coordinateGeneratorSpi() {
+        var coordinate = Instancio.create(Coordinate.class);
+        assertInstanceOf(Coordinate.class, coordinate);
+        assertNotEquals(0, coordinate.x);
+        assertNotEquals(0, coordinate.y);
     }
 
 }

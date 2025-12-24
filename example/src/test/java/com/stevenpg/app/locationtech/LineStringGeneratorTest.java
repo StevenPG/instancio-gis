@@ -14,27 +14,29 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.LineSegment;
+import org.locationtech.jts.geom.LineString;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LineSegmentGeneratorTest {
+class LineStringGeneratorTest {
 
     @Test
-    void shouldGenerateLineSegmentUsingInstancio() {
-        var seg = Instancio.create(LineSegment.class);
-        assertNotNull(seg);
+    void shouldGenerateLineStringUsingInstancio() {
+        var ls = Instancio.create(LineString.class);
+        assertNotNull(ls);
+        assertTrue(ls.getNumPoints() >= 2);
     }
 
     @Test
-    void shouldGenerateLineSegmentUsingGenerator() {
-        var seg = GenLocationtechJtsCore.lineSegment().generate(null);
-        assertNotNull(seg);
-        assertNotEquals(seg.p0, seg.p1);
+    void shouldGenerateLineStringUsingGenerator() {
+        var ls = GenLocationtechJtsCore.lineString()
+                .length(3)
+                .generate(null);
+        assertEquals(3, ls.getNumPoints());
     }
 }

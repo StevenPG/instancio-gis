@@ -16,10 +16,11 @@
 
 package com.stevenpg.instancio.postgis.geometry.internal.spi;
 
-import com.stevenpg.instancio.postgis.geometry.internal.generator.GeometryGenerator;
-import com.stevenpg.instancio.postgis.geometry.internal.generator.PointGenerator;
-import net.postgis.jdbc.geometry.Geometry;
+import com.stevenpg.instancio.postgis.geometry.internal.generator.*;
+import net.postgis.jdbc.geometry.*;
 import net.postgis.jdbc.geometry.Point;
+import net.postgis.jdbc.geometry.Polygon;
+import net.postgis.jdbc.geometry.LineString;
 import org.instancio.Node;
 import org.instancio.generator.Generator;
 import org.instancio.generator.GeneratorContext;
@@ -45,6 +46,12 @@ public class PostgisGeometryServiceProvider implements InstancioServiceProvider 
         final Map<Class<?>, Generator<?>> map = new HashMap<>();
         map.put(Geometry.class, new GeometryGenerator());
         map.put(Point.class, new PointGenerator());
+        map.put(LineString.class, new LineStringGenerator());
+        map.put(Polygon.class, new PolygonGenerator());
+        map.put(MultiPoint.class, new MultiPointGenerator());
+        map.put(MultiLineString.class, new MultiLineStringGenerator());
+        map.put(MultiPolygon.class, new MultiPolygonGenerator());
+        map.put(GeometryCollection.class, new GeometryCollectionGenerator());
         return (Node node, Generators gen) -> map.get(node.getTargetClass());
     }
 }

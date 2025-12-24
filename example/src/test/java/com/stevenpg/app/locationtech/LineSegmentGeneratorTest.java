@@ -14,27 +14,28 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.geom.LineSegment;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PolygonGeneratorTest {
+class LineSegmentGeneratorTest {
 
     @Test
-    void shouldGeneratePolygonUsingInstancio() {
-        var poly = Instancio.create(Polygon.class);
-        assertNotNull(poly);
-        assertTrue(poly.getNumPoints() >= 4);
+    void shouldGenerateLineSegmentUsingInstancio() {
+        var seg = Instancio.create(LineSegment.class);
+        assertNotNull(seg);
+        assertNotEquals(seg.p0, seg.p1);
     }
 
     @Test
-    void shouldGeneratePolygonUsingGenerator() {
-        var poly = GenLocationtechJtsCore.polygon().generate(null);
-        assertNotNull(poly);
+    void shouldGenerateLineSegmentUsingGenerator() {
+        var seg = GenLocationtechJtsCore.lineSegment().generate(null);
+        assertNotNull(seg);
+        assertNotEquals(seg.p0, seg.p1);
     }
 }

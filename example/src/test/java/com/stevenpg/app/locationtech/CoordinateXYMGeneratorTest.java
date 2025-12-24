@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateGenerator;
@@ -28,7 +28,6 @@ import org.locationtech.jts.geom.CoordinateXYM;
 import org.locationtech.jts.geom.Envelope;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoordinateXYMGeneratorTest {
 
@@ -58,7 +57,11 @@ public class CoordinateXYMGeneratorTest {
 
     @Test
     void coordinateXYMGeneratorSpi() {
-        assertInstanceOf(CoordinateXYM.class, Instancio.create(CoordinateXYM.class));
+        var coordinate = Instancio.create(CoordinateXYM.class);
+        assertInstanceOf(CoordinateXYM.class, coordinate);
+        assertNotEquals(0, coordinate.x);
+        assertNotEquals(0, coordinate.y);
+        assertNotEquals(0, coordinate.getM());
     }
 
     @RepeatedTest(5)

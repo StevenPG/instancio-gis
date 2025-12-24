@@ -14,44 +14,43 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
+import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.CoordinateList;
+import org.locationtech.jts.geom.CoordinateSequence;
 import org.locationtech.jts.geom.Envelope;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CoordinateListGeneratorTest {
+class CoordinateSequenceGeneratorTest {
 
     @Test
-    void shouldGenerateCoordinateListUsingInstancio() {
-        var list = Instancio.create(CoordinateList.class);
-        assertNotNull(list);
-        assertTrue(list.size() >= 1);
+    void shouldGenerateCoordinateSequenceUsingInstancio() {
+        var seq = Instancio.create(CoordinateSequence.class);
+        assertNotNull(seq);
+        assertTrue(seq.size() >= 1);
     }
 
     @Test
-    void shouldGenerateCoordinateListUsingGenerator() {
-        var gen = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateListGenerator()
-                .length(3);
-        var list = gen.generate(null);
-        assertNotNull(list);
-        assertEquals(3, list.size());
+    void shouldGenerateCoordinateSequenceUsingGenerator() {
+        var seq = GenLocationtechJtsCore.coordinateSequence()
+                .length(4)
+                .generate(null);
+        assertEquals(4, seq.size());
     }
 
     @Test
-    void shouldGenerateCoordinateListWithinEnvelope() {
+    void shouldGenerateCoordinateSequenceWithinEnvelope() {
         var env = new Envelope(-10, 10, -5, 5);
-        var list = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateListGenerator()
-                .length(5)
+        var seq = GenLocationtechJtsCore.coordinateSequence()
+                .length(3)
                 .within(env)
                 .generate(null);
-
-        assertEquals(5, list.size());
-        for (Coordinate c : list) {
+        assertEquals(3, seq.size());
+        for (int i = 0; i < seq.size(); i++) {
+            var c = seq.getCoordinate(i);
             assertTrue(env.contains(c));
         }
     }

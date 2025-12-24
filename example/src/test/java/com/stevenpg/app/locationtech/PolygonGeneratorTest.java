@@ -14,33 +14,27 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Polygon;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class EnvelopeGeneratorTest {
+class PolygonGeneratorTest {
 
     @Test
-    void shouldGenerateEnvelopeUsingInstancio() {
-        var env = Instancio.create(Envelope.class);
-        assertNotNull(env);
-        assertTrue(env.getWidth() >= 0);
-        assertTrue(env.getHeight() >= 0);
+    void shouldGeneratePolygonUsingInstancio() {
+        var poly = Instancio.create(Polygon.class);
+        assertNotNull(poly);
+        assertTrue(poly.getNumPoints() >= 4);
     }
 
     @Test
-    void shouldGenerateEnvelopeUsingGeneratorWithBounds() {
-        var env = GenLocationtechJtsCore.envelope()
-                .bounds(0, 5, 1, 6)
-                .generate(null);
-        assertEquals(0.0, env.getMinX());
-        assertEquals(5.0, env.getMaxX());
-        assertEquals(1.0, env.getMinY());
-        assertEquals(6.0, env.getMaxY());
+    void shouldGeneratePolygonUsingGenerator() {
+        var poly = GenLocationtechJtsCore.polygon().generate(null);
+        assertNotNull(poly);
     }
 }

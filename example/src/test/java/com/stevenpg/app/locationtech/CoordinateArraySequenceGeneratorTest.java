@@ -14,26 +14,29 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
+import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.Triangle;
+import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TriangleGeneratorTest {
+class CoordinateArraySequenceGeneratorTest {
 
     @Test
-    void shouldGenerateTriangleUsingInstancio() {
-        var tri = Instancio.create(Triangle.class);
-        assertNotNull(tri);
+    void shouldGenerateCoordinateArraySequenceUsingInstancio() {
+        var seq = Instancio.create(CoordinateArraySequence.class);
+        assertNotNull(seq);
+        assertTrue(seq.size() >= 1);
     }
 
     @Test
-    void shouldGenerateTriangleUsingGenerator() {
-        var tri = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.TriangleGenerator()
+    void shouldGenerateCoordinateArraySequenceUsingGenerator() {
+        var seq = GenLocationtechJtsCore.coordinateArraySequence()
+                .length(4)
                 .generate(null);
-        assertNotNull(tri);
+        assertEquals(4, seq.size());
     }
 }

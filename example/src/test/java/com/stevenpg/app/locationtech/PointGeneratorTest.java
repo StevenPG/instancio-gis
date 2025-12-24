@@ -14,28 +14,31 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
+import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.impl.PackedCoordinateSequence;
+import org.locationtech.jts.geom.Point;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PackedCoordinateSequenceGeneratorTest {
+class PointGeneratorTest {
 
     @Test
-    void shouldGeneratePackedCoordinateSequenceUsingInstancio() {
-        var seq = Instancio.create(PackedCoordinateSequence.class);
-        assertNotNull(seq);
-        assertTrue(seq.size() >= 1);
+    void shouldGeneratePointUsingInstancio() {
+        var pt = Instancio.create(Point.class);
+        assertNotNull(pt);
+        assertFalse(pt.isEmpty());
     }
 
     @Test
-    void shouldGeneratePackedCoordinateSequenceUsingGenerator() {
-        var seq = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.PackedCoordinateSequenceGenerator()
-                .length(3)
+    void shouldGeneratePointUsingGenerator() {
+        var pt = GenLocationtechJtsCore.point()
+                .coordinate(1.25, -2.5)
                 .generate(null);
-        assertEquals(3, seq.size());
+        assertNotNull(pt);
+        assertEquals(1.25, pt.getX());
+        assertEquals(-2.5, pt.getY());
     }
 }

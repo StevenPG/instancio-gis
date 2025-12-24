@@ -14,29 +14,33 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.impl.CoordinateArraySequence;
+import org.locationtech.jts.geom.Envelope;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CoordinateArraySequenceGeneratorTest {
+class EnvelopeGeneratorTest {
 
     @Test
-    void shouldGenerateCoordinateArraySequenceUsingInstancio() {
-        var seq = Instancio.create(CoordinateArraySequence.class);
-        assertNotNull(seq);
-        assertTrue(seq.size() >= 1);
+    void shouldGenerateEnvelopeUsingInstancio() {
+        var env = Instancio.create(Envelope.class);
+        assertNotNull(env);
+        assertTrue(env.getWidth() >= 0);
+        assertTrue(env.getHeight() >= 0);
     }
 
     @Test
-    void shouldGenerateCoordinateArraySequenceUsingGenerator() {
-        var seq = GenLocationtechJtsCore.coordinateArraySequence()
-                .length(4)
+    void shouldGenerateEnvelopeUsingGeneratorWithBounds() {
+        var env = GenLocationtechJtsCore.envelope()
+                .bounds(0, 5, 1, 6)
                 .generate(null);
-        assertEquals(4, seq.size());
+        assertEquals(0.0, env.getMinX());
+        assertEquals(5.0, env.getMaxX());
+        assertEquals(1.0, env.getMinY());
+        assertEquals(6.0, env.getMaxY());
     }
 }

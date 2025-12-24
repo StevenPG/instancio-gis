@@ -14,31 +14,36 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
-import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Envelope;
-import org.locationtech.jts.geom.OctagonalEnvelope;
+import org.locationtech.jts.geom.Geometry;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OctagonalEnvelopeGeneratorTest {
+class GeometryGeneratorTest {
 
     @Test
-    void shouldGenerateOctagonalEnvelopeUsingInstancio() {
-        var oe = Instancio.create(OctagonalEnvelope.class);
-        assertNotNull(oe);
-        assertFalse(oe.isNull());
+    void shouldGenerateGeometryUsingInstancio() {
+        var geom = Instancio.create(Geometry.class);
+        assertNotNull(geom);
+        assertFalse(geom.isEmpty());
     }
 
     @Test
-    void shouldGenerateOctagonalEnvelopeUsingGenerator() {
-        var oe = GenLocationtechJtsCore.octagonalEnvelope()
-                .envelope(new Envelope(-1, 2, -3, 4))
+    void shouldGenerateGeometryWithinEnvelopeUsingGenerator() {
+        var bounds = new Envelope(-5, 5, -5, 5);
+        var geom = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.GeometryGenerator()
+                .within(bounds)
                 .generate(null);
-        assertNotNull(oe);
-        assertFalse(oe.isNull());
+
+        assertNotNull(geom);
+        var env = geom.getEnvelopeInternal();
+        assertTrue(env.getMinX() >= bounds.getMinX());
+        assertTrue(env.getMaxX() <= bounds.getMaxX());
+        assertTrue(env.getMinY() >= bounds.getMinY());
+        assertTrue(env.getMaxY() <= bounds.getMaxY());
     }
 }

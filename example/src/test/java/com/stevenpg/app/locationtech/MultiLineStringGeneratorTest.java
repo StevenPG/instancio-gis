@@ -14,29 +14,28 @@
  * limitations under the License.
  */
 
-package com.stevenpg.app;
+package com.stevenpg.app.locationtech;
 
+import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.GeometryCollection;
+import org.locationtech.jts.geom.MultiLineString;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GeometryCollectionGeneratorTest {
+class MultiLineStringGeneratorTest {
 
     @Test
-    void shouldGenerateGeometryCollectionUsingInstancio() {
-        var gc = Instancio.create(GeometryCollection.class);
-        assertNotNull(gc);
-        assertTrue(gc.getNumGeometries() >= 1);
+    void shouldGenerateMultiLineStringUsingInstancio() {
+        var mls = Instancio.create(MultiLineString.class);
+        assertNotNull(mls);
+        assertTrue(mls.getNumGeometries() >= 1);
     }
 
     @Test
-    void shouldGenerateGeometryCollectionUsingGenerator() {
-        var gc = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.GeometryCollectionGenerator()
-                .length(3)
-                .generate(null);
-        assertNotNull(gc);
-        assertEquals(3, gc.getNumGeometries());
+    void shouldGenerateMultiLineStringUsingGenerator() {
+        var mls = GenLocationtechJtsCore.multiLineString().generate(null);
+        assertNotNull(mls);
+        assertTrue(mls.getNumGeometries() >= 1);
     }
 }
