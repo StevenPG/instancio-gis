@@ -20,7 +20,9 @@ import com.stevenpg.instancio.postgis.geometry.internal.generator.specs.NumericR
 import net.postgis.jdbc.PGgeometry;
 import net.postgis.jdbc.geometry.Point;
 import org.instancio.Random;
+import org.instancio.generator.AfterGenerate;
 import org.instancio.generator.Generator;
+import org.instancio.generator.Hints;
 
 /** Generator for org.postgis.Point using WKT. */
 public class PointGenerator implements Generator<Point>, NumericRangeSpec<PointGenerator> {
@@ -28,6 +30,14 @@ public class PointGenerator implements Generator<Point>, NumericRangeSpec<PointG
     private double minY = -90d, maxY = 90d;
     private double minZ = 0d, maxZ = 0d;
     private boolean useZ = false;
+    private int srid = 0;
+
+    @Override
+    public Hints hints() {
+        return Hints.builder()
+                .afterGenerate(AfterGenerate.DO_NOT_MODIFY)
+                .build();
+    }
 
     @Override
     public PointGenerator xRange(double minX, double maxX) { this.minX = minX; this.maxX = maxX; return this; }
@@ -40,6 +50,12 @@ public class PointGenerator implements Generator<Point>, NumericRangeSpec<PointG
         this.minZ = minZ;
         this.maxZ = maxZ;
         this.useZ = true;
+        return this;
+    }
+
+    @Override
+    public PointGenerator srid(int srid) {
+        this.srid = srid;
         return this;
     }
 
@@ -57,7 +73,11 @@ public class PointGenerator implements Generator<Point>, NumericRangeSpec<PointG
             wkt = String.format("POINT(%f %f)", x, y);
         }
         try {
-            return (Point) new PGgeometry(wkt).getGeometry();
+            Point p = (Point) new PGgeometry(wkt).getGeometry();
+            if (srid != 0) {
+                p.setSrid(srid);
+            }
+            return p;
         } catch (java.sql.SQLException e) {
             throw new IllegalStateException("Failed to parse WKT to Point", e);
         }

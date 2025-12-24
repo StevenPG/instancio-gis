@@ -13,21 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.stevenpg.instancio.postgis.jdbc.jts.internal.generator;
 
-package com.stevenpg.instancio.postgis.geometry.internal.generator;
-
-import net.postgis.jdbc.PGgeometry;
+import net.postgis.jdbc.jts.JtsGeometry;
 import org.instancio.Instancio;
-import org.junit.jupiter.api.Test;
+import org.instancio.Random;
+import org.instancio.generator.Generator;
+import org.locationtech.jts.geom.Geometry;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+/**
+ * Generator for {@link JtsGeometry}.
+ */
+public class JtsGeometryGenerator implements Generator<JtsGeometry> {
 
-class PGgeometryGeneratorTest {
-
-    @Test
-    void shouldGeneratePGgeometry() {
-        PGgeometry pgGeom = Instancio.create(PGgeometry.class);
-        assertNotNull(pgGeom);
-        assertNotNull(pgGeom.getGeometry());
+    @Override
+    public JtsGeometry generate(Random random) {
+        // This assumes LocationtechjtsCoreGeomServiceProvider is on the classpath
+        // to handle the JTS Geometry generation.
+        Geometry geom = Instancio.create(Geometry.class);
+        return new JtsGeometry(geom);
     }
 }

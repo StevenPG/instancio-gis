@@ -89,6 +89,14 @@ public final class GenPostgisGeometry {
         return new GeometryCollectionGenerator();
     }
 
+    /**
+     * Access to the Generator for {@link net.postgis.jdbc.PGgeometry}.
+     * @return generator
+     */
+    public static PGgeometryGenerator pgGeometry() {
+        return new PGgeometryGenerator();
+    }
+
     private GenPostgisGeometry() {
         // private constructor to prevent instantiation
     }

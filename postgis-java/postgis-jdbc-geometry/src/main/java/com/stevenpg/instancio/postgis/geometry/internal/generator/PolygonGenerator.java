@@ -20,19 +20,35 @@ import com.stevenpg.instancio.postgis.geometry.internal.generator.specs.NumericR
 import net.postgis.jdbc.PGgeometry;
 import net.postgis.jdbc.geometry.Polygon;
 import org.instancio.Random;
+import org.instancio.generator.AfterGenerate;
 import org.instancio.generator.Generator;
+import org.instancio.generator.Hints;
 
 /** Generator for net.postgis.jdbc.geometry.Polygon using WKT. */
 public class PolygonGenerator implements Generator<Polygon>, NumericRangeSpec<PolygonGenerator> {
     private double minX = -180d, maxX = 180d;
     private double minY = -90d, maxY = 90d;
     private int minPoints = 3, maxPoints = 5;
+    private int srid = 0;
+
+    @Override
+    public Hints hints() {
+        return Hints.builder()
+                .afterGenerate(AfterGenerate.DO_NOT_MODIFY)
+                .build();
+    }
 
     @Override
     public PolygonGenerator xRange(double minX, double maxX) { this.minX = minX; this.maxX = maxX; return this; }
 
     @Override
     public PolygonGenerator yRange(double minY, double maxY) { this.minY = minY; this.maxY = maxY; return this; }
+
+    @Override
+    public PolygonGenerator srid(int srid) {
+        this.srid = srid;
+        return this;
+    }
 
     public PolygonGenerator pointsRange(int min, int max) { this.minPoints = min; this.maxPoints = max; return this; }
 
@@ -51,7 +67,11 @@ public class PolygonGenerator implements Generator<Polygon>, NumericRangeSpec<Po
         }
         sb.append(", ").append(fx).append(' ').append(fy).append("))");
         try {
-            return (Polygon) new PGgeometry(sb.toString()).getGeometry();
+            Polygon poly = (Polygon) new PGgeometry(sb.toString()).getGeometry();
+            if (srid != 0) {
+                poly.setSrid(srid);
+            }
+            return poly;
         } catch (java.sql.SQLException e) {
             throw new IllegalStateException("Failed to parse WKT to Polygon", e);
         }

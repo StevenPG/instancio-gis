@@ -20,13 +20,23 @@ import com.stevenpg.instancio.postgis.geometry.internal.generator.specs.NumericR
 import net.postgis.jdbc.PGgeometry;
 import net.postgis.jdbc.geometry.Geometry;
 import org.instancio.Random;
+import org.instancio.generator.AfterGenerate;
 import org.instancio.generator.Generator;
+import org.instancio.generator.Hints;
 
 /** Generator that returns a random org.postgis Geometry subtype using WKT parsing. */
 public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<GeometryGenerator> {
 
     private double minX = -180d, maxX = 180d;
     private double minY = -90d, maxY = 90d;
+    private int srid = 0;
+
+    @Override
+    public Hints hints() {
+        return Hints.builder()
+                .afterGenerate(AfterGenerate.DO_NOT_MODIFY)
+                .build();
+    }
 
     @Override
     public GeometryGenerator xRange(double minX, double maxX) {
@@ -46,6 +56,12 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
     }
 
     @Override
+    public GeometryGenerator srid(int srid) {
+        this.srid = srid;
+        return this;
+    }
+
+    @Override
     public Geometry generate(Random random) {
         final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
         int pick = r.nextInt(7); // 0..6 (POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION)
@@ -59,7 +75,11 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
             default -> geometryCollectionWkt(r);
         };
         try {
-            return new PGgeometry(wkt).getGeometry();
+            Geometry geom = new PGgeometry(wkt).getGeometry();
+            if (srid != 0) {
+                geom.setSrid(srid);
+            }
+            return geom;
         } catch (java.sql.SQLException e) {
             throw new IllegalStateException("Failed to parse WKT to Geometry", e);
         }

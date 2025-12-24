@@ -28,7 +28,8 @@ class PGPointGeneratorTest {
     void shouldGenerateWithinRanges() {
         var gen = new PGPointGenerator()
                 .xRange(-10, 10)
-                .yRange(-5, 5);
+                .yRange(-5, 5)
+                .zRange(-1, 1); // Should have no effect but covers default method
 
         PGpoint p = gen.generate(null);
         assertNotNull(p);

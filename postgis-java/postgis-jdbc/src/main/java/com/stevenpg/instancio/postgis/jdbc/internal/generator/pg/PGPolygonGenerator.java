@@ -17,7 +17,9 @@ package com.stevenpg.instancio.postgis.jdbc.internal.generator.pg;
 
 import com.stevenpg.instancio.postgis.jdbc.internal.generator.specs.NumericRangeSpec;
 import org.instancio.Random;
+import org.instancio.generator.AfterGenerate;
 import org.instancio.generator.Generator;
+import org.instancio.generator.Hints;
 import org.postgresql.geometric.PGpoint;
 import org.postgresql.geometric.PGpolygon;
 
@@ -25,6 +27,13 @@ import org.postgresql.geometric.PGpolygon;
 public class PGPolygonGenerator implements Generator<PGpolygon>, NumericRangeSpec<PGPolygonGenerator> {
 
     private final PGPointGenerator pointGen = new PGPointGenerator();
+
+    @Override
+    public Hints hints() {
+        return Hints.builder()
+                .afterGenerate(AfterGenerate.DO_NOT_MODIFY)
+                .build();
+    }
     private int minVertices = 3;
     private int maxVertices = 8;
 

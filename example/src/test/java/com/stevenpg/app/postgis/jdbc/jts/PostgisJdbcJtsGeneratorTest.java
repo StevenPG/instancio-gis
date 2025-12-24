@@ -14,20 +14,28 @@
  * limitations under the License.
  */
 
-package com.stevenpg.instancio.postgis.geometry.internal.generator;
+package com.stevenpg.app.postgis.jdbc.jts;
 
-import net.postgis.jdbc.PGgeometry;
+import com.stevenpg.instancio.postgis.jdbc.jts.GenPostgisJdbcJts;
+import net.postgis.jdbc.jts.JtsGeometry;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class PGgeometryGeneratorTest {
+class PostgisJdbcJtsGeneratorTest {
 
     @Test
-    void shouldGeneratePGgeometry() {
-        PGgeometry pgGeom = Instancio.create(PGgeometry.class);
-        assertNotNull(pgGeom);
-        assertNotNull(pgGeom.getGeometry());
+    void shouldGenerateJtsGeometryWithInstancio() {
+        JtsGeometry jtsGeom = Instancio.create(JtsGeometry.class);
+        assertNotNull(jtsGeom);
+        assertNotNull(jtsGeom.getGeometry());
+    }
+
+    @Test
+    void shouldGenerateJtsGeometryWithGenerator() {
+        JtsGeometry jtsGeom = GenPostgisJdbcJts.JtsGeometry().generate(null);
+        assertNotNull(jtsGeom);
+        assertNotNull(jtsGeom.getGeometry());
     }
 }

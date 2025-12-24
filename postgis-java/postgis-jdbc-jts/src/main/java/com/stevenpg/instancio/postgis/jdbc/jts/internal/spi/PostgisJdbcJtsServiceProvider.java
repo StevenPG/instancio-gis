@@ -15,11 +15,10 @@
  */
 package com.stevenpg.instancio.postgis.jdbc.jts.internal.spi;
 
-import com.stevenpg.instancio.postgis.jdbc.jts.internal.generator.JTSGeometryGenerator;
-import net.postgis.jdbc.jts.JTSGeometry;
+import com.stevenpg.instancio.postgis.jdbc.jts.internal.generator.JtsGeometryGenerator;
+import net.postgis.jdbc.jts.JtsGeometry;
 import org.instancio.Node;
 import org.instancio.generator.Generator;
-import org.instancio.generator.GeneratorContext;
 import org.instancio.generators.Generators;
 import org.instancio.spi.InstancioServiceProvider;
 import org.instancio.spi.ServiceProviderContext;
@@ -39,7 +38,7 @@ public class PostgisJdbcJtsServiceProvider implements InstancioServiceProvider {
     @Override
     public GeneratorProvider getGeneratorProvider() {
         final Map<Class<?>, Generator<?>> map = new HashMap<>();
-        map.put(JTSGeometry.class, new JTSGeometryGenerator());
+        map.put(JtsGeometry.class, new JtsGeometryGenerator());
         return (Node node, Generators gen) -> map.get(node.getTargetClass());
     }
 }

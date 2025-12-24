@@ -81,6 +81,22 @@ public final class GenPostgisJdbc {
         return new PGPolygonGenerator();
     }
 
+    /**
+     * Access to the Generator for {@link net.postgis.jdbc.PGbox2d}.
+     * @return generator
+     */
+    public static PGBox2dGenerator pgBox2d() {
+        return new PGBox2dGenerator();
+    }
+
+    /**
+     * Access to the Generator for {@link net.postgis.jdbc.PGbox3d}.
+     * @return generator
+     */
+    public static PGBox3dGenerator pgBox3d() {
+        return new PGBox3dGenerator();
+    }
+
     private GenPostgisJdbc() {
         // private constructor to prevent instantiation
     }

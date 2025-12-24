@@ -18,18 +18,17 @@ package com.stevenpg.instancio.postgis.geometry.internal.generator;
 
 import com.stevenpg.instancio.postgis.geometry.internal.generator.specs.NumericRangeSpec;
 import net.postgis.jdbc.PGgeometry;
-import net.postgis.jdbc.geometry.LineString;
+import net.postgis.jdbc.geometry.LinearRing;
 import org.instancio.Random;
 import org.instancio.generator.AfterGenerate;
 import org.instancio.generator.Generator;
 import org.instancio.generator.Hints;
 
-/** Generator for net.postgis.jdbc.geometry.LineString using WKT. */
-public class LineStringGenerator implements Generator<LineString>, NumericRangeSpec<LineStringGenerator> {
+/** Generator for net.postgis.jdbc.geometry.LinearRing using WKT. */
+public class LinearRingGenerator implements Generator<LinearRing>, NumericRangeSpec<LinearRingGenerator> {
     private double minX = -180d, maxX = 180d;
     private double minY = -90d, maxY = 90d;
-    private int minPoints = 2, maxPoints = 5;
-    private int srid = 0;
+    private int minPoints = 3, maxPoints = 5;
 
     @Override
     public Hints hints() {
@@ -39,39 +38,33 @@ public class LineStringGenerator implements Generator<LineString>, NumericRangeS
     }
 
     @Override
-    public LineStringGenerator xRange(double minX, double maxX) { this.minX = minX; this.maxX = maxX; return this; }
+    public LinearRingGenerator xRange(double minX, double maxX) { this.minX = minX; this.maxX = maxX; return this; }
 
     @Override
-    public LineStringGenerator yRange(double minY, double maxY) { this.minY = minY; this.maxY = maxY; return this; }
+    public LinearRingGenerator yRange(double minY, double maxY) { this.minY = minY; this.maxY = maxY; return this; }
+
+    public LinearRingGenerator pointsRange(int min, int max) { this.minPoints = min; this.maxPoints = max; return this; }
 
     @Override
-    public LineStringGenerator srid(int srid) {
-        this.srid = srid;
-        return this;
-    }
-
-    public LineStringGenerator pointsRange(int min, int max) { this.minPoints = min; this.maxPoints = max; return this; }
-
-    @Override
-    public LineString generate(Random random) {
+    public LinearRing generate(Random random) {
         final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
         int n = minPoints + r.nextInt(maxPoints - minPoints + 1);
         StringBuilder sb = new StringBuilder("LINESTRING(");
+        double fx = 0, fy = 0;
         for (int i = 0; i < n; i++) {
-            if (i > 0) sb.append(", ");
             double x = minX + (maxX - minX) * r.nextDouble();
             double y = minY + (maxY - minY) * r.nextDouble();
+            if (i == 0) { fx = x; fy = y; }
+            if (i > 0) sb.append(", ");
             sb.append(x).append(' ').append(y);
         }
-        sb.append(')');
+        sb.append(", ").append(fx).append(' ').append(fy).append(')');
         try {
-            LineString ls = (LineString) new PGgeometry(sb.toString()).getGeometry();
-            if (srid != 0) {
-                ls.setSrid(srid);
-            }
-            return ls;
+            // net.postgis.jdbc.geometry.LinearRing is a subclass of LineString
+            // In WKT it is still represented as LINESTRING or we can try to cast it
+            return new LinearRing(sb.toString());
         } catch (java.sql.SQLException e) {
-            throw new IllegalStateException("Failed to parse WKT to LineString", e);
+            throw new IllegalStateException("Failed to parse WKT to LinearRing", e);
         }
     }
 }

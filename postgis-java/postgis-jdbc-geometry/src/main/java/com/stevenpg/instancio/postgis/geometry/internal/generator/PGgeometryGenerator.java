@@ -18,7 +18,9 @@ package com.stevenpg.instancio.postgis.geometry.internal.generator;
 import com.stevenpg.instancio.postgis.geometry.internal.generator.specs.NumericRangeSpec;
 import net.postgis.jdbc.PGgeometry;
 import org.instancio.Random;
+import org.instancio.generator.AfterGenerate;
 import org.instancio.generator.Generator;
+import org.instancio.generator.Hints;
 
 /**
  * Generator for {@link PGgeometry}.
@@ -26,6 +28,13 @@ import org.instancio.generator.Generator;
 public class PGgeometryGenerator implements Generator<PGgeometry>, NumericRangeSpec<PGgeometryGenerator> {
 
     private final GeometryGenerator geometryGenerator = new GeometryGenerator();
+
+    @Override
+    public Hints hints() {
+        return Hints.builder()
+                .afterGenerate(AfterGenerate.DO_NOT_MODIFY)
+                .build();
+    }
 
     @Override
     public PGgeometryGenerator xRange(double minX, double maxX) {

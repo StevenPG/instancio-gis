@@ -16,8 +16,7 @@
 
 package com.stevenpg.instancio.postgis.geometry.internal.generator;
 
-import net.postgis.jdbc.geometry.Geometry;
-import net.postgis.jdbc.geometry.Point;
+import net.postgis.jdbc.geometry.*;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 
@@ -26,12 +25,87 @@ import static org.junit.jupiter.api.Assertions.*;
 class GeometryGeneratorsTest {
 
     @Test
-    void shouldGeneratePointWithinRange() {
-        var gen = new PointGenerator().xRange(-1, 1).yRange(-2, 2);
+    void shouldGeneratePoint() {
+        var gen = new PointGenerator().xRange(10, 10).yRange(20, 20);
         Point p = gen.generate(null);
         assertNotNull(p);
-        assertTrue(p.x >= -1 && p.x <= 1);
-        assertTrue(p.y >= -2 && p.y <= 2);
+        assertEquals(10, p.x);
+        assertEquals(20, p.y);
+    }
+
+    @Test
+    void shouldGenerateLineString() {
+        var gen = new LineStringGenerator().xRange(10, 10).yRange(20, 20);
+        LineString ls = gen.generate(null);
+        assertNotNull(ls);
+        assertTrue(ls.numPoints() >= 2);
+        for (int i = 0; i < ls.numPoints(); i++) {
+            assertEquals(10, ls.getPoint(i).x);
+            assertEquals(20, ls.getPoint(i).y);
+        }
+    }
+
+    @Test
+    void shouldGeneratePolygon() {
+        var gen = new PolygonGenerator().xRange(10, 10).yRange(20, 20);
+        Polygon poly = gen.generate(null);
+        assertNotNull(poly);
+        assertTrue(poly.numRings() >= 1);
+        LinearRing ring = poly.getRing(0);
+        for (int i = 0; i < ring.numPoints(); i++) {
+            assertEquals(10, ring.getPoint(i).x);
+            assertEquals(20, ring.getPoint(i).y);
+        }
+    }
+
+    @Test
+    void shouldGenerateMultiPoint() {
+        var gen = new MultiPointGenerator().xRange(10, 10).yRange(20, 20);
+        MultiPoint mp = gen.generate(null);
+        assertNotNull(mp);
+        assertTrue(mp.numPoints() >= 1);
+        for (int i = 0; i < mp.numPoints(); i++) {
+            assertEquals(10, mp.getPoint(i).x);
+            assertEquals(20, mp.getPoint(i).y);
+        }
+    }
+
+    @Test
+    void shouldGenerateMultiLineString() {
+        var gen = new MultiLineStringGenerator().xRange(10, 10).yRange(20, 20);
+        MultiLineString mls = gen.generate(null);
+        assertNotNull(mls);
+        assertTrue(mls.numLines() >= 1);
+        for (int i = 0; i < mls.numLines(); i++) {
+            LineString ls = mls.getLine(i);
+            for (int j = 0; j < ls.numPoints(); j++) {
+                assertEquals(10, ls.getPoint(j).x);
+                assertEquals(20, ls.getPoint(j).y);
+            }
+        }
+    }
+
+    @Test
+    void shouldGenerateMultiPolygon() {
+        var gen = new MultiPolygonGenerator().xRange(10, 10).yRange(20, 20);
+        MultiPolygon mp = gen.generate(null);
+        assertNotNull(mp);
+        assertTrue(mp.numPolygons() >= 1);
+    }
+
+    @Test
+    void shouldGenerateGeometryCollection() {
+        var gen = new GeometryCollectionGenerator().xRange(10, 10).yRange(20, 20);
+        GeometryCollection gc = gen.generate(null);
+        assertNotNull(gc);
+        assertTrue(gc.numGeoms() >= 1);
+    }
+
+    @Test
+    void shouldGenerateGeometry() {
+        var gen = new GeometryGenerator().xRange(10, 10).yRange(20, 20).zRange(0, 0);
+        Geometry g = gen.generate(null);
+        assertNotNull(g);
     }
 
     @Test

@@ -20,12 +20,21 @@ import com.stevenpg.instancio.postgis.geometry.internal.generator.specs.NumericR
 import net.postgis.jdbc.PGgeometry;
 import net.postgis.jdbc.geometry.GeometryCollection;
 import org.instancio.Random;
+import org.instancio.generator.AfterGenerate;
 import org.instancio.generator.Generator;
+import org.instancio.generator.Hints;
 
 /** Generator for net.postgis.jdbc.geometry.GeometryCollection using WKT. */
 public class GeometryCollectionGenerator implements Generator<GeometryCollection>, NumericRangeSpec<GeometryCollectionGenerator> {
     private double minX = -180d, maxX = 180d;
     private double minY = -90d, maxY = 90d;
+
+    @Override
+    public Hints hints() {
+        return Hints.builder()
+                .afterGenerate(AfterGenerate.DO_NOT_MODIFY)
+                .build();
+    }
 
     @Override
     public GeometryCollectionGenerator xRange(double minX, double maxX) { this.minX = minX; this.maxX = maxX; return this; }

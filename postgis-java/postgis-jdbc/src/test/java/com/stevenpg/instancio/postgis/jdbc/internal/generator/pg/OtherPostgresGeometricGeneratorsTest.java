@@ -26,26 +26,85 @@ import static org.junit.jupiter.api.Assertions.*;
 class OtherPostgresGeometricGeneratorsTest {
 
     @Test
-    void shouldGenerateLsegAndLine() {
-        var lseg = new PGLsegGenerator().xRange(-1, 1).yRange(-1, 1).generate(null);
+    void shouldGenerateLseg() {
+        var lseg = new PGLsegGenerator()
+                .xRange(10, 10)
+                .yRange(20, 20)
+                .generate(null);
         assertNotNull(lseg);
-        var line = new PGLineGenerator().xRange(-1, 1).yRange(-1, 1).generate(null);
-        assertNotNull(line);
+        assertEquals(10, lseg.point[0].x);
+        assertEquals(10, lseg.point[1].x);
+        assertEquals(20, lseg.point[0].y);
+        assertEquals(20, lseg.point[1].y);
     }
 
     @Test
-    void shouldGeneratePathPolygonBoxCircle() {
-        var path = new PGPathGenerator().vertices(2, 5).xRange(-2, 2).yRange(-2, 2).generate(null);
+    void shouldGenerateLine() {
+        var line = new PGLineGenerator()
+                .xRange(10, 10)
+                .yRange(20, 20)
+                .generate(null);
+        assertNotNull(line);
+        // PGline is represented as Ax + By + C = 0
+        // The generator creates it from two points
+    }
+
+    @Test
+    void shouldGeneratePath() {
+        var path = new PGPathGenerator()
+                .vertices(5, 5)
+                .xRange(10, 10)
+                .yRange(20, 20)
+                .open(false)
+                .generate(null);
         assertNotNull(path);
+        assertEquals(5, path.points.length);
+        assertFalse(path.open);
+        for (var p : path.points) {
+            assertEquals(10, p.x);
+            assertEquals(20, p.y);
+        }
+    }
 
-        var poly = new PGPolygonGenerator().vertices(3, 6).xRange(-3, 3).yRange(-3, 3).generate(null);
+    @Test
+    void shouldGeneratePolygon() {
+        var poly = new PGPolygonGenerator()
+                .vertices(3, 3)
+                .xRange(10, 10)
+                .yRange(20, 20)
+                .generate(null);
         assertNotNull(poly);
+        assertEquals(3, poly.points.length);
+        for (var p : poly.points) {
+            assertEquals(10, p.x);
+            assertEquals(20, p.y);
+        }
+    }
 
-        var box = new PGBoxGenerator().xRange(-5, 5).yRange(-5, 5).generate(null);
+    @Test
+    void shouldGenerateBox() {
+        var box = new PGBoxGenerator()
+                .xRange(10, 10)
+                .yRange(20, 20)
+                .generate(null);
         assertNotNull(box);
+        assertEquals(10, box.point[0].x);
+        assertEquals(10, box.point[1].x);
+        assertEquals(20, box.point[0].y);
+        assertEquals(20, box.point[1].y);
+    }
 
-        var circle = new PGCircleGenerator().radiusRange(0.5, 2.5).xRange(-5, 5).yRange(-5, 5).generate(null);
+    @Test
+    void shouldGenerateCircle() {
+        var circle = new PGCircleGenerator()
+                .radiusRange(5, 5)
+                .xRange(10, 10)
+                .yRange(20, 20)
+                .generate(null);
         assertNotNull(circle);
+        assertEquals(5, circle.radius);
+        assertEquals(10, circle.center.x);
+        assertEquals(20, circle.center.y);
     }
 
     @RepeatedTest(2)

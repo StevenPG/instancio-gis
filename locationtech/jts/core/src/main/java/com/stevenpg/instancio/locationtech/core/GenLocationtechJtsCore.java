@@ -165,6 +165,24 @@ public class GenLocationtechJtsCore {
         return new LineSegmentGenerator();
     }
 
+    /**
+     * Access to the Generator for org.locationtech.jts.geom.GeometryCollection.
+     * @return generator
+     * @since 1.0.0
+     */
+    public static GeometryCollectionGenerator geometryCollection() {
+        return new GeometryCollectionGenerator();
+    }
+
+    /**
+     * Access to the Generator for org.locationtech.jts.geom.Geometry.
+     * @return generator
+     * @since 1.0.0
+     */
+    public static GeometryGenerator geometry() {
+        return new GeometryGenerator();
+    }
+
     private GenLocationtechJtsCore() {
         // private constructor to prevent instantiation
     }

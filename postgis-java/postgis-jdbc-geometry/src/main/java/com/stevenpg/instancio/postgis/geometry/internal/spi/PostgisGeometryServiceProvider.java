@@ -49,11 +49,22 @@ public class PostgisGeometryServiceProvider implements InstancioServiceProvider 
         map.put(Geometry.class, new GeometryGenerator());
         map.put(Point.class, new PointGenerator());
         map.put(LineString.class, new LineStringGenerator());
+        map.put(LinearRing.class, new LinearRingGenerator());
         map.put(Polygon.class, new PolygonGenerator());
         map.put(MultiPoint.class, new MultiPointGenerator());
         map.put(MultiLineString.class, new MultiLineStringGenerator());
         map.put(MultiPolygon.class, new MultiPolygonGenerator());
         map.put(GeometryCollection.class, new GeometryCollectionGenerator());
         return (Node node, Generators gen) -> map.get(node.getTargetClass());
+    }
+
+    @Override
+    public TypeResolver getTypeResolver() {
+        return (Class<?> type) -> {
+            if (type.equals(Geometry.class)) {
+                return Point.class;
+            }
+            return null;
+        };
     }
 }

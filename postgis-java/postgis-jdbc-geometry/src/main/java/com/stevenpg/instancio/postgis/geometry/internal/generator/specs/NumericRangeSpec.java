@@ -21,4 +21,7 @@ public interface NumericRangeSpec<T> {
     default T zRange(double minZ, double maxZ) {
         return (T) this;
     }
+    default T srid(int srid) {
+        return (T) this;
+    }
 }

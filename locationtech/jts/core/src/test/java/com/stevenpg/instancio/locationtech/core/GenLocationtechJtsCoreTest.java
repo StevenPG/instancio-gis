@@ -171,5 +171,48 @@ class GenLocationtechJtsCoreTest {
         }
     }
 
-    
+    @Test
+    void polygon() {
+        var generator = GenLocationtechJtsCore.polygon();
+        assertNotNull(generator);
+        var result = generator.generate(new DefaultRandom());
+        assertNotNull(result);
+        assertInstanceOf(org.locationtech.jts.geom.Polygon.class, result);
+    }
+
+    @Test
+    void multiPolygon() {
+        var generator = GenLocationtechJtsCore.multiPolygon();
+        assertNotNull(generator);
+        var result = generator.generate(new DefaultRandom());
+        assertNotNull(result);
+        assertInstanceOf(org.locationtech.jts.geom.MultiPolygon.class, result);
+    }
+
+    @Test
+    void geometryCollection() {
+        var generator = GenLocationtechJtsCore.geometryCollection();
+        assertNotNull(generator);
+        var result = generator.generate(new DefaultRandom());
+        assertNotNull(result);
+        assertInstanceOf(org.locationtech.jts.geom.GeometryCollection.class, result);
+    }
+
+    @Test
+    void envelope() {
+        var generator = GenLocationtechJtsCore.envelope();
+        assertNotNull(generator);
+        var result = generator.generate(new DefaultRandom());
+        assertNotNull(result);
+        assertInstanceOf(org.locationtech.jts.geom.Envelope.class, result);
+    }
+
+    @Test
+    void geometry() {
+        var generator = GenLocationtechJtsCore.geometry();
+        assertNotNull(generator);
+        var result = generator.generate(new DefaultRandom());
+        assertNotNull(result);
+        assertInstanceOf(org.locationtech.jts.geom.Geometry.class, result);
+    }
 }

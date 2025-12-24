@@ -13,24 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.stevenpg.instancio.postgis.jdbc.jts.internal.generator;
 
-import net.postgis.jdbc.jts.JTSGeometry;
+import net.postgis.jdbc.jts.JtsGeometry;
 import org.instancio.Instancio;
-import org.instancio.Random;
-import org.instancio.generator.Generator;
-import org.locationtech.jts.geom.Geometry;
+import org.junit.jupiter.api.Test;
 
-/**
- * Generator for {@link JTSGeometry}.
- */
-public class JTSGeometryGenerator implements Generator<JTSGeometry> {
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-    @Override
-    public JTSGeometry generate(Random random) {
-        // This assumes LocationtechjtsCoreGeomServiceProvider is on the classpath
-        // to handle the JTS Geometry generation.
-        Geometry geom = Instancio.create(Geometry.class);
-        return new JTSGeometry(geom);
+class JtsGeometryGeneratorTest {
+
+    @Test
+    void shouldGenerateJtsGeometry() {
+        JtsGeometry jtsGeom = new JtsGeometryGenerator().generate(null);
+        assertNotNull(jtsGeom);
+        assertNotNull(jtsGeom.getGeometry());
+    }
+
+    @Test
+    void instancioShouldCreateJtsGeometryViaSPI() {
+        JtsGeometry jtsGeom = Instancio.create(JtsGeometry.class);
+        assertNotNull(jtsGeom);
+        assertNotNull(jtsGeom.getGeometry());
     }
 }

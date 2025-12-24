@@ -17,7 +17,9 @@ package com.stevenpg.instancio.postgis.jdbc.internal.generator.pg;
 
 import com.stevenpg.instancio.postgis.jdbc.internal.generator.specs.NumericRangeSpec;
 import org.instancio.Random;
+import org.instancio.generator.AfterGenerate;
 import org.instancio.generator.Generator;
+import org.instancio.generator.Hints;
 import org.postgresql.geometric.PGpoint;
 
 /**
@@ -29,6 +31,13 @@ public class PGPointGenerator implements Generator<PGpoint>, NumericRangeSpec<PG
     private double maxX = 180d;
     private double minY = -90d;
     private double maxY = 90d;
+
+    @Override
+    public Hints hints() {
+        return Hints.builder()
+                .afterGenerate(AfterGenerate.DO_NOT_MODIFY)
+                .build();
+    }
 
     @Override
     public PGPointGenerator xRange(double minX, double maxX) {

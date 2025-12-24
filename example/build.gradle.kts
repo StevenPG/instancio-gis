@@ -19,8 +19,10 @@ dependencies {
     // Postgres JDBC geometric generators
     testImplementation(project(":postgis-java-jdbc"))
     testImplementation(project(":postgis-java-jdbc-geometry"))
+    testImplementation(project(":postgis-java-jdbc-jts"))
     testImplementation("net.postgis:postgis-jdbc:2025.1.1")
     testImplementation("net.postgis:postgis-geometry:2025.1.1")
+    testImplementation("net.postgis:postgis-jdbc-jts:2025.1.1")
 
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.12.1")
