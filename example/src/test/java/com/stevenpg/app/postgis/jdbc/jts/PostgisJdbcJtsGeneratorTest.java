@@ -34,7 +34,7 @@ class PostgisJdbcJtsGeneratorTest {
 
     @Test
     void shouldGenerateJtsGeometryWithGenerator() {
-        JtsGeometry jtsGeom = GenPostgisJdbcJts.JtsGeometry().generate(null);
+        JtsGeometry jtsGeom = GenPostgisJdbcJts.jtsGeometry().generate(null);
         assertNotNull(jtsGeom);
         assertNotNull(jtsGeom.getGeometry());
     }

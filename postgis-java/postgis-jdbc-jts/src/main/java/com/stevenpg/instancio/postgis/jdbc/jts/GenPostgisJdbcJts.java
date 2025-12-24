@@ -29,7 +29,7 @@ public final class GenPostgisJdbcJts {
      * Access to the Generator for {@link net.postgis.jdbc.jts.JtsGeometry}.
      * @return generator
      */
-    public static JtsGeometryGenerator JtsGeometry() {
+    public static JtsGeometryGenerator jtsGeometry() {
         return new JtsGeometryGenerator();
     }
 
