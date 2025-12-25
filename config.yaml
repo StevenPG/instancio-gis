@@ -1,0 +1,55 @@
+# Generated with JReleaser 1.21.0 at 2025-12-25T00:58:33.860762-05:00
+project:
+  description: Instancio libraries for common GIS dependencies
+  longDescription: Instancio libraries for common GIS dependencies
+  authors:
+    - StevenPG
+  license: Apache-2.0
+  links:
+    homepage: https://stevenpg.com/instancio-gis
+  languages:
+    java:
+      groupId: com.stevenpg
+      version: "17"
+  inceptionYear: "2025"
+
+signing:
+  active: RELEASE
+  armored: true
+
+# Comment this out to publish only to Github
+deploy:
+  maven:
+    mavenCentral:
+      sonatype:
+        active: RELEASE
+        url: https://central.sonatype.com/api/v1/publisher
+        stagingRepositories:
+          - build/staging-deploy
+        sign: true
+        sourceJar: true
+        checksums: true
+        javadocJar: true
+
+# Comment this out to publish only to Maven Central
+release:
+  github:
+    owner: StevenPG
+
+files:
+  artifacts:
+    - path: locationtech/jts/core/build/libs/locationtech-core-0.0.1.jar
+    - path: locationtech/jts/core/build/libs/locationtech-core-0.0.1-javadoc.jar
+    - path: locationtech/jts/core/build/libs/locationtech-core-0.0.1-sources.jar
+
+    - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.1.jar
+    - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.1-javadoc.jar
+    - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.1-sources.jar
+
+    - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry-0.0.1.jar
+    - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry-0.0.1-javadoc.jar
+    - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry-0.0.1-sources.jar
+
+    - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts-0.0.1.jar
+    - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts-0.0.1-javadoc.jar
+    - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts-0.0.1-sources.jar
