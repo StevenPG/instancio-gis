@@ -3,9 +3,9 @@ import org.gradle.testing.jacoco.tasks.JacocoReport
 
 plugins {
     java
-    `maven-publish`
     id("dev.yumi.gradle.licenser") version "2.2.1"
     id("org.sonarqube") version "7.1.0.6387"
+    id("jreleaser-conventions")
 }
 
 group = "com.stevenpg.instancio"

@@ -1,5 +1,6 @@
 plugins {
     id("java-instancio-gis-library")
+    id("java-publish-conventions")
 }
 
 dependencies {
