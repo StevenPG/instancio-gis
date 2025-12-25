@@ -16,17 +16,11 @@ jreleaser {
         }
         inceptionYear.set("2025")
     }
-    release {
-        github {
-            repoOwner.set("StevenPG")
-            overwrite.set(true)
-            token.set(System.getenv("JRELEASER_GITHUB_TOKEN") ?: "dummy")
-        }
-    }
     signing {
         active.set(Active.RELEASE)
         armored.set(true)
     }
+
     deploy {
         maven {
             mavenCentral {
@@ -34,10 +28,10 @@ jreleaser {
                     active.set(Active.RELEASE)
                     url.set("https://central.sonatype.com/api/v1/publisher")
                     stagingRepository("build/staging-deploy")
-                    sign = true
-                    sourceJar = true
-                    checksums = true
-                    javadocJar = true
+                    sign.set(true)
+                    sourceJar.set(true)
+                    checksums.set(true)
+                    javadocJar.set(true)
                 }
             }
         }
