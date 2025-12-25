@@ -1,0 +1,51 @@
+# Generated with JReleaser 1.21.0 at 2025-12-25T00:58:33.860762-05:00
+project:
+  name: instancio-gis
+  version: 0.0.1-SNAPSHOT
+  description: GIS extensions for the Instancio library
+  longDescription: Instancio libraries for common GIS dependencies
+  authors:
+    - StevenPG
+  license: Apache-2.0
+  links:
+    homepage: https://stevenpg.com/instancio-gis
+  languages:
+    java:
+      groupId: com.stevenpg
+      version: 17
+  inceptionYear: 2025
+
+release:
+  github:
+    owner: StevenPG
+
+distributions:
+  library:
+    artifacts:
+      - path: locationtech/jts/core/build/libs/locationtech-core-0.0.1.jar
+        platform: java
+      - path: locationtech/jts/core/build/libs/locationtech-core-0.0.1-javadoc.jar
+        platform: java
+      - path: locationtech/jts/core/build/libs/locationtech-core-0.0.1-sources.jar
+        platform: java
+
+      - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.1.jar
+        platform: java
+      - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.1-javadoc.jar
+        platform: java
+      - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.1-sources.jar
+        platform: java
+
+      - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry0.0.1.jar
+        platform: java
+      - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry0.0.1-javadoc.jar
+        platform: java
+      - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry0.0.1-sources.jar
+        platform: java
+
+      - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts.0.1.jar
+        platform: java
+      - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts.0.1-javadoc.jar
+        platform: java
+      - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts.0.1-sources.jar
+        platform: java

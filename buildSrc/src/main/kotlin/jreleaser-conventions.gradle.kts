@@ -26,9 +26,9 @@ jreleaser {
             mavenCentral {
                 register("sonatype") {
                     active.set(Active.RELEASE)
-                    url.set("https://central.sonatype.com/api/v1/publisher")
-                    stagingRepository("build/staging-deploy")
+                    url.set("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2")
                     sign.set(true)
+                    stagingRepository("staging/")
                     sourceJar.set(true)
                     checksums.set(true)
                     javadocJar.set(true)
