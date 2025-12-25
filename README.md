@@ -3,6 +3,7 @@ An instancio extension that will provide auto-registered custom generators for a
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=StevenPG_instancio-gis&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=StevenPG_instancio-gis)
+[![javadoc](https://javadoc.io/badge2/com.stevenpg.instancio/locationtech-core/javadoc.svg)](https://javadoc.io/doc/com.stevenpg.instancio/locationtech-core)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=StevenPG_instancio-gis&metric=coverage)](https://sonarcloud.io/summary/new_code?id=StevenPG_instancio-gis)
 
 ### Tasks
