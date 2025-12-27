@@ -41,7 +41,9 @@ public class EnvelopeGenerator implements EnvelopeSpec, EnvelopeGeneratorSpec, G
     /**
      * Default constructor.
      */
-    public EnvelopeGenerator() {}
+    public EnvelopeGenerator() {
+        // No custom instantiations needed
+    }
 
     /**
      * Configure the generator to generate an envelope with the specified bounds.

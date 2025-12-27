@@ -24,7 +24,7 @@ import org.locationtech.jts.geom.Coordinate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CoordinateGeneratorTest {
+class CoordinateGeneratorTest {
 
     @Test
     void coordinateGenerator() {

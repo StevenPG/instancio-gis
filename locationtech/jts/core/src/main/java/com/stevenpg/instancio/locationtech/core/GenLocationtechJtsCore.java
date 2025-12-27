@@ -18,7 +18,6 @@ package com.stevenpg.instancio.locationtech.core;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.*;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.CoordinateArraySequenceGenerator;
-import org.locationtech.jts.geom.*;
 
 /**
  * Provides access to the Locationtech JTS core generator provider.

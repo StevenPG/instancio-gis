@@ -23,8 +23,6 @@ import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.Co
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateSequenceSpec;
 import org.instancio.Random;
 import org.instancio.generator.Generator;
-import org.instancio.generator.GeneratorContext;
-import org.instancio.internal.generator.AbstractGenerator;
 import org.locationtech.jts.geom.*;
 import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 
@@ -53,6 +51,7 @@ public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, Coor
      * Default constructor.
      */
     public CoordinateSequenceGenerator() {
+        // No custom instantiations needed
     }
 
     @Override

@@ -29,8 +29,10 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
 
     private static final java.util.Random backupRandom = new java.util.Random();
 
-    private double minX = -180d, maxX = 180d;
-    private double minY = -90d, maxY = 90d;
+    private double minX = -180d;
+    private double maxX = 180d;
+    private double minY = -90d;
+    private double maxY = 90d;
     private int srid = 0;
 
     @Override
@@ -108,9 +110,11 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
     private String polygonWkt(java.util.Random r) {
         int n = 3 + r.nextInt(5);
         StringBuilder sb = new StringBuilder("POLYGON((");
-        double fx = 0, fy = 0;
+        double fx = 0;
+        double fy = 0;
         for (int i = 0; i < n; i++) {
-            double x = rx(r, minX, maxX), y = rx(r, minY, maxY);
+            double x = rx(r, minX, maxX);
+            double y = rx(r, minY, maxY);
             if (i == 0) { fx = x; fy = y; }
             if (i > 0) sb.append(", ");
             sb.append(x).append(' ').append(y);
@@ -154,7 +158,8 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
             if (k > 0) sb.append(", ");
             int n = 3 + r.nextInt(5);
             sb.append("((");
-            double fx = 0, fy = 0;
+            double fx = 0;
+            double fy = 0;
             for (int i = 0; i < n; i++) {
                 double x = rx(r, minX, maxX), y = rx(r, minY, maxY);
                 if (i == 0) { fx = x; fy = y; }

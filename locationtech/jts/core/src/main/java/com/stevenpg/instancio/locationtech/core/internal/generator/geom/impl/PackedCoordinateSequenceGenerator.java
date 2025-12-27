@@ -21,9 +21,7 @@ import com.stevenpg.instancio.locationtech.core.internal.generator.specs.Envelop
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.PackedCoordinateSequenceGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.PackedCoordinateSequenceSpec;
 import org.instancio.Random;
-import org.instancio.generator.Generator;
 import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.CoordinateSequence;
 import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 import org.locationtech.jts.geom.impl.PackedCoordinateSequence;
@@ -57,7 +55,9 @@ public class PackedCoordinateSequenceGenerator
     /**
      * Default constructor.
      */
-    public PackedCoordinateSequenceGenerator() {}
+    public PackedCoordinateSequenceGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public PackedCoordinateSequenceGenerator coordinateSequence(List<Coordinate> coordinateSequence) {

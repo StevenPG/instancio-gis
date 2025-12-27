@@ -18,7 +18,6 @@ package com.stevenpg.instancio.locationtech.core;
 
 import org.instancio.support.DefaultRandom;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

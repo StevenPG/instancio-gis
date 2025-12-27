@@ -29,9 +29,9 @@ import java.util.List;
  * Generator for creating a MultiLineString.
  */
 public class MultiLineStringGenerator implements MultiLineStringSpec, MultiLineStringGeneratorSpec, EnvelopableGenerator<MultiLineString> {
-    private final static GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private final static java.util.Random random = new java.util.Random();
-    private final static LineStringGenerator lineStringGenerator = new LineStringGenerator();
+    private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
+    private static final java.util.Random random = new java.util.Random();
+    private static final LineStringGenerator lineStringGenerator = new LineStringGenerator();
 
     private GeometryFactory inputGeometryFactory;
     private Integer inputLength;
@@ -42,6 +42,7 @@ public class MultiLineStringGenerator implements MultiLineStringSpec, MultiLineS
      * Default constructor.
      */
     public MultiLineStringGenerator() {
+        // No custom instantiations needed
     }
 
     @Override

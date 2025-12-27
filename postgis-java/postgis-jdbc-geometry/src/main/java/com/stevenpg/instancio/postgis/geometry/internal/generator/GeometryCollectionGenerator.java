@@ -26,8 +26,10 @@ import org.instancio.generator.Hints;
 
 /** Generator for net.postgis.jdbc.geometry.GeometryCollection using WKT. */
 public class GeometryCollectionGenerator implements Generator<GeometryCollection>, NumericRangeSpec<GeometryCollectionGenerator> {
-    private double minX = -180d, maxX = 180d;
-    private double minY = -90d, maxY = 90d;
+    private double minX = -180d;
+    private double maxX = 180d;
+    private double minY = -90d;
+    private double maxY = 90d;
 
     @Override
     public Hints hints() {

@@ -26,9 +26,12 @@ import org.instancio.generator.Hints;
 
 /** Generator for net.postgis.jdbc.geometry.LineString using WKT. */
 public class LineStringGenerator implements Generator<LineString>, NumericRangeSpec<LineStringGenerator> {
-    private double minX = -180d, maxX = 180d;
-    private double minY = -90d, maxY = 90d;
-    private int minPoints = 2, maxPoints = 5;
+    private double minX = -180d;
+    private double maxX = 180d;
+    private double minY = -90d;
+    private double maxY = 90d;
+    private int minPoints = 2;
+    private int maxPoints = 5;
     private int srid = 0;
 
     @Override

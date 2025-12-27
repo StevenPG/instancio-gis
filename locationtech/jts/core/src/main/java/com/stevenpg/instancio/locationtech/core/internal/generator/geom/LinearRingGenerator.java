@@ -34,8 +34,8 @@ import org.locationtech.jts.geom.LinearRing;
  */
 public class LinearRingGenerator implements LinearRingSpec, LinearRingGeneratorSpec, EnvelopableGenerator<LinearRing> {
 
-    private final static GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private final static java.util.Random random = new java.util.Random();
+    private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
+    private static final java.util.Random random = new java.util.Random();
 
     private GeometryFactory inputGeometryFactory;
     private CoordinateSequence inputCoordinateSequence;
@@ -46,6 +46,7 @@ public class LinearRingGenerator implements LinearRingSpec, LinearRingGeneratorS
      * Default constructor.
      */
     public LinearRingGenerator() {
+        // No custom instantiations needed
     }
 
     @Override

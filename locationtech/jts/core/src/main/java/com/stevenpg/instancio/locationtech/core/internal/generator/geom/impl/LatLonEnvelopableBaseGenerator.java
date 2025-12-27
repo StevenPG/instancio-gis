@@ -30,7 +30,9 @@ public class LatLonEnvelopableBaseGenerator {
     /**
      * Default constructor.
      */
-    public LatLonEnvelopableBaseGenerator() {}
+    public LatLonEnvelopableBaseGenerator() {
+        // No custom instantiations needed
+    }
 
     /**
      * Checks if a coordinate is missing.

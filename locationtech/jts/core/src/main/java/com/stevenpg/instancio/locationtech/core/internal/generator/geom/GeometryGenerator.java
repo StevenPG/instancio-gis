@@ -46,7 +46,9 @@ public class GeometryGenerator implements GeometrySpec, GeometryGeneratorSpec, E
     // Note: Triangle is not a Geometry subtype; excluded from this generator
 
     /** Default constructor. */
-    public GeometryGenerator() {}
+    public GeometryGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public GeometryGenerator within(Envelope validGenerationAreaEnvelope) {

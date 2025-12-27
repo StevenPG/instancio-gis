@@ -51,7 +51,9 @@ public class GeometryCollectionGenerator implements GeometryCollectionSpec, Geom
     /**
      * Default constructor.
      */
-    public GeometryCollectionGenerator() {}
+    public GeometryCollectionGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public GeometryCollectionGenerator geometryFactory(GeometryFactory geometryFactory) {

@@ -37,9 +37,9 @@ class WithinUtilityTest {
     @RepeatedTest(10)
     void randomLongitudeInBounds() {
         var testEnvelope = new Envelope(-70, -80, 38, 42);
-        var record = WithinUtility.randomLonLatInBounds(testEnvelope);
-        var lon = record.longitude();
-        var lat = record.latitude();
+        var testRecord = WithinUtility.randomLonLatInBounds(testEnvelope);
+        var lon = testRecord.longitude();
+        var lat = testRecord.latitude();
 
         assertTrue(lon >= -80 && lon <= -70);
         assertTrue(lat >= 38 && lat <= 42);
@@ -47,9 +47,9 @@ class WithinUtilityTest {
 
     @RepeatedTest(10)
     void randomLongitudeNoBounds() {
-        var record = WithinUtility.randomLonLatInBounds();
-        var lon = record.longitude();
-        var lat = record.latitude();
+        var testRecord = WithinUtility.randomLonLatInBounds();
+        var lon = testRecord.longitude();
+        var lat = testRecord.latitude();
 
         assertTrue(lon >= -180 && lon <= 180);
         assertTrue(lat >= -90 && lat <= 90);
@@ -57,9 +57,9 @@ class WithinUtilityTest {
 
     @RepeatedTest(10)
     void randomLongitudeNullBounds() {
-        var record = WithinUtility.randomLonLatInBounds(null);
-        var lon = record.longitude();
-        var lat = record.latitude();
+        var testRecord = WithinUtility.randomLonLatInBounds(null);
+        var lon = testRecord.longitude();
+        var lat = testRecord.latitude();
 
         assertTrue(lon >= -180 && lon <= 180);
         assertTrue(lat >= -90 && lat <= 90);

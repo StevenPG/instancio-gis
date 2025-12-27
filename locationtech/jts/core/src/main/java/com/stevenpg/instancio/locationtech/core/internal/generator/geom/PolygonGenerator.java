@@ -32,8 +32,8 @@ import org.locationtech.jts.geom.Polygon;
  */
 public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, EnvelopableGenerator<Polygon> {
 
-    private final static GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private final static java.util.Random random = new java.util.Random();
+    private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
+    private static final java.util.Random random = new java.util.Random();
 
     private GeometryFactory inputGeometryFactory;
     private LinearRing inputExteriorRing;
@@ -46,6 +46,7 @@ public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, Enve
      * Default constructor.
      */
     public PolygonGenerator() {
+        // No custom instantiations needed
     }
 
     @Override

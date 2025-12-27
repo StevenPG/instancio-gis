@@ -31,9 +31,9 @@ import java.util.List;
  * @since 1.0.0
  */
 public class MultiPolygonGenerator implements MultiPolygonSpec, MultiPolygonGeneratorSpec, EnvelopableGenerator<MultiPolygon> {
-    private final static GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private final static java.util.Random random = new java.util.Random();
-    private final static PolygonGenerator polygonGenerator = new PolygonGenerator();
+    private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
+    private static final java.util.Random random = new java.util.Random();
+    private static final PolygonGenerator polygonGenerator = new PolygonGenerator();
 
     private GeometryFactory inputGeometryFactory;
     private Integer inputLength;
@@ -44,6 +44,7 @@ public class MultiPolygonGenerator implements MultiPolygonSpec, MultiPolygonGene
      * Default constructor.
      */
     public MultiPolygonGenerator() {
+        // No custom instantiations needed
     }
 
     @Override
