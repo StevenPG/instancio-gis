@@ -48,6 +48,8 @@ You can use the extension by adding the following dependencies to your project:
 You'll need to include the actual dependency for the library you want to use. Once that's
 included, you can use the generators provided by the library in your Instancio invocations.
 
+[Maven Central Home](https://central.sonatype.com/search?q=com.stevenpg.instancio)
+
 ### LocationTech JTS 
 
 #### LocationTech JTS - Core
