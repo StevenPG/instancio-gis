@@ -17,13 +17,14 @@
 package com.stevenpg.instancio.locationtech.core;
 
 import org.instancio.support.DefaultRandom;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class GenLocationtechJtsCoreTest {
 
-    @Test
+    @RepeatedTest(10)
     void coordinateArraySequence() {
         var generator = GenLocationtechJtsCore.coordinateArraySequence();
         assertNotNull(generator);
@@ -35,12 +36,12 @@ class GenLocationtechJtsCoreTest {
             var coordinate = result.getCoordinate(i);
             assertNotNull(coordinate);
             assertInstanceOf(org.locationtech.jts.geom.Coordinate.class, coordinate);
-            assertTrue(coordinate.x > -180 && coordinate.x < 180);
-            assertTrue(coordinate.y > -90 && coordinate.y < 90);
+            assertTrue(coordinate.x >= -180 && coordinate.x <= 180);
+            assertTrue(coordinate.y >= -90 && coordinate.y <= 90);
         }
     }
 
-    @Test
+    @RepeatedTest(10)
     void coordinate() {
         var generator = GenLocationtechJtsCore.coordinate();
         assertNotNull(generator);
@@ -49,11 +50,11 @@ class GenLocationtechJtsCoreTest {
 
         assertInstanceOf(org.locationtech.jts.geom.Coordinate.class, result);
         assertNotNull(result);
-        assertTrue(result.x > -180 && result.x < 180);
-        assertTrue(result.y > -90 && result.y < 90);
+        assertTrue(result.x >= -180 && result.x <= 180);
+        assertTrue(result.y >= -90 && result.y <= 90);
     }
 
-    @Test
+    @RepeatedTest(10)
     void coordinateXY() {
         var generator = GenLocationtechJtsCore.coordinateXY();
         assertNotNull(generator);
@@ -62,11 +63,11 @@ class GenLocationtechJtsCoreTest {
 
         assertInstanceOf(org.locationtech.jts.geom.CoordinateXY.class, result);
         assertNotNull(result);
-        assertTrue(result.x > -180 && result.x < 180);
-        assertTrue(result.y > -90 && result.y < 90);
+        assertTrue(result.x >= -180 && result.x <= 180);
+        assertTrue(result.y >= -90 && result.y <= 90);
     }
 
-    @Test
+    @RepeatedTest(10)
     void coordinateXYM() {
         var generator = GenLocationtechJtsCore.coordinateXYM();
         assertNotNull(generator);
@@ -75,11 +76,11 @@ class GenLocationtechJtsCoreTest {
 
         assertInstanceOf(org.locationtech.jts.geom.CoordinateXYM.class, result);
         assertNotNull(result);
-        assertTrue(result.x > -180 && result.x < 180);
-        assertTrue(result.y > -90 && result.y < 90);
+        assertTrue(result.x >= -180 && result.x <= 180);
+        assertTrue(result.y >= -90 && result.y <= 90);
     }
 
-    @Test
+    @RepeatedTest(10)
     void coordinateXYZM() {
         var generator = GenLocationtechJtsCore.coordinateXYZM();
         assertNotNull(generator);
@@ -88,11 +89,11 @@ class GenLocationtechJtsCoreTest {
 
         assertInstanceOf(org.locationtech.jts.geom.CoordinateXYZM.class, result);
         assertNotNull(result);
-        assertTrue(result.x > -180 && result.x < 180);
-        assertTrue(result.y > -90 && result.y < 90);
+        assertTrue(result.x >= -180 && result.x <= 180);
+        assertTrue(result.y >= -90 && result.y <= 90);
     }
 
-    @Test
+    @RepeatedTest(10)
     void lineString() {
         var generator = GenLocationtechJtsCore.lineString();
         assertNotNull(generator);
@@ -102,12 +103,12 @@ class GenLocationtechJtsCoreTest {
         assertNotNull(linestring);
         assertInstanceOf(org.locationtech.jts.geom.LineString.class, linestring);
         for( var coordinate : linestring.getCoordinates()) {
-            assertTrue(coordinate.x > -180 && coordinate.x < 180);
-            assertTrue(coordinate.y > -90 && coordinate.y < 90);
+            assertTrue(coordinate.x >= -180 && coordinate.x <= 180);
+            assertTrue(coordinate.y >= -90 && coordinate.y <= 90);
         }
     }
 
-    @Test
+    @RepeatedTest(10)
     void linearRing() {
         var generator = GenLocationtechJtsCore.linearRing();
         assertNotNull(generator);
@@ -119,12 +120,12 @@ class GenLocationtechJtsCoreTest {
         assertTrue(linearRing.isClosed());
         assertTrue(linearRing.getCoordinates().length >= 4);
         for( var coordinate : linearRing.getCoordinates()) {
-            assertTrue(coordinate.x > -180 && coordinate.x < 180);
-            assertTrue(coordinate.y > -90 && coordinate.y < 90);
+            assertTrue(coordinate.x >= -180 && coordinate.x <= 180);
+            assertTrue(coordinate.y >= -90 && coordinate.y <= 90);
         }
     }
 
-    @Test
+    @RepeatedTest(10)
     void point() {
         var generator = GenLocationtechJtsCore.point();
         assertNotNull(generator);
@@ -133,11 +134,11 @@ class GenLocationtechJtsCoreTest {
 
         assertNotNull(coordinate);
         assertInstanceOf(org.locationtech.jts.geom.Point.class, coordinate);
-        assertTrue(coordinate.getCoordinate().x > -180 && coordinate.getCoordinate().x < 180);
-        assertTrue(coordinate.getCoordinate().y > -90 && coordinate.getCoordinate().y < 90);
+        assertTrue(coordinate.getCoordinate().x >= -180 && coordinate.getCoordinate().x <= 180);
+        assertTrue(coordinate.getCoordinate().y >= -90 && coordinate.getCoordinate().y <= 90);
     }
 
-    @Test
+    @RepeatedTest(10)
     void multiPoint() {
         var generator = GenLocationtechJtsCore.multiPoint();
         assertNotNull(generator);
@@ -148,12 +149,12 @@ class GenLocationtechJtsCoreTest {
         assertInstanceOf(org.locationtech.jts.geom.MultiPoint.class, multipoint);
         for (int i = 0; i < multipoint.getNumGeometries(); i++) {
             var point = (org.locationtech.jts.geom.Point) multipoint.getGeometryN(i);
-            assertTrue(point.getCoordinate().x > -180 && point.getCoordinate().x < 180);
-            assertTrue(point.getCoordinate().y > -90 && point.getCoordinate().y < 90);
+            assertTrue(point.getCoordinate().x >= -180 && point.getCoordinate().x <= 180);
+            assertTrue(point.getCoordinate().y >= -90 && point.getCoordinate().y <= 90);
         }
     }
 
-    @Test
+    @RepeatedTest(10)
     void multiLineString() {
         var generator = GenLocationtechJtsCore.multiLineString();
         assertNotNull(generator);
@@ -165,13 +166,13 @@ class GenLocationtechJtsCoreTest {
         for (int i = 0; i < multilinestring.getNumGeometries(); i++) {
             var linestring = (org.locationtech.jts.geom.LineString) multilinestring.getGeometryN(i);
             for (var coordinate : linestring.getCoordinates()) {
-                assertTrue(coordinate.x > -180 && coordinate.x < 180);
-                assertTrue(coordinate.y > -90 && coordinate.y < 90);
+                assertTrue(coordinate.x >= -180 && coordinate.x <= 180);
+                assertTrue(coordinate.y >= -90 && coordinate.y <= 90);
             }
         }
     }
 
-    @Test
+    @RepeatedTest(10)
     void polygon() {
         var generator = GenLocationtechJtsCore.polygon();
         assertNotNull(generator);
@@ -180,7 +181,7 @@ class GenLocationtechJtsCoreTest {
         assertInstanceOf(org.locationtech.jts.geom.Polygon.class, result);
     }
 
-    @Test
+    @RepeatedTest(10)
     void multiPolygon() {
         var generator = GenLocationtechJtsCore.multiPolygon();
         assertNotNull(generator);
@@ -189,7 +190,7 @@ class GenLocationtechJtsCoreTest {
         assertInstanceOf(org.locationtech.jts.geom.MultiPolygon.class, result);
     }
 
-    @Test
+    @RepeatedTest(10)
     void geometryCollection() {
         var generator = GenLocationtechJtsCore.geometryCollection();
         assertNotNull(generator);
@@ -198,7 +199,7 @@ class GenLocationtechJtsCoreTest {
         assertInstanceOf(org.locationtech.jts.geom.GeometryCollection.class, result);
     }
 
-    @Test
+    @RepeatedTest(10)
     void envelope() {
         var generator = GenLocationtechJtsCore.envelope();
         assertNotNull(generator);
@@ -207,7 +208,7 @@ class GenLocationtechJtsCoreTest {
         assertInstanceOf(org.locationtech.jts.geom.Envelope.class, result);
     }
 
-    @Test
+    @RepeatedTest(10)
     void geometry() {
         var generator = GenLocationtechJtsCore.geometry();
         assertNotNull(generator);
