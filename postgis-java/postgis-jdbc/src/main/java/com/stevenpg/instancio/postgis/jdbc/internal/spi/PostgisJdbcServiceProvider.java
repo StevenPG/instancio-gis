@@ -20,7 +20,6 @@ import net.postgis.jdbc.PGbox2d;
 import net.postgis.jdbc.PGbox3d;
 import org.instancio.Node;
 import org.instancio.generator.Generator;
-import org.instancio.generator.GeneratorContext;
 import org.instancio.generators.Generators;
 import org.instancio.spi.InstancioServiceProvider;
 import org.instancio.spi.ServiceProviderContext;
@@ -32,18 +31,16 @@ import java.util.Map;
 /** SPI provider for PostGIS JDBC generators. */
 public class PostgisJdbcServiceProvider implements InstancioServiceProvider {
 
-    private GeneratorContext generatorContext;
-
     /**
      * Default constructor.
      */
-    public PostgisJdbcServiceProvider() {}
+    public PostgisJdbcServiceProvider() {
+        // No custom instantiations needed
+    }
 
     @Override
     public void init(ServiceProviderContext providerContext) {
-        this.generatorContext = new GeneratorContext(
-                providerContext.getSettings(),
-                providerContext.random());
+        // No initialization needed
     }
 
     @Override

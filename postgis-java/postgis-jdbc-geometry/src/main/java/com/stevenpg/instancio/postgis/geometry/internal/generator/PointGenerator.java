@@ -26,9 +26,12 @@ import org.instancio.generator.Hints;
 
 /** Generator for org.postgis.Point using WKT. */
 public class PointGenerator implements Generator<Point>, NumericRangeSpec<PointGenerator> {
-    private double minX = -180d, maxX = 180d;
-    private double minY = -90d, maxY = 90d;
-    private double minZ = 0d, maxZ = 0d;
+    private double minX = -180d;
+    private double maxX = 180d;
+    private double minY = -90d;
+    private double maxY = 90d;
+    private double minZ = 0d;
+    private double maxZ = 0d;
     private boolean useZ = false;
     private int srid = 0;
 

@@ -20,7 +20,7 @@ import net.postgis.jdbc.jts.JtsGeometry;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class JtsImportTest {
+class JtsImportTest {
     @Test
     void testImport() {
         assertNotNull(JtsGeometry.class);

@@ -24,7 +24,6 @@ import net.postgis.jdbc.geometry.Polygon;
 import net.postgis.jdbc.geometry.LineString;
 import org.instancio.Node;
 import org.instancio.generator.Generator;
-import org.instancio.generator.GeneratorContext;
 import org.instancio.generators.Generators;
 import org.instancio.spi.InstancioServiceProvider;
 import org.instancio.spi.ServiceProviderContext;

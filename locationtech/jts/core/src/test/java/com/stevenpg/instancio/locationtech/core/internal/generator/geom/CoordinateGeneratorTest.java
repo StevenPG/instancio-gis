@@ -17,13 +17,9 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
 import org.instancio.Instancio;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
-
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 

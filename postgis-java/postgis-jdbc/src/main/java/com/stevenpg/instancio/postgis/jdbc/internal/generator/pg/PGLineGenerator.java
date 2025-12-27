@@ -29,7 +29,9 @@ public class PGLineGenerator implements Generator<PGline>, NumericRangeSpec<PGLi
     /**
      * Default constructor.
      */
-    public PGLineGenerator() {}
+    public PGLineGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public PGLineGenerator xRange(double minX, double maxX) {

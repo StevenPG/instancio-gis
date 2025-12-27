@@ -92,7 +92,8 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
     private double rx(java.util.Random r, double a, double b) { return a + (b - a) * r.nextDouble(); }
 
     private String pointWkt(java.util.Random r) {
-        double x = rx(r, minX, maxX); double y = rx(r, minY, maxY);
+        double x = rx(r, minX, maxX);
+        double y = rx(r, minY, maxY);
         return String.format("POINT(%f %f)", x, y);
     }
 
@@ -161,7 +162,8 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
             double fx = 0;
             double fy = 0;
             for (int i = 0; i < n; i++) {
-                double x = rx(r, minX, maxX), y = rx(r, minY, maxY);
+                double x = rx(r, minX, maxX);
+                double y = rx(r, minY, maxY);
                 if (i == 0) { fx = x; fy = y; }
                 if (i > 0) sb.append(", ");
                 sb.append(x).append(' ').append(y);

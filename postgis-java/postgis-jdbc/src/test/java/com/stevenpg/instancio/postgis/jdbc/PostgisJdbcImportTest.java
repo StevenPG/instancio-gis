@@ -22,7 +22,7 @@ import net.postgis.jdbc.PGgeometry;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class PostgisJdbcImportTest {
+class PostgisJdbcImportTest {
     @Test
     void testImports() {
         assertNotNull(PGbox2d.class);

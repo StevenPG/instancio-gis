@@ -26,9 +26,12 @@ import org.instancio.generator.Hints;
 
 /** Generator for net.postgis.jdbc.geometry.Polygon using WKT. */
 public class PolygonGenerator implements Generator<Polygon>, NumericRangeSpec<PolygonGenerator> {
-    private double minX = -180d, maxX = 180d;
-    private double minY = -90d, maxY = 90d;
-    private int minPoints = 3, maxPoints = 5;
+    private double minX = -180d;
+    private double maxX = 180d;
+    private double minY = -90d;
+    private double maxY = 90d;
+    private int minPoints = 3;
+    private int maxPoints = 5;
     private int srid = 0;
 
     @Override

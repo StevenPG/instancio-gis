@@ -53,7 +53,11 @@ public class LineStringGenerator implements Generator<LineString>, NumericRangeS
         return this;
     }
 
-    public LineStringGenerator pointsRange(int min, int max) { this.minPoints = min; this.maxPoints = max; return this; }
+    public LineStringGenerator pointsRange(int min, int max) {
+        this.minPoints = min;
+        this.maxPoints = max;
+        return this;
+    }
 
     @Override
     public LineString generate(Random random) {

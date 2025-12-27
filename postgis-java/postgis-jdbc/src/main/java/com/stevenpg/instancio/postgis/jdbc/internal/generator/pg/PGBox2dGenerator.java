@@ -29,7 +29,9 @@ public class PGBox2dGenerator implements Generator<PGbox2d>, NumericRangeSpec<PG
     /**
      * Default constructor.
      */
-    public PGBox2dGenerator() {}
+    public PGBox2dGenerator() {
+        // No custom instantiations needed
+    }
 
     private double minX = -180d;
     private double maxX = 180d;

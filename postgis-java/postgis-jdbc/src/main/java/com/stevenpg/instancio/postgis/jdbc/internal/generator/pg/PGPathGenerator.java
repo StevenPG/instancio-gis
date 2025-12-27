@@ -32,7 +32,9 @@ public class PGPathGenerator implements Generator<PGpath>, NumericRangeSpec<PGPa
     /**
      * Default constructor.
      */
-    public PGPathGenerator() {}
+    public PGPathGenerator() {
+        // No custom instantiations needed
+    }
 
     /**
      * sets whether the path is open

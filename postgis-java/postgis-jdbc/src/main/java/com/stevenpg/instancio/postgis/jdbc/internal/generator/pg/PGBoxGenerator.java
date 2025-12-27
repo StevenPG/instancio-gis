@@ -29,7 +29,9 @@ public class PGBoxGenerator implements Generator<PGbox>, NumericRangeSpec<PGBoxG
     /**
      * Default constructor.
      */
-    public PGBoxGenerator() {}
+    public PGBoxGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public PGBoxGenerator xRange(double minX, double maxX) {

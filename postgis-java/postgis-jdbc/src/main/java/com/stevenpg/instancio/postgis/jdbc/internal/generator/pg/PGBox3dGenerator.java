@@ -29,7 +29,9 @@ public class PGBox3dGenerator implements Generator<PGbox3d>, NumericRangeSpec<PG
     /**
      * Default constructor.
      */
-    public PGBox3dGenerator() {}
+    public PGBox3dGenerator() {
+        // No custom instantiations needed
+    }
 
     private double minX = -180d;
     private double maxX = 180d;
