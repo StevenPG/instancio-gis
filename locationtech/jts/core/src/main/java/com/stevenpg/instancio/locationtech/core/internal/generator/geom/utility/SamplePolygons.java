@@ -30,7 +30,7 @@ public class SamplePolygons {
 
     private static final GeometryFactory GF = new GeometryFactory();
 
-    private static final Polygon CENTRAL_PARK_NYC_USA = GF.createPolygon(List.of(
+    public static final Polygon CENTRAL_PARK_NYC_USA = GF.createPolygon(List.of(
                     new Coordinate(-73.95830171602019, 40.80015748479991),
                     new Coordinate(-73.98126397430777, 40.76871183900582),
                     new Coordinate(-73.9811741393241, 40.767883038364886),
@@ -42,7 +42,7 @@ public class SamplePolygons {
             ).toArray(Coordinate[]::new)
     );
 
-    private static final Polygon NIIHAU_HAWAII_USA = GF.createPolygon(List.of(
+    public static final Polygon NIIHAU_HAWAII_USA = GF.createPolygon(List.of(
                     new Coordinate(-160.07002521691666,
                             21.89314669232479),
                     new Coordinate(-160.0791728203031,
@@ -76,7 +76,7 @@ public class SamplePolygons {
             ).toArray(Coordinate[]::new)
     );
 
-    private static final Polygon BUCKINGHAM_PALACE_UK = GF.createPolygon(List.of(
+    public static final Polygon BUCKINGHAM_PALACE_UK = GF.createPolygon(List.of(
                     new Coordinate(-0.14222991268587748,
                             51.501751667261175
                     ),
@@ -113,7 +113,7 @@ public class SamplePolygons {
             ).toArray(Coordinate[]::new)
     );
 
-    private static final Polygon ROMAN_COLOSSEUM_ITALY = GF.createPolygon(List.of(
+    public static final Polygon ROMAN_COLOSSEUM_ITALY = GF.createPolygon(List.of(
             new Coordinate(12.492651931486648,
                     41.8902839371533),
             new Coordinate(12.4924914154129,

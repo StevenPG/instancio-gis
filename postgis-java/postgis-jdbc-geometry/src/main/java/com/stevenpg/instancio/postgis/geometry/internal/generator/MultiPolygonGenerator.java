@@ -57,7 +57,8 @@ public class MultiPolygonGenerator implements Generator<MultiPolygon>, NumericRa
             if (k > 0) sb.append(", ");
             int n = 3 + r.nextInt(3);
             sb.append("((");
-            double fx = 0, fy = 0;
+            double fx = 0;
+            double fy = 0;
             for (int i = 0; i < n; i++) {
                 double x = minX + (maxX - minX) * r.nextDouble();
                 double y = minY + (maxY - minY) * r.nextDouble();

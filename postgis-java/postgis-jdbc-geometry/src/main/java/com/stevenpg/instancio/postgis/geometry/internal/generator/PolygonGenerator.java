@@ -60,7 +60,8 @@ public class PolygonGenerator implements Generator<Polygon>, NumericRangeSpec<Po
         final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
         int n = minPoints + r.nextInt(maxPoints - minPoints + 1);
         StringBuilder sb = new StringBuilder("POLYGON((");
-        double fx = 0, fy = 0;
+        double fx = 0;
+        double fy = 0;
         for (int i = 0; i < n; i++) {
             double x = minX + (maxX - minX) * r.nextDouble();
             double y = minY + (maxY - minY) * r.nextDouble();

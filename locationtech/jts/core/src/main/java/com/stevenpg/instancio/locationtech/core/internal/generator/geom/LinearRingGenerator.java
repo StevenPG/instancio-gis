@@ -103,18 +103,23 @@ public class LinearRingGenerator implements LinearRingSpec, LinearRingGeneratorS
             // Safeguard: if we accidentally generated a closed sequence with too few coordinates,
             // adjust the last coordinate to ensure it's not closed before passing to ensureClosedRing
             if (coordinateCount >= 3 && sequence.size() >= 3) {
-                Coordinate first = sequence.getCoordinate(0);
-                Coordinate last = sequence.getCoordinate(sequence.size() - 1);
-                if (first.equals2D(last) && sequence.size() < 4) {
-                    // Adjust the last coordinate slightly to break the accidental closure
-                    Coordinate[] coords = sequence.toCoordinateArray();
-                    coords[coords.length - 1] = new Coordinate(last.x + 0.1, last.y + 0.1, last.getZ());
-                    sequence = geometryFactory.getCoordinateSequenceFactory().create(coords);
-                }
+                sequence = handlePotentialClosedSequence(sequence, geometryFactory);
             }
 
             return geometryFactory.createLinearRing(ensureClosedRing(sequence, geometryFactory));
         }
+    }
+
+    private static CoordinateSequence handlePotentialClosedSequence(CoordinateSequence sequence, GeometryFactory geometryFactory) {
+        Coordinate first = sequence.getCoordinate(0);
+        Coordinate last = sequence.getCoordinate(sequence.size() - 1);
+        if (first.equals2D(last) && sequence.size() < 4) {
+            // Adjust the last coordinate slightly to break the accidental closure
+            Coordinate[] coords = sequence.toCoordinateArray();
+            coords[coords.length - 1] = new Coordinate(last.x + 0.1, last.y + 0.1, last.getZ());
+            sequence = geometryFactory.getCoordinateSequenceFactory().create(coords);
+        }
+        return sequence;
     }
 
     /**

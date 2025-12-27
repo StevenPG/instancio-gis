@@ -66,7 +66,7 @@ public class LinearRingGenerator implements Generator<LinearRing>, NumericRangeS
             // net.postgis.jdbc.geometry.LinearRing is a subclass of LineString
             // In WKT it is still represented as LINESTRING or we can try to cast it
             return new LinearRing(sb.toString());
-        } catch (java.sql.SQLException e) {
+        } catch (Exception e) {
             throw new IllegalStateException("Failed to parse WKT to LinearRing", e);
         }
     }

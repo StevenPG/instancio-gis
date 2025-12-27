@@ -86,18 +86,18 @@ public class MultiPointGenerator implements MultiPointSpec, MultiPointGeneratorS
                 length = inputLength;
             }
             if (inputEnvelope != null) {
-                var pointList = new ArrayList<Point>();
-                for (int i = 0; i < length; i++) {
-                    pointList.add(pointGenerator.within(inputEnvelope).generate(random));
-                }
-                return new MultiPoint(pointList.toArray(new Point[0]), geometryFactory);
+                return getMultiPoint(length, pointGenerator.within(inputEnvelope), random, geometryFactory);
             } else {
-                var pointList = new ArrayList<Point>();
-                for (int i = 0; i < length; i++) {
-                    pointList.add(pointGenerator.generate(random));
-                }
-                return new MultiPoint(pointList.toArray(new Point[0]), geometryFactory);
+                return getMultiPoint(length, pointGenerator, random, geometryFactory);
             }
         }
+    }
+
+    private MultiPoint getMultiPoint(int length, PointGenerator pointGenerator, Random random, GeometryFactory geometryFactory) {
+        var pointList = new ArrayList<Point>();
+        for (int i = 0; i < length; i++) {
+            pointList.add(pointGenerator.generate(random));
+        }
+        return new MultiPoint(pointList.toArray(new Point[0]), geometryFactory);
     }
 }

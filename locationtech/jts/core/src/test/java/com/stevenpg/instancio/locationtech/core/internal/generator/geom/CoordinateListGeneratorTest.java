@@ -33,7 +33,7 @@ class CoordinateListGeneratorTest {
     void create() {
         var list = Instancio.create(CoordinateList.class);
         assertNotNull(list);
-        assertTrue(list.size() >= 0);
+        assertFalse(list.isEmpty());
     }
 
     @RepeatedTest(5)
