@@ -21,7 +21,6 @@ import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.Coo
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.PackedCoordinateSequenceGenerator;
 import org.instancio.Node;
 import org.instancio.generator.Generator;
-import org.instancio.generator.GeneratorContext;
 import org.instancio.generators.Generators;
 import org.instancio.spi.InstancioServiceProvider;
 import org.instancio.spi.ServiceProviderContext;
@@ -37,18 +36,16 @@ import java.util.Map;
  */
 public class LocationtechjtsCoreGeomServiceProvider implements InstancioServiceProvider {
 
-    private GeneratorContext generatorContext;
-
     /**
      * Default constructor.
      */
-    public LocationtechjtsCoreGeomServiceProvider() {}
+    public LocationtechjtsCoreGeomServiceProvider() {
+        // No custom instantiations needed
+    }
 
     @Override
     public void init(final ServiceProviderContext providerContext) {
-        this.generatorContext = new GeneratorContext(
-                providerContext.getSettings(),
-                providerContext.random());
+        // No initialization needed
     }
 
     @Override

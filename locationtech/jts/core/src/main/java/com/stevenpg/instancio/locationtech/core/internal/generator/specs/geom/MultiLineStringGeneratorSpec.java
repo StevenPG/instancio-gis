@@ -17,7 +17,6 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.MultiLineStringGenerator;
-import com.stevenpg.instancio.locationtech.core.internal.generator.geom.MultiPointGenerator;
 import org.instancio.generator.GeneratorSpec;
 import org.locationtech.jts.geom.*;
 

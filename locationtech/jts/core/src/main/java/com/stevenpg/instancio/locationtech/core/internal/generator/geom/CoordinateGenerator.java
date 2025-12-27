@@ -16,17 +16,11 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
-import com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility.WithinUtility;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
-import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateSpec;
 import org.instancio.Instancio;
 import org.instancio.Random;
 import org.instancio.generator.Generator;
-import org.instancio.generator.GeneratorContext;
-import org.instancio.generators.Generators;
-import org.instancio.generators.SpatialGenerators;
-import org.instancio.internal.generator.AbstractGenerator;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
 
@@ -46,7 +40,9 @@ public class CoordinateGenerator implements CoordinateSpec, EnvelopableGenerator
     /**
      * Default constructor.
      */
-    public CoordinateGenerator() {}
+    public CoordinateGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public CoordinateGenerator latitude(double latitude) {

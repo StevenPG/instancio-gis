@@ -21,12 +21,8 @@ import com.stevenpg.instancio.locationtech.core.internal.generator.specs.Envelop
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.CoordinateArraySequenceGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl.CoordinateArraySequenceSpec;
 import org.instancio.Random;
-import org.instancio.generator.Generator;
-import org.instancio.generator.GeneratorContext;
-import org.instancio.internal.generator.AbstractGenerator;
 import org.instancio.support.DefaultRandom;
 import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.CoordinateSequence;
 import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 import org.locationtech.jts.geom.impl.CoordinateArraySequenceFactory;
@@ -57,7 +53,9 @@ public class CoordinateArraySequenceGenerator
     /**
      * Default constructor.
      */
-    public CoordinateArraySequenceGenerator() {}
+    public CoordinateArraySequenceGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public CoordinateArraySequenceGenerator coordinateArraySequence(List<Coordinate> coordinateSequence) {

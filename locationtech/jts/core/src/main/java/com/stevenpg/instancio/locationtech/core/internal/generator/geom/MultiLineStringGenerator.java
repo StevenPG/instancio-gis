@@ -29,9 +29,9 @@ import java.util.List;
  * Generator for creating a MultiLineString.
  */
 public class MultiLineStringGenerator implements MultiLineStringSpec, MultiLineStringGeneratorSpec, EnvelopableGenerator<MultiLineString> {
-    private final static GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private final static java.util.Random random = new java.util.Random();
-    private final static LineStringGenerator lineStringGenerator = new LineStringGenerator();
+    private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
+    private static final java.util.Random random = new java.util.Random();
+    private static final LineStringGenerator lineStringGenerator = new LineStringGenerator();
 
     private GeometryFactory inputGeometryFactory;
     private Integer inputLength;
@@ -42,6 +42,7 @@ public class MultiLineStringGenerator implements MultiLineStringSpec, MultiLineS
      * Default constructor.
      */
     public MultiLineStringGenerator() {
+        // No custom instantiations needed
     }
 
     @Override
@@ -82,18 +83,18 @@ public class MultiLineStringGenerator implements MultiLineStringSpec, MultiLineS
                 length = inputLength;
             }
             if (inputEnvelope != null) {
-                var lineStringList = new ArrayList<LineString>();
-                for (int i = 0; i < length; i++) {
-                    lineStringList.add(lineStringGenerator.within(inputEnvelope).generate(random));
-                }
-                return new MultiLineString(lineStringList.toArray(new LineString[0]), geometryFactory);
+                return getMultiLineString(length, lineStringGenerator.within(inputEnvelope), random, geometryFactory);
             } else {
-                var lineStringList = new ArrayList<LineString>();
-                for (int i = 0; i < length; i++) {
-                    lineStringList.add(lineStringGenerator.generate(random));
-                }
-                return new MultiLineString(lineStringList.toArray(new LineString[0]), geometryFactory);
+                return getMultiLineString(length, lineStringGenerator, random, geometryFactory);
             }
         }
+    }
+
+    private MultiLineString getMultiLineString(int length, LineStringGenerator lineStringGenerator, Random random, GeometryFactory geometryFactory) {
+        var lineStringList = new ArrayList<LineString>();
+        for (int i = 0; i < length; i++) {
+            lineStringList.add(lineStringGenerator.generate(random));
+        }
+        return new MultiLineString(lineStringList.toArray(new LineString[0]), geometryFactory);
     }
 }

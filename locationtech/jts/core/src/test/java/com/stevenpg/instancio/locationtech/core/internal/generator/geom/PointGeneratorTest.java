@@ -18,10 +18,8 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
 import org.instancio.Instancio;
 import org.instancio.support.DefaultRandom;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.CoordinateSequence;
 import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Point;
 

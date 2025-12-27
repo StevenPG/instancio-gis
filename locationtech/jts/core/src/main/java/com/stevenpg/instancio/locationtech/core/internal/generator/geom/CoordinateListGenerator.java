@@ -19,7 +19,6 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.EnvelopableGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateListGeneratorSpec;
 import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateListSpec;
-import org.instancio.Instancio;
 import org.instancio.Random;
 import org.instancio.generator.Generator;
 import org.locationtech.jts.geom.Coordinate;
@@ -51,6 +50,7 @@ public class CoordinateListGenerator implements CoordinateListSpec, CoordinateLi
      * Default constructor.
      */
     public CoordinateListGenerator() {
+        // No custom instantiations needed
     }
 
     @Override

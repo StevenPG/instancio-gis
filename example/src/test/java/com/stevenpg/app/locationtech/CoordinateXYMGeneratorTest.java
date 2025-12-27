@@ -17,19 +17,17 @@
 package com.stevenpg.app.locationtech;
 
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
-import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateGenerator;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateXYMGenerator;
 import org.instancio.Instancio;
 import org.instancio.support.DefaultRandom;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXYM;
 import org.locationtech.jts.geom.Envelope;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CoordinateXYMGeneratorTest {
+class CoordinateXYMGeneratorTest {
 
     @Test
     void coordinateXYMGenerator() {

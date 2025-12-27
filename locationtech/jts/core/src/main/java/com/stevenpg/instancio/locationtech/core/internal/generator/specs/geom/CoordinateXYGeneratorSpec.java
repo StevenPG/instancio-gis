@@ -17,7 +17,6 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
 import org.instancio.generator.GeneratorSpec;
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXY;
 
 /**

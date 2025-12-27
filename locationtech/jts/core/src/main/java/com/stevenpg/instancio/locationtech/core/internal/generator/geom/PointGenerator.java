@@ -45,7 +45,9 @@ public class PointGenerator extends LatLonEnvelopableBaseGenerator implements Po
     /**
      * Default constructor.
      */
-    public PointGenerator() {}
+    public PointGenerator() {
+        // No custom instantiations needed
+    }
 
     /**
      * Configure the generator to generate a point with the specified coordinate.

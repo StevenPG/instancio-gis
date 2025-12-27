@@ -17,7 +17,6 @@
 package com.stevenpg.instancio.postgis.geometry.internal.generator;
 
 import com.stevenpg.instancio.postgis.geometry.internal.generator.specs.NumericRangeSpec;
-import net.postgis.jdbc.PGgeometry;
 import net.postgis.jdbc.geometry.LinearRing;
 import org.instancio.Random;
 import org.instancio.generator.AfterGenerate;
@@ -26,9 +25,12 @@ import org.instancio.generator.Hints;
 
 /** Generator for net.postgis.jdbc.geometry.LinearRing using WKT. */
 public class LinearRingGenerator implements Generator<LinearRing>, NumericRangeSpec<LinearRingGenerator> {
-    private double minX = -180d, maxX = 180d;
-    private double minY = -90d, maxY = 90d;
-    private int minPoints = 3, maxPoints = 5;
+    private double minX = -180d;
+    private double maxX = 180d;
+    private double minY = -90d;
+    private double maxY = 90d;
+    private int minPoints = 3;
+    private int maxPoints = 5;
 
     @Override
     public Hints hints() {
@@ -50,7 +52,8 @@ public class LinearRingGenerator implements Generator<LinearRing>, NumericRangeS
         final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
         int n = minPoints + r.nextInt(maxPoints - minPoints + 1);
         StringBuilder sb = new StringBuilder("LINESTRING(");
-        double fx = 0, fy = 0;
+        double fx = 0;
+        double fy = 0;
         for (int i = 0; i < n; i++) {
             double x = minX + (maxX - minX) * r.nextDouble();
             double y = minY + (maxY - minY) * r.nextDouble();
@@ -63,7 +66,7 @@ public class LinearRingGenerator implements Generator<LinearRing>, NumericRangeS
             // net.postgis.jdbc.geometry.LinearRing is a subclass of LineString
             // In WKT it is still represented as LINESTRING or we can try to cast it
             return new LinearRing(sb.toString());
-        } catch (java.sql.SQLException e) {
+        } catch (Exception e) {
             throw new IllegalStateException("Failed to parse WKT to LinearRing", e);
         }
     }

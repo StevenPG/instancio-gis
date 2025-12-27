@@ -31,9 +31,8 @@ import java.util.List;
  * @since 1.0.0
  */
 public class MultiPolygonGenerator implements MultiPolygonSpec, MultiPolygonGeneratorSpec, EnvelopableGenerator<MultiPolygon> {
-    private final static GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private final static java.util.Random random = new java.util.Random();
-    private final static PolygonGenerator polygonGenerator = new PolygonGenerator();
+    private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
+    private static final java.util.Random random = new java.util.Random();
 
     private GeometryFactory inputGeometryFactory;
     private Integer inputLength;
@@ -44,6 +43,7 @@ public class MultiPolygonGenerator implements MultiPolygonSpec, MultiPolygonGene
      * Default constructor.
      */
     public MultiPolygonGenerator() {
+        // No custom instantiations needed
     }
 
     @Override
@@ -84,18 +84,18 @@ public class MultiPolygonGenerator implements MultiPolygonSpec, MultiPolygonGene
                 length = inputLength;
             }
             if (inputEnvelope != null) {
-                var polygonList = new ArrayList<Polygon>();
-                for (int i = 0; i < length; i++) {
-                    polygonList.add(new PolygonGenerator().within(inputEnvelope).generate(random));
-                }
-                return new MultiPolygon(polygonList.toArray(new Polygon[0]), geometryFactory);
+                return getMultiPolygon(length, new PolygonGenerator().within(inputEnvelope), random, geometryFactory);
             } else {
-                var polygonList = new ArrayList<Polygon>();
-                for (int i = 0; i < length; i++) {
-                    polygonList.add(new PolygonGenerator().generate(random));
-                }
-                return new MultiPolygon(polygonList.toArray(new Polygon[0]), geometryFactory);
+                return getMultiPolygon(length, new PolygonGenerator(), random, geometryFactory);
             }
         }
+    }
+
+    private MultiPolygon getMultiPolygon(int length, PolygonGenerator polygonGenerator, Random random, GeometryFactory geometryFactory) {
+        var polygonList = new ArrayList<Polygon>();
+        for (int i = 0; i < length; i++) {
+            polygonList.add(polygonGenerator.generate(random));
+        }
+        return new MultiPolygon(polygonList.toArray(new Polygon[0]), geometryFactory);
     }
 }

@@ -21,7 +21,6 @@ import org.instancio.Instancio;
 import org.instancio.support.DefaultRandom;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 
 import java.util.List;

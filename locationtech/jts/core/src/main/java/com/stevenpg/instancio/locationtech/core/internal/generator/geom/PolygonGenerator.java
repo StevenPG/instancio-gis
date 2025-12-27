@@ -32,8 +32,8 @@ import org.locationtech.jts.geom.Polygon;
  */
 public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, EnvelopableGenerator<Polygon> {
 
-    private final static GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private final static java.util.Random random = new java.util.Random();
+    private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
+    private static final java.util.Random random = new java.util.Random();
 
     private GeometryFactory inputGeometryFactory;
     private LinearRing inputExteriorRing;
@@ -46,6 +46,7 @@ public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, Enve
      * Default constructor.
      */
     public PolygonGenerator() {
+        // No custom instantiations needed
     }
 
     @Override
@@ -90,12 +91,7 @@ public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, Enve
         var geometryFactory = inputGeometryFactory != null ? inputGeometryFactory : defaultGeometryFactory;
 
         if (inputExteriorRing != null) {
-            // Use provided exterior ring
-            if (inputHoles != null) {
-                return geometryFactory.createPolygon(inputExteriorRing, inputHoles);
-            } else {
-                return geometryFactory.createPolygon(inputExteriorRing);
-            }
+            return getWellDefinedPolygon(geometryFactory);
         } else {
             // Generate polygon from scratch
             var ringGenerator = new LinearRingGenerator();
@@ -109,30 +105,48 @@ public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, Enve
             }
 
             // Generate exterior ring
-            LinearRing exteriorRing;
-            if (inputEnvelope != null) {
-                exteriorRing = ringGenerator.length(vertices).within(inputEnvelope).generate(random);
-            } else {
-                exteriorRing = ringGenerator.length(vertices).generate(random);
-            }
+            LinearRing exteriorRing = getLinearRing(random, ringGenerator, vertices);
 
             // Generate holes if specified
             if (inputHolesCount != null && inputHolesCount > 0) {
-                LinearRing[] holes = new LinearRing[inputHolesCount];
-                var exteriorEnvelope = exteriorRing.getEnvelopeInternal();
-
-                // Create smaller envelopes for holes within the exterior ring
-                for (int i = 0; i < inputHolesCount; i++) {
-                    var holeEnvelope = createHoleEnvelope(exteriorEnvelope, i, inputHolesCount);
-                    var holeVertices = random != null
-                            ? random.intRange(3, 6)
-                            : PolygonGenerator.random.nextInt(3, 6);
-                    holes[i] = new LinearRingGenerator().length(holeVertices).within(holeEnvelope).generate(random);
-                }
-                return geometryFactory.createPolygon(exteriorRing, holes);
+                return generatePolygonWithSpecifiedHoles(random, exteriorRing, geometryFactory);
             } else {
                 return geometryFactory.createPolygon(exteriorRing);
             }
+        }
+    }
+
+    private Polygon generatePolygonWithSpecifiedHoles(Random random, LinearRing exteriorRing, GeometryFactory geometryFactory) {
+        LinearRing[] holes = new LinearRing[inputHolesCount];
+        var exteriorEnvelope = exteriorRing.getEnvelopeInternal();
+
+        // Create smaller envelopes for holes within the exterior ring
+        for (int i = 0; i < inputHolesCount; i++) {
+            var holeEnvelope = createHoleEnvelope(exteriorEnvelope, i, inputHolesCount);
+            var holeVertices = random != null
+                    ? random.intRange(3, 6)
+                    : PolygonGenerator.random.nextInt(3, 6);
+            holes[i] = new LinearRingGenerator().length(holeVertices).within(holeEnvelope).generate(random);
+        }
+        return geometryFactory.createPolygon(exteriorRing, holes);
+    }
+
+    private LinearRing getLinearRing(Random random, LinearRingGenerator ringGenerator, int vertices) {
+        LinearRing exteriorRing;
+        if (inputEnvelope != null) {
+            exteriorRing = ringGenerator.length(vertices).within(inputEnvelope).generate(random);
+        } else {
+            exteriorRing = ringGenerator.length(vertices).generate(random);
+        }
+        return exteriorRing;
+    }
+
+    private Polygon getWellDefinedPolygon(GeometryFactory geometryFactory) {
+        // Use provided exterior ring
+        if (inputHoles != null) {
+            return geometryFactory.createPolygon(inputExteriorRing, inputHoles);
+        } else {
+            return geometryFactory.createPolygon(inputExteriorRing);
         }
     }
 

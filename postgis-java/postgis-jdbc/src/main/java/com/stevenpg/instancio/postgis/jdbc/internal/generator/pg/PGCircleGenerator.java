@@ -31,7 +31,9 @@ public class PGCircleGenerator implements Generator<PGcircle>, NumericRangeSpec<
     /**
      * Default constructor.
      */
-    public PGCircleGenerator() {}
+    public PGCircleGenerator() {
+        // No custom instantiations needed
+    }
 
     /**
      * set raidusRange for generator

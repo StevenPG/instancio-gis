@@ -42,7 +42,9 @@ public class LineSegmentGenerator implements LineSegmentSpec, LineSegmentGenerat
     /**
      * Default constructor.
      */
-    public LineSegmentGenerator() {}
+    public LineSegmentGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public LineSegmentGenerator points(final Point p0, final Point p1) {

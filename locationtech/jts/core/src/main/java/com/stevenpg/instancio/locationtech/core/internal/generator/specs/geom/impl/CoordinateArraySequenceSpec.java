@@ -17,11 +17,7 @@
 package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.impl;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.CoordinateArraySequenceGenerator;
-import com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom.CoordinateSequenceGeneratorSpec;
-import org.instancio.generator.ValueSpec;
 import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.CoordinateSequence;
-import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 
 import java.util.List;
 

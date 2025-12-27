@@ -31,7 +31,9 @@ public class PGPolygonGenerator implements Generator<PGpolygon>, NumericRangeSpe
     /**
      * Default constructor.
      */
-    public PGPolygonGenerator() {}
+    public PGPolygonGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public Hints hints() {

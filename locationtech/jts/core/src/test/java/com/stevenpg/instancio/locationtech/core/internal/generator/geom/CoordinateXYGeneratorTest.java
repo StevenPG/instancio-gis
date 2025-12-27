@@ -18,7 +18,6 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
 import org.instancio.Instancio;
 import org.junit.jupiter.api.RepeatedTest;
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXY;
 import org.locationtech.jts.geom.Envelope;
 

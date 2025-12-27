@@ -40,7 +40,9 @@ public class CoordinateXYMGenerator extends LatLonEnvelopableBaseGenerator imple
     /**
      * Default constructor.
      */
-    public CoordinateXYMGenerator() {}
+    public CoordinateXYMGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public CoordinateXYMGenerator latitude(double latitude) {

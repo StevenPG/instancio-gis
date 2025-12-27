@@ -26,9 +26,12 @@ import org.instancio.generator.Hints;
 
 /** Generator for net.postgis.jdbc.geometry.MultiPoint using WKT. */
 public class MultiPointGenerator implements Generator<MultiPoint>, NumericRangeSpec<MultiPointGenerator> {
-    private double minX = -180d, maxX = 180d;
-    private double minY = -90d, maxY = 90d;
-    private int minElements = 1, maxElements = 5;
+    private double minX = -180d;
+    private double maxX = 180d;
+    private double minY = -90d;
+    private double maxY = 90d;
+    private int minElements = 1;
+    private int maxElements = 5;
 
     @Override
     public Hints hints() {

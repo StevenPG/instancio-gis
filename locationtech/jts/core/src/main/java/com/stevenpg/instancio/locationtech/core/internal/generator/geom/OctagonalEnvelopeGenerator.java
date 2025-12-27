@@ -41,7 +41,9 @@ public class OctagonalEnvelopeGenerator implements OctagonalEnvelopeSpec, Octago
     /**
      * Default constructor.
      */
-    public OctagonalEnvelopeGenerator() {}
+    public OctagonalEnvelopeGenerator() {
+        // No custom instantiations needed
+    }
 
     /**
      * Configure the generator to generate an octagonal envelope with the specified coordinate.

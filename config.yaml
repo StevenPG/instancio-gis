@@ -9,7 +9,7 @@ project:
     homepage: https://stevenpg.com/instancio-gis
   languages:
     java:
-      groupId: com.stevenpg
+      groupId: com.stevenpg.instancio
       version: "17"
   inceptionYear: "2025"
 

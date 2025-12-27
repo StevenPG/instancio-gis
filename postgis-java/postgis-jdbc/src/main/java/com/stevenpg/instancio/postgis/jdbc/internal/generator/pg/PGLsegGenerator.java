@@ -29,7 +29,9 @@ public class PGLsegGenerator implements Generator<PGlseg>, NumericRangeSpec<PGLs
     /**
      * Default constructor.
      */
-    public PGLsegGenerator() {}
+    public PGLsegGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public PGLsegGenerator xRange(double minX, double maxX) {

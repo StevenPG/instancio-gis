@@ -29,7 +29,9 @@ public class JtsGeometryGenerator implements Generator<JtsGeometry> {
     /**
      * Default constructor.
      */
-    public JtsGeometryGenerator() {}
+    public JtsGeometryGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public JtsGeometry generate(Random random) {

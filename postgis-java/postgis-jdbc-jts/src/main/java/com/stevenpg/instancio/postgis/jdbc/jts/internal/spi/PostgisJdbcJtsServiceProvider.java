@@ -34,10 +34,13 @@ public class PostgisJdbcJtsServiceProvider implements InstancioServiceProvider {
     /**
      * Default constructor.
      */
-    public PostgisJdbcJtsServiceProvider(){}
+    public PostgisJdbcJtsServiceProvider(){
+        // No custom instantiations needed
+    }
 
     @Override
     public void init(ServiceProviderContext providerContext) {
+        // No initialization needed
     }
 
     @Override

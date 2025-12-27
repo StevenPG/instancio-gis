@@ -26,9 +26,12 @@ import org.instancio.generator.Hints;
 
 /** Generator for net.postgis.jdbc.geometry.MultiPolygon using WKT. */
 public class MultiPolygonGenerator implements Generator<MultiPolygon>, NumericRangeSpec<MultiPolygonGenerator> {
-    private double minX = -180d, maxX = 180d;
-    private double minY = -90d, maxY = 90d;
-    private int minElements = 1, maxElements = 3;
+    private double minX = -180d;
+    private double maxX = 180d;
+    private double minY = -90d;
+    private double maxY = 90d;
+    private int minElements = 1;
+    private int maxElements = 3;
 
     @Override
     public Hints hints() {
@@ -54,7 +57,8 @@ public class MultiPolygonGenerator implements Generator<MultiPolygon>, NumericRa
             if (k > 0) sb.append(", ");
             int n = 3 + r.nextInt(3);
             sb.append("((");
-            double fx = 0, fy = 0;
+            double fx = 0;
+            double fy = 0;
             for (int i = 0; i < n; i++) {
                 double x = minX + (maxX - minX) * r.nextDouble();
                 double y = minY + (maxY - minY) * r.nextDouble();

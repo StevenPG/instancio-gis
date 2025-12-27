@@ -31,7 +31,7 @@ import java.util.Objects;
  */
 public class TriangleGenerator implements TriangleSpec, TriangleGeneratorSpec, EnvelopableGenerator<Triangle> {
 
-    private final static PointGenerator pointGenerator = new PointGenerator();
+    private static final PointGenerator pointGenerator = new PointGenerator();
 
     private Envelope inputEnvelope;
     private Point input0;
@@ -42,6 +42,7 @@ public class TriangleGenerator implements TriangleSpec, TriangleGeneratorSpec, E
      * Default constructor.
      */
     public TriangleGenerator() {
+        // No custom instantiations needed
     }
 
     @Override

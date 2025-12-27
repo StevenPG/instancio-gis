@@ -24,7 +24,6 @@ import net.postgis.jdbc.geometry.Polygon;
 import net.postgis.jdbc.geometry.LineString;
 import org.instancio.Node;
 import org.instancio.generator.Generator;
-import org.instancio.generator.GeneratorContext;
 import org.instancio.generators.Generators;
 import org.instancio.spi.InstancioServiceProvider;
 import org.instancio.spi.ServiceProviderContext;
@@ -35,11 +34,9 @@ import java.util.Map;
 /** SPI provider for org.postgis geometry generators. */
 public class PostgisGeometryServiceProvider implements InstancioServiceProvider {
 
-    private GeneratorContext ctx;
-
     @Override
     public void init(ServiceProviderContext providerContext) {
-        this.ctx = new GeneratorContext(providerContext.getSettings(), providerContext.random());
+        // No initialization needed
     }
 
     @Override

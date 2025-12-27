@@ -35,7 +35,9 @@ public class PGPointGenerator implements Generator<PGpoint>, NumericRangeSpec<PG
     /**
      * Default constructor.
      */
-    public PGPointGenerator() {}
+    public PGPointGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public Hints hints() {

@@ -18,7 +18,6 @@ package com.stevenpg.instancio.locationtech.core.internal.generator.specs.geom;
 
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.LineStringGenerator;
 import org.instancio.generator.GeneratorSpec;
-import org.instancio.generator.specs.NullableGeneratorSpec;
 import org.locationtech.jts.geom.CoordinateSequence;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LineString;

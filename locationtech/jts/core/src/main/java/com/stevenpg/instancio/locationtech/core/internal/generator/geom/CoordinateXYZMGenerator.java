@@ -41,7 +41,9 @@ public class CoordinateXYZMGenerator extends LatLonEnvelopableBaseGenerator impl
     /**
      * Default constructor.
      */
-    public CoordinateXYZMGenerator() {}
+    public CoordinateXYZMGenerator() {
+        // No custom instantiations needed
+    }
 
     @Override
     public CoordinateXYZMGenerator latitude(double latitude) {
