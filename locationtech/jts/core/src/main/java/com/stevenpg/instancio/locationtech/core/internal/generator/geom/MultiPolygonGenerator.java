@@ -91,10 +91,10 @@ public class MultiPolygonGenerator implements MultiPolygonSpec, MultiPolygonGene
         }
     }
 
-    private MultiPolygon getMultiPolygon(int length, PolygonGenerator inputEnvelope, Random random, GeometryFactory geometryFactory) {
+    private MultiPolygon getMultiPolygon(int length, PolygonGenerator polygonGenerator, Random random, GeometryFactory geometryFactory) {
         var polygonList = new ArrayList<Polygon>();
         for (int i = 0; i < length; i++) {
-            polygonList.add(inputEnvelope.generate(random));
+            polygonList.add(polygonGenerator.generate(random));
         }
         return new MultiPolygon(polygonList.toArray(new Polygon[0]), geometryFactory);
     }
