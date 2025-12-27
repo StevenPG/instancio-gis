@@ -8,20 +8,6 @@ An instancio extension that will provide auto-registered custom generators for a
 
 ### Tasks
 
-Tasks for v1.0.0:
-
-- maven central release with first version
-- upload with sources
-- Add javadoc
-- deploy to maven central (set up plugin)
-- deploy to javadoc (deploy javadoc.jar) (https://javadoc.io/)
-- Sample project shouldn't get published
-- each sub project should get published to maven central
-- add badges (maven central, javadoc, sonarcloud)
-- mirror justfile: https://github.com/instancio/instancio/blob/main/justfile
-- Add script to validate existence of files based on implemented types
-
-
 ## What is this Repository for?
 
 This project is intended to be an extension for [instancio](https://github.com/instancio/instancio).
