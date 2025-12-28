@@ -4,7 +4,7 @@
 .idea/
 
 # Staging
-./staging
+staging-deploy
 
 # User-specific stuff
 .idea/**/workspace.xml

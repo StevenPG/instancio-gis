@@ -162,6 +162,11 @@ When adding support for a new GIS library:
 - Test edge cases and error conditions
 - Use meaningful test names that describe the scenario
 
+#### Publishing with JReleaser
+
+Run `./gradlew clean build publish jreleaserFullRelease` to publish the latest version of the library.
+Given you have the correct configuration in your `$HOME/.jreleaser` properties file.
+
 ### Questions or Need Help?
 
 - Create an issue for questions about contributing
