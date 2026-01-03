@@ -16,6 +16,9 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.*;
 
@@ -23,12 +26,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LineStringGeneratorTest {
 
+    private final Random random = new DefaultRandom();
+
     private final GeometryFactory geometryFactory = new GeometryFactory();
 
     @Test
     void shouldGenerateLineString() {
         var generator = new LineStringGenerator();
-        var lineString = generator.generate(null);
+        var lineString = generator.generate(random);
         assertNotNull(lineString);
         assertTrue(lineString.getCoordinates().length > 0);
     }
@@ -42,7 +47,7 @@ class LineStringGeneratorTest {
         var sequence = geometryFactory.getCoordinateSequenceFactory().create(coordinates);
 
         var generator = new LineStringGenerator().coordinateSequence(sequence);
-        var lineString = generator.generate(null);
+        var lineString = generator.generate(random);
 
         assertArrayEquals(coordinates, lineString.getCoordinates());
     }
@@ -51,7 +56,7 @@ class LineStringGeneratorTest {
     void shouldGenerateLineStringWithCustomLength() {
         int length = 5;
         var generator = new LineStringGenerator().length(length);
-        var lineString = generator.generate(null);
+        var lineString = generator.generate(random);
 
         assertEquals(length, lineString.getCoordinates().length);
     }
@@ -60,7 +65,7 @@ class LineStringGeneratorTest {
     void shouldGenerateLineStringWithCustomGeometryFactory() {
         var customFactory = new GeometryFactory();
         var generator = new LineStringGenerator().geometryFactory(customFactory);
-        var lineString = generator.generate(null);
+        var lineString = generator.generate(random);
 
         assertSame(customFactory, lineString.getFactory());
     }
@@ -69,7 +74,7 @@ class LineStringGeneratorTest {
     void shouldGenerateLineStringWithinEnvelope() {
         var envelope = new Envelope(0, 10, 0, 10);
         var generator = new LineStringGenerator().within(envelope);
-        var lineString = generator.generate(null);
+        var lineString = generator.generate(random);
 
         assertTrue(envelope.contains(lineString.getEnvelopeInternal()));
     }
@@ -78,6 +83,6 @@ class LineStringGeneratorTest {
     void shouldHandleLengthOneEdgeCase() {
         var generator = new LineStringGenerator().length(1);
         assertThrows(IllegalArgumentException.class, () ->
-                generator.generate(null));
+                generator.generate(random));
     }
 }

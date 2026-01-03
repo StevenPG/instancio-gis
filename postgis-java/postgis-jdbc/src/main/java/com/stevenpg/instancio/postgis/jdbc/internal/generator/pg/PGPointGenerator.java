@@ -62,9 +62,8 @@ public class PGPointGenerator implements Generator<PGpoint>, NumericRangeSpec<PG
 
     @Override
     public PGpoint generate(final Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        final double x = minX + (maxX - minX) * r.nextDouble();
-        final double y = minY + (maxY - minY) * r.nextDouble();
+        final double x = random.doubleRange(minX, maxX);
+        final double y = random.doubleRange(minY, maxY);
         return new PGpoint(x, y);
     }
 }

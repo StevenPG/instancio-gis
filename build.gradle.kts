@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.stevenpg.instancio"
-version = "0.0.2"
+version = "0.0.3"
 
 subprojects {
     apply(plugin = "java")

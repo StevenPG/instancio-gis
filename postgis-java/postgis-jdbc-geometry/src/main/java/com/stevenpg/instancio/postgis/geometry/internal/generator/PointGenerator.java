@@ -64,13 +64,12 @@ public class PointGenerator implements Generator<Point>, NumericRangeSpec<PointG
 
     @Override
     public Point generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        double x = minX + (maxX - minX) * r.nextDouble();
-        double y = minY + (maxY - minY) * r.nextDouble();
+        double x = random.doubleRange(minX, maxX);
+        double y = random.doubleRange(minY, maxY);
 
         String wkt;
         if (useZ) {
-            double z = minZ + (maxZ - minZ) * r.nextDouble();
+            double z = random.doubleRange(minZ, maxZ);
             wkt = String.format("POINT(%f %f %f)", x, y, z);
         } else {
             wkt = String.format("POINT(%f %f)", x, y);

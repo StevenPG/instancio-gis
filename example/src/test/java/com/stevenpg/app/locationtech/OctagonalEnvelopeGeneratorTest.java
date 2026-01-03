@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -25,6 +28,8 @@ import org.locationtech.jts.geom.OctagonalEnvelope;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OctagonalEnvelopeGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateOctagonalEnvelopeUsingInstancio() {
@@ -37,7 +42,7 @@ class OctagonalEnvelopeGeneratorTest {
     void shouldGenerateOctagonalEnvelopeUsingGenerator() {
         var oe = GenLocationtechJtsCore.octagonalEnvelope()
                 .envelope(new Envelope(-1, 2, -3, 4))
-                .generate(null);
+                .generate(random);
         assertNotNull(oe);
         assertFalse(oe.isNull());
     }

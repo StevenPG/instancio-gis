@@ -71,7 +71,7 @@ public class CoordinateXYMGenerator extends LatLonEnvelopableBaseGenerator imple
     @Override
     public CoordinateXYM generate(Random random) {
         if (envelopeProvided() && coordinateMissing()) {
-            var lonLat = randomLonLatInBounds(getInputEnvelope());
+            var lonLat = randomLonLatInBounds(random, getInputEnvelope());
             return new CoordinateXYM(lonLat.longitude(), lonLat.latitude(),
                     measure == null ? Instancio.gen().doubles().get() : measure);
         } else {

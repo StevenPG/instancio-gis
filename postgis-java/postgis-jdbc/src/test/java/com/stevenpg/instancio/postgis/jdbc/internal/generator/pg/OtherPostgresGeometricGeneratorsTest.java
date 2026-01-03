@@ -16,6 +16,9 @@
 
 package com.stevenpg.instancio.postgis.jdbc.internal.generator.pg;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.instancio.Instancio;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -25,12 +28,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OtherPostgresGeometricGeneratorsTest {
 
+    private final Random random = new DefaultRandom();
+
     @Test
     void shouldGenerateLseg() {
         var lseg = new PGLsegGenerator()
                 .xRange(10, 10)
                 .yRange(20, 20)
-                .generate(null);
+                .generate(random);
         assertNotNull(lseg);
         assertEquals(10, lseg.point[0].x);
         assertEquals(10, lseg.point[1].x);
@@ -43,7 +48,7 @@ class OtherPostgresGeometricGeneratorsTest {
         var line = new PGLineGenerator()
                 .xRange(10, 10)
                 .yRange(20, 20)
-                .generate(null);
+                .generate(random);
         assertNotNull(line);
         // PGline is represented as Ax + By + C = 0
         // The generator creates it from two points
@@ -56,7 +61,7 @@ class OtherPostgresGeometricGeneratorsTest {
                 .xRange(10, 10)
                 .yRange(20, 20)
                 .open(false)
-                .generate(null);
+                .generate(random);
         assertNotNull(path);
         assertEquals(5, path.points.length);
         assertFalse(path.open);
@@ -72,7 +77,7 @@ class OtherPostgresGeometricGeneratorsTest {
                 .vertices(3, 3)
                 .xRange(10, 10)
                 .yRange(20, 20)
-                .generate(null);
+                .generate(random);
         assertNotNull(poly);
         assertEquals(3, poly.points.length);
         for (var p : poly.points) {
@@ -86,7 +91,7 @@ class OtherPostgresGeometricGeneratorsTest {
         var box = new PGBoxGenerator()
                 .xRange(10, 10)
                 .yRange(20, 20)
-                .generate(null);
+                .generate(random);
         assertNotNull(box);
         assertEquals(10, box.point[0].x);
         assertEquals(10, box.point[1].x);
@@ -100,7 +105,7 @@ class OtherPostgresGeometricGeneratorsTest {
                 .radiusRange(5, 5)
                 .xRange(10, 10)
                 .yRange(20, 20)
-                .generate(null);
+                .generate(random);
         assertNotNull(circle);
         assertEquals(5, circle.radius);
         assertEquals(10, circle.center.x);

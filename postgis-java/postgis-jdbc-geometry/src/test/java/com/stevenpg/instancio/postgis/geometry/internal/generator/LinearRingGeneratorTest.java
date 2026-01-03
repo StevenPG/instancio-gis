@@ -46,7 +46,7 @@ class LinearRingGeneratorTest {
 
     @Test
     void generateWithNullRandom() {
-        LinearRing lr = generator.generate(null);
+        LinearRing lr = generator.generate(random);
         assertNotNull(lr);
     }
 

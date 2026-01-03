@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech.jts;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -24,6 +27,8 @@ import org.locationtech.jts.geom.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class LocationtechJtsGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGeneratePointWithInstancio() {
@@ -69,13 +74,13 @@ class LocationtechJtsGeneratorTest {
 
     @Test
     void shouldGeneratePointWithGenerator() {
-        Point p = GenLocationtechJtsCore.point().generate(null);
+        Point p = GenLocationtechJtsCore.point().generate(random);
         assertNotNull(p);
     }
 
     @Test
     void shouldGeneratePolygonWithGenerator() {
-        Polygon p = GenLocationtechJtsCore.polygon().generate(null);
+        Polygon p = GenLocationtechJtsCore.polygon().generate(random);
         assertNotNull(p);
     }
 }

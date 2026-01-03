@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.postgis.geometry;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.postgis.geometry.GenPostgisGeometry;
 import net.postgis.jdbc.geometry.*;
 import org.instancio.Instancio;
@@ -27,6 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PostgisGeometryGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGeneratePostgisGeometryWithInstancio() {
@@ -86,7 +91,7 @@ class PostgisGeometryGeneratorTest {
 
     @Test
     void shouldGeneratePostgisPointWithGenerator() {
-        Point p = GenPostgisGeometry.point().xRange(10, 10).yRange(20, 20).generate(null);
+        Point p = GenPostgisGeometry.point().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(p);
         assertEquals(10, p.x);
         assertEquals(20, p.y);
@@ -94,76 +99,76 @@ class PostgisGeometryGeneratorTest {
 
     @Test
     void shouldGeneratePostgisLineStringWithGenerator() {
-        LineString ls = GenPostgisGeometry.lineString().xRange(10, 10).yRange(20, 20).generate(null);
+        LineString ls = GenPostgisGeometry.lineString().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(ls);
         assertTrue(ls.numPoints() >= 2);
     }
 
     @Test
     void shouldGeneratePostgisPolygonWithGenerator() {
-        Polygon poly = GenPostgisGeometry.polygon().xRange(10, 10).yRange(20, 20).generate(null);
+        Polygon poly = GenPostgisGeometry.polygon().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(poly);
         assertTrue(poly.numPoints() >= 3);
     }
 
     @Test
     void shouldGeneratePostgisMultiPointWithGenerator() {
-        MultiPoint mp = GenPostgisGeometry.multiPoint().xRange(10, 10).yRange(20, 20).generate(null);
+        MultiPoint mp = GenPostgisGeometry.multiPoint().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(mp);
         assertTrue(mp.numPoints() >= 1);
     }
 
     @Test
     void shouldGeneratePostgisMultiLineStringWithGenerator() {
-        MultiLineString mls = GenPostgisGeometry.multiLineString().xRange(10, 10).yRange(20, 20).generate(null);
+        MultiLineString mls = GenPostgisGeometry.multiLineString().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(mls);
         assertTrue(mls.numGeoms() >= 1);
     }
 
     @Test
     void shouldGeneratePostgisMultiPolygonWithGenerator() {
-        MultiPolygon mp = GenPostgisGeometry.multiPolygon().xRange(10, 10).yRange(20, 20).generate(null);
+        MultiPolygon mp = GenPostgisGeometry.multiPolygon().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(mp);
         assertTrue(mp.numGeoms() >= 1);
     }
 
     @Test
     void shouldGeneratePostgisGeometryCollectionWithGenerator() {
-        GeometryCollection gc = GenPostgisGeometry.geometryCollection().xRange(10, 10).yRange(20, 20).generate(null);
+        GeometryCollection gc = GenPostgisGeometry.geometryCollection().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(gc);
         assertTrue(gc.numGeoms() >= 1);
     }
 
     @Test
     void shouldGeneratePostgisPGgeometryWithGenerator() {
-        net.postgis.jdbc.PGgeometry pg = GenPostgisGeometry.pgGeometry().xRange(10, 10).yRange(20, 20).generate(null);
+        net.postgis.jdbc.PGgeometry pg = GenPostgisGeometry.pgGeometry().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(pg);
         assertNotNull(pg.getGeometry());
     }
 
     @Test
     void shouldGeneratePostgisGeometryWithGenerator() {
-        Geometry g = GenPostgisGeometry.geometry().xRange(10, 10).yRange(20, 20).generate(null);
+        Geometry g = GenPostgisGeometry.geometry().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(g);
     }
 
     @Test
     void shouldGeneratePostgisPointWithSrid() {
-        Point p = GenPostgisGeometry.point().srid(4326).generate(null);
+        Point p = GenPostgisGeometry.point().srid(4326).generate(random);
         assertNotNull(p);
         assertEquals(4326, p.getSrid());
     }
 
     @Test
     void shouldGeneratePostgisLineStringWithSrid() {
-        LineString ls = GenPostgisGeometry.lineString().srid(3857).generate(null);
+        LineString ls = GenPostgisGeometry.lineString().srid(3857).generate(random);
         assertNotNull(ls);
         assertEquals(3857, ls.getSrid());
     }
 
     @Test
     void shouldGeneratePostgisPolygonWithSrid() {
-        Polygon poly = GenPostgisGeometry.polygon().srid(4326).generate(null);
+        Polygon poly = GenPostgisGeometry.polygon().srid(4326).generate(random);
         assertNotNull(poly);
         assertEquals(4326, poly.getSrid());
     }

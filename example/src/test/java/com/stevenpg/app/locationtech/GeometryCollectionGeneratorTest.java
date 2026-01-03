@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.GeometryCollection;
@@ -23,6 +26,8 @@ import org.locationtech.jts.geom.GeometryCollection;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GeometryCollectionGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateGeometryCollectionUsingInstancio() {
@@ -35,7 +40,7 @@ class GeometryCollectionGeneratorTest {
     void shouldGenerateGeometryCollectionUsingGenerator() {
         var gc = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.GeometryCollectionGenerator()
                 .length(3)
-                .generate(null);
+                .generate(random);
         assertNotNull(gc);
         assertEquals(3, gc.getNumGeometries());
     }

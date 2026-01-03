@@ -63,13 +63,12 @@ public class PGBox3dGenerator implements Generator<PGbox3d>, NumericRangeSpec<PG
 
     @Override
     public PGbox3d generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        double x1 = minX + (maxX - minX) * r.nextDouble();
-        double y1 = minY + (maxY - minY) * r.nextDouble();
-        double z1 = minZ + (maxZ - minZ) * r.nextDouble();
-        double x2 = minX + (maxX - minX) * r.nextDouble();
-        double y2 = minY + (maxY - minY) * r.nextDouble();
-        double z2 = minZ + (maxZ - minZ) * r.nextDouble();
+        double x1 = random.doubleRange(minX, maxX);
+        double y1 = random.doubleRange(minY, maxY);
+        double z1 = random.doubleRange(minZ, maxZ);
+        double x2 = random.doubleRange(minX, maxX);
+        double y2 = random.doubleRange(minY, maxY);
+        double z2 = random.doubleRange(minZ, maxZ);
 
         return new PGbox3d(new Point(Math.min(x1, x2), Math.min(y1, y2), Math.min(z1, z2)),
                            new Point(Math.max(x1, x2), Math.max(y1, y2), Math.max(z1, z2)));

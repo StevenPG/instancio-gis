@@ -16,16 +16,13 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility;
 
+import org.instancio.Random;
 import org.locationtech.jts.geom.Envelope;
-
-import java.util.Random;
 
 /**
  * Receives an envelope and contains helper methods for supporting "within" generation operations.
  */
 public class WithinUtility {
-
-    private static final Random random = new Random();
 
     /**
      * Private constructor to prevent instantiation.
@@ -46,26 +43,28 @@ public class WithinUtility {
     /**
      * Returns a random longitude and latitude within the specified envelope.
      *
+     * @param random - the random instance to use
      * @return - a LonLatRecord containing the generated longitude and latitude
      */
-    public static LonLatRecord randomLonLatInBounds() {
-        double longitude = -180 + 360 * random.nextDouble();
-        double latitude = -90 + 180 * random.nextDouble();
+    public static LonLatRecord randomLonLatInBounds(Random random) {
+        double longitude = random.doubleRange(-180, 180);
+        double latitude = random.doubleRange(-90, 90);
         return new LonLatRecord(longitude, latitude);
     }
 
     /**
      * Returns a random longitude and latitude within the specified envelope.
      *
+     * @param random - the random instance to use
      * @param envelope - envelope to generate random coordinates within
      * @return - a LonLatRecord containing the generated longitude and latitude
      */
-    public static LonLatRecord randomLonLatInBounds(Envelope envelope) {
+    public static LonLatRecord randomLonLatInBounds(Random random, Envelope envelope) {
         if (envelope == null) {
-            return randomLonLatInBounds();
+            return randomLonLatInBounds(random);
         }
-        var longitude = random.nextDouble(envelope.getMinX(), envelope.getMaxX());
-        var latitude = random.nextDouble(envelope.getMinY(), envelope.getMaxY());
+        var longitude = random.doubleRange(envelope.getMinX(), envelope.getMaxX());
+        var latitude = random.doubleRange(envelope.getMinY(), envelope.getMaxY());
         return new LonLatRecord(longitude, latitude);
     }
 

@@ -16,6 +16,9 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.instancio.Instancio;
 import org.junit.jupiter.api.RepeatedTest;
 import org.locationtech.jts.geom.CoordinateXYM;
@@ -23,6 +26,8 @@ import org.locationtech.jts.geom.CoordinateXYM;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CoordinateXYMGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @RepeatedTest(5)
     void create() {
@@ -36,7 +41,7 @@ class CoordinateXYMGeneratorTest {
 
     @RepeatedTest(5)
     void latitude() {
-        var coordinate = new CoordinateXYMGenerator().latitude(10d).generate(null);
+        var coordinate = new CoordinateXYMGenerator().latitude(10d).generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -47,7 +52,7 @@ class CoordinateXYMGeneratorTest {
 
     @RepeatedTest(5)
     void longitude() {
-        var coordinate = new CoordinateXYMGenerator().longitude(20d).generate(null);
+        var coordinate = new CoordinateXYMGenerator().longitude(20d).generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -58,7 +63,7 @@ class CoordinateXYMGeneratorTest {
 
     @RepeatedTest(5)
     void measure() {
-        var coordinate = new CoordinateXYMGenerator().measure(5d).generate(null);
+        var coordinate = new CoordinateXYMGenerator().measure(5d).generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -68,7 +73,7 @@ class CoordinateXYMGeneratorTest {
 
     @RepeatedTest(5)
     void generate() {
-        var coordinate = new CoordinateXYMGenerator().generate(null);
+        var coordinate = new CoordinateXYMGenerator().generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);

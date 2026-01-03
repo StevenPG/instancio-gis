@@ -36,7 +36,6 @@ public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, Coor
             = new CoordinateArraySequenceGenerator();
     private final PackedCoordinateSequenceGenerator packedCoordinateSequenceGenerator
             = new PackedCoordinateSequenceGenerator();
-    private static final java.util.Random random = new java.util.Random();
 
     private CoordinateSequence coordinateSequence;
     private Envelope inputEnvelope;
@@ -112,9 +111,7 @@ public class CoordinateSequenceGenerator implements CoordinateSequenceSpec, Coor
 
     @Override
     public CoordinateSequence generate(Random random) {
-        var randomInteger = random != null
-                ? random.intRange(1, 10)
-                : CoordinateSequenceGenerator.random.nextInt(1, 10);
+        var randomInteger = random.intRange(1, 10);
         if (coordinateSequence != null) {
             return coordinateSequence;
         } else {

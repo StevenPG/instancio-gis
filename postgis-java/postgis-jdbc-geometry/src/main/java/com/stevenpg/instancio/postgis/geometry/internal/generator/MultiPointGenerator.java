@@ -50,13 +50,12 @@ public class MultiPointGenerator implements Generator<MultiPoint>, NumericRangeS
 
     @Override
     public MultiPoint generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        int n = minElements + r.nextInt(maxElements - minElements + 1);
+        int n = random.intRange(minElements, maxElements);
         StringBuilder sb = new StringBuilder("MULTIPOINT(");
         for (int i = 0; i < n; i++) {
             if (i > 0) sb.append(", ");
-            double x = minX + (maxX - minX) * r.nextDouble();
-            double y = minY + (maxY - minY) * r.nextDouble();
+            double x = random.doubleRange(minX, maxX);
+            double y = random.doubleRange(minY, maxY);
             sb.append('(').append(x).append(' ').append(y).append(')');
         }
         sb.append(')');

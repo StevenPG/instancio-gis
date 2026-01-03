@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -24,6 +27,8 @@ import org.locationtech.jts.geom.Envelope;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EnvelopeGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateEnvelopeUsingInstancio() {
@@ -37,7 +42,7 @@ class EnvelopeGeneratorTest {
     void shouldGenerateEnvelopeUsingGeneratorWithBounds() {
         var env = GenLocationtechJtsCore.envelope()
                 .bounds(0, 5, 1, 6)
-                .generate(null);
+                .generate(random);
         assertEquals(0.0, env.getMinX());
         assertEquals(5.0, env.getMaxX());
         assertEquals(1.0, env.getMinY());

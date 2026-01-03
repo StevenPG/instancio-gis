@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.postgis.jdbc.jts;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.postgis.jdbc.jts.GenPostgisJdbcJts;
 import net.postgis.jdbc.jts.JtsGeometry;
 import org.instancio.Instancio;
@@ -24,6 +27,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class PostgisJdbcJtsGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateJtsGeometryWithInstancio() {
@@ -34,7 +39,7 @@ class PostgisJdbcJtsGeneratorTest {
 
     @Test
     void shouldGenerateJtsGeometryWithGenerator() {
-        JtsGeometry jtsGeom = GenPostgisJdbcJts.jtsGeometry().generate(null);
+        JtsGeometry jtsGeom = GenPostgisJdbcJts.jtsGeometry().generate(random);
         assertNotNull(jtsGeom);
         assertNotNull(jtsGeom.getGeometry());
     }

@@ -30,7 +30,6 @@ import java.util.List;
  */
 public class MultiLineStringGenerator implements MultiLineStringSpec, MultiLineStringGeneratorSpec, EnvelopableGenerator<MultiLineString> {
     private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private static final java.util.Random random = new java.util.Random();
     private static final LineStringGenerator lineStringGenerator = new LineStringGenerator();
 
     private GeometryFactory inputGeometryFactory;
@@ -75,10 +74,7 @@ public class MultiLineStringGenerator implements MultiLineStringSpec, MultiLineS
         if (inputLineStrings != null) {
             return new MultiLineString(inputLineStrings.toArray(new LineString[0]), geometryFactory);
         } else {
-
-            var length = random != null
-                    ? random.intRange(2, 10)
-                    : MultiLineStringGenerator.random.nextInt(2, 10);
+            var length = random.intRange(2, 10);
             if (inputLength != null) {
                 length = inputLength;
             }

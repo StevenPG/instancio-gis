@@ -72,8 +72,7 @@ public class PGPathGenerator implements Generator<PGpath>, NumericRangeSpec<PGPa
 
     @Override
     public PGpath generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        int n = minVertices + r.nextInt((maxVertices - minVertices) + 1);
+        int n = random.intRange(minVertices, maxVertices);
         PGpoint[] pts = new PGpoint[n];
         for (int i = 0; i < n; i++) {
             pts[i] = pointGen.generate(random);

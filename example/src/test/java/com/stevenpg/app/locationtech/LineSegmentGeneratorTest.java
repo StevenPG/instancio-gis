@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -24,6 +27,8 @@ import org.locationtech.jts.geom.LineSegment;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LineSegmentGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateLineSegmentUsingInstancio() {
@@ -34,7 +39,7 @@ class LineSegmentGeneratorTest {
 
     @Test
     void shouldGenerateLineSegmentUsingGenerator() {
-        var seg = GenLocationtechJtsCore.lineSegment().generate(null);
+        var seg = GenLocationtechJtsCore.lineSegment().generate(random);
         assertNotNull(seg);
         assertNotEquals(seg.p0, seg.p1);
     }

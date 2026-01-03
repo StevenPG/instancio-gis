@@ -65,7 +65,7 @@ public class CoordinateGenerator implements CoordinateSpec, EnvelopableGenerator
     @Override
     public Coordinate generate(Random random) {
         if(envelopeProvided() && !coordinateProvided()) {
-            var lonLat = randomLonLatInBounds(inputEnvelope);
+            var lonLat = randomLonLatInBounds(random, inputEnvelope);
             return new Coordinate(lonLat.longitude(), lonLat.latitude());
         } else {
             return new Coordinate(
