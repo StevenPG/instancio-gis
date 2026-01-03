@@ -16,6 +16,9 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.*;
 
@@ -23,12 +26,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LinearRingGeneratorTest {
 
+    private final Random random = new DefaultRandom();
+
     private final GeometryFactory geometryFactory = new GeometryFactory();
 
     @Test
     void shouldGenerateLinearRing() {
         var generator = new LinearRingGenerator();
-        var linearRing = generator.generate(null);
+        var linearRing = generator.generate(random);
 
         assertNotNull(linearRing);
         assertTrue(linearRing.getCoordinates().length >= 4);
@@ -51,7 +56,7 @@ class LinearRingGeneratorTest {
         var sequence = geometryFactory.getCoordinateSequenceFactory().create(coordinates);
 
         var generator = new LinearRingGenerator().coordinateSequence(sequence);
-        var linearRing = generator.generate(null);
+        var linearRing = generator.generate(random);
 
         assertArrayEquals(coordinates, linearRing.getCoordinates());
         assertTrue(linearRing.isClosed());
@@ -68,7 +73,7 @@ class LinearRingGeneratorTest {
         var sequence = geometryFactory.getCoordinateSequenceFactory().create(coordinates);
 
         var generator = new LinearRingGenerator().coordinateSequence(sequence);
-        var linearRing = generator.generate(null);
+        var linearRing = generator.generate(random);
 
         assertTrue(linearRing.isClosed());
         assertEquals(5, linearRing.getCoordinates().length); // Original 4 + 1 closing coordinate
@@ -81,7 +86,7 @@ class LinearRingGeneratorTest {
     void shouldGenerateLinearRingWithCustomLength() {
         int uniquePoints = 5;
         var generator = new LinearRingGenerator().length(uniquePoints);
-        var linearRing = generator.generate(null);
+        var linearRing = generator.generate(random);
 
         assertEquals(uniquePoints + 1, linearRing.getCoordinates().length); // +1 for closing coordinate
         assertTrue(linearRing.isClosed());
@@ -91,7 +96,7 @@ class LinearRingGeneratorTest {
     void shouldGenerateLinearRingWithMinimumLengthWhenTooSmall() {
         int length = 2; // Too small for LinearRing
         var generator = new LinearRingGenerator().length(length);
-        var linearRing = generator.generate(null);
+        var linearRing = generator.generate(random);
 
         assertEquals(4, linearRing.getCoordinates().length); // Minimum: 3 unique + 1 closing = 4 total
         assertTrue(linearRing.isClosed());
@@ -101,7 +106,7 @@ class LinearRingGeneratorTest {
     void shouldGenerateLinearRingWithCustomGeometryFactory() {
         var customFactory = new GeometryFactory();
         var generator = new LinearRingGenerator().geometryFactory(customFactory);
-        var linearRing = generator.generate(null);
+        var linearRing = generator.generate(random);
 
         assertSame(customFactory, linearRing.getFactory());
         assertTrue(linearRing.isClosed());
@@ -111,7 +116,7 @@ class LinearRingGeneratorTest {
     void shouldGenerateLinearRingWithinEnvelope() {
         var envelope = new Envelope(0, 10, 0, 10);
         var generator = new LinearRingGenerator().within(envelope);
-        var linearRing = generator.generate(null);
+        var linearRing = generator.generate(random);
 
         assertTrue(envelope.contains(linearRing.getEnvelopeInternal()));
         assertTrue(linearRing.isClosed());
@@ -122,7 +127,7 @@ class LinearRingGeneratorTest {
         var envelope = new Envelope(0, 10, 0, 10);
         int uniquePoints = 4;
         var generator = new LinearRingGenerator().length(uniquePoints).within(envelope);
-        var linearRing = generator.generate(null);
+        var linearRing = generator.generate(random);
 
         assertEquals(uniquePoints + 1, linearRing.getCoordinates().length);
         assertTrue(envelope.contains(linearRing.getEnvelopeInternal()));
@@ -140,7 +145,7 @@ class LinearRingGeneratorTest {
         var generator = new LinearRingGenerator().coordinateSequence(sequence);
 
         assertThrows(IllegalArgumentException.class, () ->
-                generator.generate(null));
+                generator.generate(random));
     }
 
     @Test
@@ -154,9 +159,9 @@ class LinearRingGeneratorTest {
 
         var generator = new LinearRingGenerator().coordinateSequence(sequence);
 
-        assertTrue(generator.generate(null).isClosed());
-        assertTrue(generator.generate(null).isRing());
-        assertEquals(4, generator.generate(null).getCoordinates().length);
+        assertTrue(generator.generate(random).isClosed());
+        assertTrue(generator.generate(random).isRing());
+        assertEquals(4, generator.generate(random).getCoordinates().length);
     }
 
     @Test
@@ -170,7 +175,7 @@ class LinearRingGeneratorTest {
         var sequence = geometryFactory.getCoordinateSequenceFactory().create(coordinates);
 
         var generator = new LinearRingGenerator().coordinateSequence(sequence);
-        var linearRing = generator.generate(null);
+        var linearRing = generator.generate(random);
 
         assertTrue(linearRing.isClosed());
         assertEquals(5, linearRing.getCoordinates().length);

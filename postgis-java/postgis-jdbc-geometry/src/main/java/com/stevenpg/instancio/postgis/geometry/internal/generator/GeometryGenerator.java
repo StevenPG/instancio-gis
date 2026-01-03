@@ -27,8 +27,6 @@ import org.instancio.generator.Hints;
 /** Generator that returns a random org.postgis Geometry subtype using WKT parsing. */
 public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<GeometryGenerator> {
 
-    private static final java.util.Random backupRandom = new java.util.Random();
-
     private double minX = -180d;
     private double maxX = 180d;
     private double minY = -90d;
@@ -67,16 +65,15 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
 
     @Override
     public Geometry generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : backupRandom;
-        int pick = r.nextInt(7); // 0..6 (POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION)
+        int pick = random.intRange(0, 6); // 0..6 (POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION)
         String wkt = switch (pick) {
-            case 0 -> pointWkt(r);
-            case 1 -> lineStringWkt(r);
-            case 2 -> polygonWkt(r);
-            case 3 -> multiPointWkt(r);
-            case 4 -> multiLineStringWkt(r);
-            case 5 -> multiPolygonWkt(r);
-            default -> geometryCollectionWkt(r);
+            case 0 -> pointWkt(random);
+            case 1 -> lineStringWkt(random);
+            case 2 -> polygonWkt(random);
+            case 3 -> multiPointWkt(random);
+            case 4 -> multiLineStringWkt(random);
+            case 5 -> multiPolygonWkt(random);
+            default -> geometryCollectionWkt(random);
         };
         try {
             Geometry geom = new PGgeometry(wkt).getGeometry();
@@ -89,16 +86,16 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
         }
     }
 
-    private double rx(java.util.Random r, double a, double b) { return a + (b - a) * r.nextDouble(); }
+    private double rx(Random r, double a, double b) { return r.doubleRange(a, b); }
 
-    private String pointWkt(java.util.Random r) {
+    private String pointWkt(Random r) {
         double x = rx(r, minX, maxX);
         double y = rx(r, minY, maxY);
         return String.format("POINT(%f %f)", x, y);
     }
 
-    private String lineStringWkt(java.util.Random r) {
-        int n = 2 + r.nextInt(4);
+    private String lineStringWkt(Random r) {
+        int n = r.intRange(2, 5);
         StringBuilder sb = new StringBuilder("LINESTRING(");
         for (int i = 0; i < n; i++) {
             if (i > 0) sb.append(", ");
@@ -108,8 +105,8 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
         return sb.toString();
     }
 
-    private String polygonWkt(java.util.Random r) {
-        int n = 3 + r.nextInt(5);
+    private String polygonWkt(Random r) {
+        int n = r.intRange(3, 7);
         StringBuilder sb = new StringBuilder("POLYGON((");
         double fx = 0;
         double fy = 0;
@@ -124,8 +121,8 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
         return sb.toString();
     }
 
-    private String multiPointWkt(java.util.Random r) {
-        int n = 1 + r.nextInt(5);
+    private String multiPointWkt(Random r) {
+        int n = r.intRange(1, 5);
         StringBuilder sb = new StringBuilder("MULTIPOINT(");
         for (int i = 0; i < n; i++) {
             if (i > 0) sb.append(", ");
@@ -135,12 +132,12 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
         return sb.toString();
     }
 
-    private String multiLineStringWkt(java.util.Random r) {
-        int m = 1 + r.nextInt(3);
+    private String multiLineStringWkt(Random r) {
+        int m = r.intRange(1, 3);
         StringBuilder sb = new StringBuilder("MULTILINESTRING(");
         for (int j = 0; j < m; j++) {
             if (j > 0) sb.append(", ");
-            int n = 2 + r.nextInt(4);
+            int n = r.intRange(2, 5);
             sb.append('(');
             for (int i = 0; i < n; i++) {
                 if (i > 0) sb.append(", ");
@@ -152,12 +149,12 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
         return sb.toString();
     }
 
-    private String multiPolygonWkt(java.util.Random r) {
-        int m = 1 + r.nextInt(3);
+    private String multiPolygonWkt(Random r) {
+        int m = r.intRange(1, 3);
         StringBuilder sb = new StringBuilder("MULTIPOLYGON(");
         for (int k = 0; k < m; k++) {
             if (k > 0) sb.append(", ");
-            int n = 3 + r.nextInt(5);
+            int n = r.intRange(3, 7);
             sb.append("((");
             double fx = 0;
             double fy = 0;
@@ -175,7 +172,7 @@ public class GeometryGenerator implements Generator<Geometry>, NumericRangeSpec<
         return sb.toString();
     }
 
-    private String geometryCollectionWkt(java.util.Random r) {
+    private String geometryCollectionWkt(Random r) {
         String p = pointWkt(r);
         String l = lineStringWkt(r);
         return "GEOMETRYCOLLECTION(" + p + ", " + l + ")";

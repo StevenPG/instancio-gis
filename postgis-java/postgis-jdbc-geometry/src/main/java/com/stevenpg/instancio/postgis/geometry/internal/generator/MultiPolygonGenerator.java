@@ -50,18 +50,17 @@ public class MultiPolygonGenerator implements Generator<MultiPolygon>, NumericRa
 
     @Override
     public MultiPolygon generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        int m = minElements + r.nextInt(maxElements - minElements + 1);
+        int m = random.intRange(minElements, maxElements);
         StringBuilder sb = new StringBuilder("MULTIPOLYGON(");
         for (int k = 0; k < m; k++) {
             if (k > 0) sb.append(", ");
-            int n = 3 + r.nextInt(3);
+            int n = random.intRange(3, 5);
             sb.append("((");
             double fx = 0;
             double fy = 0;
             for (int i = 0; i < n; i++) {
-                double x = minX + (maxX - minX) * r.nextDouble();
-                double y = minY + (maxY - minY) * r.nextDouble();
+                double x = random.doubleRange(minX, maxX);
+                double y = random.doubleRange(minY, maxY);
                 if (i == 0) { fx = x; fy = y; }
                 if (i > 0) sb.append(", ");
                 sb.append(x).append(' ').append(y);

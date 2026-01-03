@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.impl.PackedCoordinateSequence;
@@ -23,6 +26,8 @@ import org.locationtech.jts.geom.impl.PackedCoordinateSequence;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PackedCoordinateSequenceGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGeneratePackedCoordinateSequenceUsingInstancio() {
@@ -35,7 +40,7 @@ class PackedCoordinateSequenceGeneratorTest {
     void shouldGeneratePackedCoordinateSequenceUsingGenerator() {
         var seq = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.impl.PackedCoordinateSequenceGenerator()
                 .length(3)
-                .generate(null);
+                .generate(random);
         assertEquals(3, seq.size());
     }
 }

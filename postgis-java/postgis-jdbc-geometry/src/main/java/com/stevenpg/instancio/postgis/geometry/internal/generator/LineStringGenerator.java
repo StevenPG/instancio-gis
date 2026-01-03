@@ -61,13 +61,12 @@ public class LineStringGenerator implements Generator<LineString>, NumericRangeS
 
     @Override
     public LineString generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        int n = minPoints + r.nextInt(maxPoints - minPoints + 1);
+        int n = random.intRange(minPoints, maxPoints);
         StringBuilder sb = new StringBuilder("LINESTRING(");
         for (int i = 0; i < n; i++) {
             if (i > 0) sb.append(", ");
-            double x = minX + (maxX - minX) * r.nextDouble();
-            double y = minY + (maxY - minY) * r.nextDouble();
+            double x = random.doubleRange(minX, maxX);
+            double y = random.doubleRange(minY, maxY);
             sb.append(x).append(' ').append(y);
         }
         sb.append(')');

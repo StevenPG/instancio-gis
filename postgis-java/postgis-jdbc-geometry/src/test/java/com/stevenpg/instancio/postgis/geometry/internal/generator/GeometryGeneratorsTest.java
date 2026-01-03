@@ -16,6 +16,9 @@
 
 package com.stevenpg.instancio.postgis.geometry.internal.generator;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import net.postgis.jdbc.geometry.*;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -24,10 +27,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GeometryGeneratorsTest {
 
+    private final Random random = new DefaultRandom();
+
     @Test
     void shouldGeneratePoint() {
         var gen = new PointGenerator().xRange(10, 10).yRange(20, 20);
-        Point p = gen.generate(null);
+        Point p = gen.generate(random);
         assertNotNull(p);
         assertEquals(10, p.x);
         assertEquals(20, p.y);
@@ -36,7 +41,7 @@ class GeometryGeneratorsTest {
     @Test
     void shouldGenerateLineString() {
         var gen = new LineStringGenerator().xRange(10, 10).yRange(20, 20);
-        LineString ls = gen.generate(null);
+        LineString ls = gen.generate(random);
         assertNotNull(ls);
         assertTrue(ls.numPoints() >= 2);
         for (int i = 0; i < ls.numPoints(); i++) {
@@ -48,7 +53,7 @@ class GeometryGeneratorsTest {
     @Test
     void shouldGeneratePolygon() {
         var gen = new PolygonGenerator().xRange(10, 10).yRange(20, 20);
-        Polygon poly = gen.generate(null);
+        Polygon poly = gen.generate(random);
         assertNotNull(poly);
         assertTrue(poly.numRings() >= 1);
         LinearRing ring = poly.getRing(0);
@@ -61,7 +66,7 @@ class GeometryGeneratorsTest {
     @Test
     void shouldGenerateMultiPoint() {
         var gen = new MultiPointGenerator().xRange(10, 10).yRange(20, 20);
-        MultiPoint mp = gen.generate(null);
+        MultiPoint mp = gen.generate(random);
         assertNotNull(mp);
         assertTrue(mp.numPoints() >= 1);
         for (int i = 0; i < mp.numPoints(); i++) {
@@ -73,7 +78,7 @@ class GeometryGeneratorsTest {
     @Test
     void shouldGenerateMultiLineString() {
         var gen = new MultiLineStringGenerator().xRange(10, 10).yRange(20, 20);
-        MultiLineString mls = gen.generate(null);
+        MultiLineString mls = gen.generate(random);
         assertNotNull(mls);
         assertTrue(mls.numLines() >= 1);
         for (int i = 0; i < mls.numLines(); i++) {
@@ -88,7 +93,7 @@ class GeometryGeneratorsTest {
     @Test
     void shouldGenerateMultiPolygon() {
         var gen = new MultiPolygonGenerator().xRange(10, 10).yRange(20, 20);
-        MultiPolygon mp = gen.generate(null);
+        MultiPolygon mp = gen.generate(random);
         assertNotNull(mp);
         assertTrue(mp.numPolygons() >= 1);
     }
@@ -96,7 +101,7 @@ class GeometryGeneratorsTest {
     @Test
     void shouldGenerateGeometryCollection() {
         var gen = new GeometryCollectionGenerator().xRange(10, 10).yRange(20, 20);
-        GeometryCollection gc = gen.generate(null);
+        GeometryCollection gc = gen.generate(random);
         assertNotNull(gc);
         assertTrue(gc.numGeoms() >= 1);
     }
@@ -104,7 +109,7 @@ class GeometryGeneratorsTest {
     @Test
     void shouldGenerateGeometry() {
         var gen = new GeometryGenerator().xRange(10, 10).yRange(20, 20).zRange(0, 0);
-        Geometry g = gen.generate(null);
+        Geometry g = gen.generate(random);
         assertNotNull(g);
     }
 

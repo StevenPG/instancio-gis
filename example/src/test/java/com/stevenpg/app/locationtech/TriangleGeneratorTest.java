@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Triangle;
@@ -23,6 +26,8 @@ import org.locationtech.jts.geom.Triangle;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TriangleGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateTriangleUsingInstancio() {
@@ -36,7 +41,7 @@ class TriangleGeneratorTest {
     @Test
     void shouldGenerateTriangleUsingGenerator() {
         var tri = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.TriangleGenerator()
-                .generate(null);
+                .generate(random);
         assertNotNull(tri);
     }
 }

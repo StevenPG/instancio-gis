@@ -46,15 +46,13 @@ public class GeometryCollectionGenerator implements Generator<GeometryCollection
 
     @Override
     public GeometryCollection generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        
         // Simpler implementation just combining a Point and a LineString
-        double x1 = minX + (maxX - minX) * r.nextDouble();
-        double y1 = minY + (maxY - minY) * r.nextDouble();
-        double x2 = minX + (maxX - minX) * r.nextDouble();
-        double y2 = minY + (maxY - minY) * r.nextDouble();
-        double x3 = minX + (maxX - minX) * r.nextDouble();
-        double y3 = minY + (maxY - minY) * r.nextDouble();
+        double x1 = random.doubleRange(minX, maxX);
+        double y1 = random.doubleRange(minY, maxY);
+        double x2 = random.doubleRange(minX, maxX);
+        double y2 = random.doubleRange(minY, maxY);
+        double x3 = random.doubleRange(minX, maxX);
+        double y3 = random.doubleRange(minY, maxY);
         
         String wkt = String.format("GEOMETRYCOLLECTION(POINT(%f %f), LINESTRING(%f %f, %f %f))", x1, y1, x2, y2, x3, y3);
         

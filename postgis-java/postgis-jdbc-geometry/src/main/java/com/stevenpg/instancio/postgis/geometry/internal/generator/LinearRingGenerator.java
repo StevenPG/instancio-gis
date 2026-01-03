@@ -49,14 +49,13 @@ public class LinearRingGenerator implements Generator<LinearRing>, NumericRangeS
 
     @Override
     public LinearRing generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        int n = minPoints + r.nextInt(maxPoints - minPoints + 1);
+        int n = random.intRange(minPoints, maxPoints);
         StringBuilder sb = new StringBuilder("LINESTRING(");
         double fx = 0;
         double fy = 0;
         for (int i = 0; i < n; i++) {
-            double x = minX + (maxX - minX) * r.nextDouble();
-            double y = minY + (maxY - minY) * r.nextDouble();
+            double x = random.doubleRange(minX, maxX);
+            double y = random.doubleRange(minY, maxY);
             if (i == 0) { fx = x; fy = y; }
             if (i > 0) sb.append(", ");
             sb.append(x).append(' ').append(y);

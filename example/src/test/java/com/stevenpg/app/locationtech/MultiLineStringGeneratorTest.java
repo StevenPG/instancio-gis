@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -24,6 +27,8 @@ import org.locationtech.jts.geom.MultiLineString;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MultiLineStringGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateMultiLineStringUsingInstancio() {
@@ -34,7 +39,7 @@ class MultiLineStringGeneratorTest {
 
     @Test
     void shouldGenerateMultiLineStringUsingGenerator() {
-        var mls = GenLocationtechJtsCore.multiLineString().generate(null);
+        var mls = GenLocationtechJtsCore.multiLineString().generate(random);
         assertNotNull(mls);
         assertTrue(mls.getNumGeometries() >= 1);
     }

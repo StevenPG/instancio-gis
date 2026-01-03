@@ -37,7 +37,6 @@ public class GeometryCollectionGenerator implements GeometryCollectionSpec, Geom
         EnvelopableGenerator<GeometryCollection>, Generator<GeometryCollection> {
 
     private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private static final java.util.Random backupRandom = new java.util.Random();
 
     private GeometryFactory inputGeometryFactory;
     private Envelope inputEnvelope;
@@ -131,7 +130,7 @@ public class GeometryCollectionGenerator implements GeometryCollectionSpec, Geom
             var polyGen = new PolygonGenerator();
 
             for (int i = 0; i < count; i++) {
-                int typeChoice = random != null ? random.intRange(0, 2) : backupRandom.nextInt(3);
+                int typeChoice = random.intRange(0, 2);
                 switch (typeChoice) {
                     case 0 -> members.add(hasEnvelope ? pointGen.within(inputEnvelope).generate(random) : pointGen.generate(random));
                     case 1 -> members.add(hasEnvelope ? lineGen.within(inputEnvelope).generate(random) : lineGen.generate(random));
@@ -142,7 +141,7 @@ public class GeometryCollectionGenerator implements GeometryCollectionSpec, Geom
         }
 
         // Choose a generation mode: 0 = heterogeneous GC, 1 = MultiPoint, 2 = MultiLineString, 3 = MultiPolygon
-        int choice = random != null ? random.intRange(0, 3) : backupRandom.nextInt(4);
+        int choice = random.intRange(0, 3);
 
         switch (choice) {
             case 1: {
@@ -159,7 +158,7 @@ public class GeometryCollectionGenerator implements GeometryCollectionSpec, Geom
             }
             default: {
                 // Heterogeneous GeometryCollection
-                int count = inputLength != null ? inputLength : (random != null ? random.intRange(2, 6) : 2 + backupRandom.nextInt(5));
+                int count = inputLength != null ? inputLength : random.intRange(2, 6);
                 List<Geometry> members = new ArrayList<>(count);
 
                 var pointGen = new PointGenerator();
@@ -167,7 +166,7 @@ public class GeometryCollectionGenerator implements GeometryCollectionSpec, Geom
                 var polyGen = new PolygonGenerator();
 
                 for (int i = 0; i < count; i++) {
-                    int typeChoice = random != null ? random.intRange(0, 2) : backupRandom.nextInt(3);
+                    int typeChoice = random.intRange(0, 2);
                     switch (typeChoice) {
                         case 0: {
                             members.add(hasEnvelope ? pointGen.within(inputEnvelope).generate(random) : pointGen.generate(random));

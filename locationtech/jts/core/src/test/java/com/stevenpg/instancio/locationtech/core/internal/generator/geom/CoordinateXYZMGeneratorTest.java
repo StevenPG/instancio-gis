@@ -16,6 +16,9 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.instancio.Instancio;
 import org.junit.jupiter.api.RepeatedTest;
 import org.locationtech.jts.geom.CoordinateXYZM;
@@ -24,6 +27,8 @@ import org.locationtech.jts.geom.Envelope;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CoordinateXYZMGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @RepeatedTest(5)
     void create() {
@@ -37,7 +42,7 @@ class CoordinateXYZMGeneratorTest {
 
     @RepeatedTest(5)
     void latitude() {
-        var coordinate = new CoordinateXYZMGenerator().latitude(10d).generate(null);
+        var coordinate = new CoordinateXYZMGenerator().latitude(10d).generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -48,7 +53,7 @@ class CoordinateXYZMGeneratorTest {
 
     @RepeatedTest(5)
     void longitude() {
-        var coordinate = new CoordinateXYZMGenerator().longitude(20d).generate(null);
+        var coordinate = new CoordinateXYZMGenerator().longitude(20d).generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -59,7 +64,7 @@ class CoordinateXYZMGeneratorTest {
 
     @RepeatedTest(5)
     void altitude() {
-        var coordinate = new CoordinateXYZMGenerator().altitude(40d).generate(null);
+        var coordinate = new CoordinateXYZMGenerator().altitude(40d).generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -69,7 +74,7 @@ class CoordinateXYZMGeneratorTest {
 
     @RepeatedTest(5)
     void measure() {
-        var coordinate = new CoordinateXYZMGenerator().measure(5d).generate(null);
+        var coordinate = new CoordinateXYZMGenerator().measure(5d).generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);
@@ -80,7 +85,7 @@ class CoordinateXYZMGeneratorTest {
     @RepeatedTest(5)
     void within() {
         var bounds = new Envelope(-90, 90, -45, 45);
-        var coordinate = new CoordinateXYZMGenerator().within(bounds).generate(null);
+        var coordinate = new CoordinateXYZMGenerator().within(bounds).generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -90 && coordinate.x < 90);
         assertTrue(coordinate.y > -45 && coordinate.y < 45);
@@ -90,7 +95,7 @@ class CoordinateXYZMGeneratorTest {
 
     @RepeatedTest(5)
     void generate() {
-        var coordinate = new CoordinateXYZMGenerator().generate(null);
+        var coordinate = new CoordinateXYZMGenerator().generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -180 && coordinate.x < 180);
         assertTrue(coordinate.y > -90 && coordinate.y < 90);

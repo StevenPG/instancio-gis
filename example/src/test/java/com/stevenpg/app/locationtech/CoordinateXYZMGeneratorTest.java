@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.instancio.support.DefaultRandom;
@@ -26,9 +29,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CoordinateXYZMGeneratorTest {
 
+    private final Random random = new DefaultRandom();
+
     @Test
     void coordinateXYZMGenerator() {
-        assertInstanceOf(CoordinateXYZM.class, GenLocationtechJtsCore.coordinateXYZM().generate(null));
+        assertInstanceOf(CoordinateXYZM.class, GenLocationtechJtsCore.coordinateXYZM().generate(random));
     }
 
     @Test
@@ -38,7 +43,7 @@ class CoordinateXYZMGeneratorTest {
                 .longitude(-60)
                 .altitude(26)
                 .measure(10)
-                .generate(null);
+                .generate(random);
         assertInstanceOf(CoordinateXYZM.class, coordinate);
         assertEquals(30, coordinate.y);
         assertEquals(-60, coordinate.x);

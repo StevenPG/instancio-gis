@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -24,6 +27,8 @@ import org.locationtech.jts.geom.MultiPoint;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MultiPointGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateMultiPointUsingInstancio() {
@@ -34,7 +39,7 @@ class MultiPointGeneratorTest {
 
     @Test
     void shouldGenerateMultiPointUsingGenerator() {
-        var mp = GenLocationtechJtsCore.multiPoint().generate(null);
+        var mp = GenLocationtechJtsCore.multiPoint().generate(random);
         assertNotNull(mp);
         assertTrue(mp.getNumGeometries() >= 1);
     }

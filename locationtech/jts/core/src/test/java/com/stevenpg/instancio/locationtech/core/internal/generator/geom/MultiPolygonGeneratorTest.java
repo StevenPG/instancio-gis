@@ -16,6 +16,9 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.instancio.Instancio;
 import org.instancio.support.DefaultRandom;
 import org.junit.jupiter.api.RepeatedTest;
@@ -28,6 +31,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MultiPolygonGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @RepeatedTest(5)
     void create() {
@@ -111,7 +116,7 @@ class MultiPolygonGeneratorTest {
 
     @Test
     void generateWithNullRandom() {
-        var result = new MultiPolygonGenerator().generate(null);
+        var result = new MultiPolygonGenerator().generate(random);
 
         assertNotNull(result);
         assertTrue(result.getNumGeometries() >= 1);
@@ -122,7 +127,7 @@ class MultiPolygonGeneratorTest {
     void generateWithLengthAndNullRandom() {
         var result = new MultiPolygonGenerator()
                 .length(2)
-                .generate(null);
+                .generate(random);
 
         assertNotNull(result);
         assertEquals(2, result.getNumGeometries());
@@ -132,7 +137,7 @@ class MultiPolygonGeneratorTest {
     void generateWithEnvelopeAndNullRandom() {
         var result = new MultiPolygonGenerator()
                 .within(new Envelope(0, 5, 0, 5))
-                .generate(null);
+                .generate(random);
 
         assertNotNull(result);
         for (int i = 0; i < result.getNumGeometries(); i++) {
