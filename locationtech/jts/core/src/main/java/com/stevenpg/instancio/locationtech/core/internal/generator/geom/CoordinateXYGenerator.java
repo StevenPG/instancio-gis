@@ -63,7 +63,7 @@ public class CoordinateXYGenerator extends LatLonEnvelopableBaseGenerator implem
     @Override
     public CoordinateXY generate(Random random) {
         if(envelopeProvided() && coordinateMissing()) {
-            var lonLat = randomLonLatInBounds(getInputEnvelope());
+            var lonLat = randomLonLatInBounds(random, getInputEnvelope());
             return new CoordinateXY(lonLat.longitude(), lonLat.latitude());
         } else {
             return new CoordinateXY(

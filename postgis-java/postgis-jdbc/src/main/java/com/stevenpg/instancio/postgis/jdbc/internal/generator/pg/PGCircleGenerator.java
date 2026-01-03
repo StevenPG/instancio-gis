@@ -61,8 +61,7 @@ public class PGCircleGenerator implements Generator<PGcircle>, NumericRangeSpec<
 
     @Override
     public PGcircle generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        final double radius = minRadius + (maxRadius - minRadius) * r.nextDouble();
+        final double radius = random.doubleRange(minRadius, maxRadius);
         PGpoint center = pointGen.generate(random);
         return new PGcircle(center, radius);
     }

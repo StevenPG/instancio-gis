@@ -16,6 +16,9 @@
 
 package com.stevenpg.instancio.postgis.jdbc.internal.generator.pg;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.postgresql.geometric.PGpoint;
@@ -24,6 +27,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PGPointGeneratorTest {
 
+    private final Random random = new DefaultRandom();
+
     @Test
     void shouldGenerateWithinRanges() {
         var gen = new PGPointGenerator()
@@ -31,7 +36,7 @@ class PGPointGeneratorTest {
                 .yRange(-5, 5)
                 .zRange(-1, 1); // Should have no effect but covers default method
 
-        PGpoint p = gen.generate(null);
+        PGpoint p = gen.generate(random);
         assertNotNull(p);
         assertTrue(p.x >= -10 && p.x <= 10);
         assertTrue(p.y >= -5 && p.y <= 5);

@@ -34,7 +34,6 @@ import org.locationtech.jts.geom.LineString;
 public class LineStringGenerator implements LineStringSpec, LineStringGeneratorSpec, EnvelopableGenerator<LineString> {
 
     private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private static final java.util.Random random = new java.util.Random();
 
     private GeometryFactory inputGeometryFactory;
     private CoordinateSequence inputCoordinateSequence;
@@ -79,9 +78,7 @@ public class LineStringGenerator implements LineStringSpec, LineStringGeneratorS
             return geometryFactory.createLineString(inputCoordinateSequence);
         } else {
             var sequenceGenerator = new CoordinateSequenceGenerator();
-            var length = random != null
-                    ? random.intRange(2, 10)
-                    : LineStringGenerator.random.nextInt(2, 10);
+            var length = random.intRange(2, 10);
             if (inputLength != null) {
                 length = inputLength;
             }

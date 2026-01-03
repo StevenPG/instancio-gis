@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -25,6 +28,8 @@ import org.locationtech.jts.geom.Envelope;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CoordinateSequenceGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateCoordinateSequenceUsingInstancio() {
@@ -37,7 +42,7 @@ class CoordinateSequenceGeneratorTest {
     void shouldGenerateCoordinateSequenceUsingGenerator() {
         var seq = GenLocationtechJtsCore.coordinateSequence()
                 .length(4)
-                .generate(null);
+                .generate(random);
         assertEquals(4, seq.size());
     }
 
@@ -47,7 +52,7 @@ class CoordinateSequenceGeneratorTest {
         var seq = GenLocationtechJtsCore.coordinateSequence()
                 .length(3)
                 .within(env)
-                .generate(null);
+                .generate(random);
         assertEquals(3, seq.size());
         for (int i = 0; i < seq.size(); i++) {
             var c = seq.getCoordinate(i);

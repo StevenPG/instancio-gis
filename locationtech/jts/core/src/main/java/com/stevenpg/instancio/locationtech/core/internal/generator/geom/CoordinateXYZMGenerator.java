@@ -78,7 +78,7 @@ public class CoordinateXYZMGenerator extends LatLonEnvelopableBaseGenerator impl
     @Override
     public CoordinateXYZM generate(Random random) {
         if (envelopeProvided() && coordinateMissing()) {
-            var lonLat = randomLonLatInBounds(getInputEnvelope());
+            var lonLat = randomLonLatInBounds(random, getInputEnvelope());
             return new CoordinateXYZM(lonLat.longitude(), lonLat.latitude(),
                     inputAltitude == null ? Instancio.gen().doubles().get() : inputAltitude,
                     measure == null ? Instancio.gen().doubles().get() : measure);

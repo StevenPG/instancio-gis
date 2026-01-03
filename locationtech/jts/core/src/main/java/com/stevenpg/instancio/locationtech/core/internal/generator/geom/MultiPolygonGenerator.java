@@ -32,7 +32,6 @@ import java.util.List;
  */
 public class MultiPolygonGenerator implements MultiPolygonSpec, MultiPolygonGeneratorSpec, EnvelopableGenerator<MultiPolygon> {
     private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private static final java.util.Random random = new java.util.Random();
 
     private GeometryFactory inputGeometryFactory;
     private Integer inputLength;
@@ -76,10 +75,7 @@ public class MultiPolygonGenerator implements MultiPolygonSpec, MultiPolygonGene
         if (inputPolygons != null) {
             return new MultiPolygon(inputPolygons.toArray(new Polygon[0]), geometryFactory);
         } else {
-
-            var length = random != null
-                    ? random.intRange(1, 5)
-                    : MultiPolygonGenerator.random.nextInt(1, 6);
+            var length = random.intRange(1, 5);
             if (inputLength != null) {
                 length = inputLength;
             }

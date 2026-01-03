@@ -16,6 +16,9 @@
 
 package com.stevenpg.instancio.postgis.jdbc.internal.generator.pg;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import net.postgis.jdbc.PGbox2d;
 import net.postgis.jdbc.PGbox3d;
 import org.instancio.Instancio;
@@ -26,6 +29,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PostgisBoxGeneratorsTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGeneratePGbox2d() {
@@ -42,7 +47,7 @@ class PostgisBoxGeneratorsTest {
         PGbox2d box = new PGBox2dGenerator()
                 .xRange(10, 10)
                 .yRange(20, 20)
-                .generate(null);
+                .generate(random);
         assertNotNull(box);
         assertEquals(10, box.getLLB().x);
         assertEquals(10, box.getURT().x);
@@ -67,7 +72,7 @@ class PostgisBoxGeneratorsTest {
                 .xRange(10, 10)
                 .yRange(20, 20)
                 .zRange(30, 30)
-                .generate(null);
+                .generate(random);
         assertNotNull(box);
         assertEquals(10, box.getLLB().x);
         assertEquals(10, box.getURT().x);
