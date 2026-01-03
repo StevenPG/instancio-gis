@@ -33,7 +33,6 @@ import org.locationtech.jts.geom.Polygon;
 public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, EnvelopableGenerator<Polygon> {
 
     private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private static final java.util.Random random = new java.util.Random();
 
     private GeometryFactory inputGeometryFactory;
     private LinearRing inputExteriorRing;
@@ -97,9 +96,7 @@ public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, Enve
             var ringGenerator = new LinearRingGenerator();
 
             // Determine number of vertices for exterior ring
-            var vertices = random != null
-                    ? random.intRange(3, 8)
-                    : PolygonGenerator.random.nextInt(3, 8);
+            var vertices = random.intRange(3, 8);
             if (inputVertices != null) {
                 vertices = Math.max(3, inputVertices);
             }
@@ -122,10 +119,8 @@ public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, Enve
 
         // Create smaller envelopes for holes within the exterior ring
         for (int i = 0; i < inputHolesCount; i++) {
-            var holeEnvelope = createHoleEnvelope(exteriorEnvelope, i, inputHolesCount);
-            var holeVertices = random != null
-                    ? random.intRange(3, 6)
-                    : PolygonGenerator.random.nextInt(3, 6);
+            var holeEnvelope = createHoleEnvelope(random, exteriorEnvelope, i, inputHolesCount);
+            var holeVertices = random.intRange(3, 6);
             holes[i] = new LinearRingGenerator().length(holeVertices).within(holeEnvelope).generate(random);
         }
         return geometryFactory.createPolygon(exteriorRing, holes);
@@ -153,7 +148,7 @@ public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, Enve
     /**
      * Creates a smaller envelope within the exterior envelope for generating holes.
      */
-    private Envelope createHoleEnvelope(Envelope exteriorEnvelope, int holeIndex, int totalHoles) {
+    private Envelope createHoleEnvelope(Random random, Envelope exteriorEnvelope, int holeIndex, int totalHoles) {
         // Calculate a smaller envelope within the exterior for the hole
         var width = exteriorEnvelope.getWidth();
         var height = exteriorEnvelope.getHeight();
@@ -166,7 +161,7 @@ public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, Enve
             // Vary hole sizes based on index
             variationScale *= (1.0 + (holeIndex * 0.3 / totalHoles));
         }
-        var scaleFactor = baseScale + (variationScale * PolygonGenerator.random.nextDouble());
+        var scaleFactor = baseScale + (variationScale * random.doubleRange(0, 1));
         var holeWidth = width * scaleFactor;
         var holeHeight = height * scaleFactor;
 
@@ -174,8 +169,8 @@ public class PolygonGenerator implements PolygonSpec, PolygonGeneratorSpec, Enve
         // Use holeIndex to distribute holes across the envelope
         var xOffset = (holeIndex % 2) * 0.3;
         var yOffset = (((double) holeIndex / 2) % 2) * 0.3;
-        var offsetX = (width - holeWidth) * (0.1 + xOffset + 0.3 * PolygonGenerator.random.nextDouble());
-        var offsetY = (height - holeHeight) * (0.1 + yOffset + 0.3 * PolygonGenerator.random.nextDouble());
+        var offsetX = (width - holeWidth) * (0.1 + xOffset + 0.3 * random.doubleRange(0, 1));
+        var offsetY = (height - holeHeight) * (0.1 + yOffset + 0.3 * random.doubleRange(0, 1));
 
         var minX = exteriorEnvelope.getMinX() + offsetX;
         var minY = exteriorEnvelope.getMinY() + offsetY;

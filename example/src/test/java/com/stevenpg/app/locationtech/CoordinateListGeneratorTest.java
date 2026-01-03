@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
@@ -25,6 +28,8 @@ import org.locationtech.jts.geom.Envelope;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CoordinateListGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateCoordinateListUsingInstancio() {
@@ -37,7 +42,7 @@ class CoordinateListGeneratorTest {
     void shouldGenerateCoordinateListUsingGenerator() {
         var gen = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateListGenerator()
                 .length(3);
-        var list = gen.generate(null);
+        var list = gen.generate(random);
         assertNotNull(list);
         assertEquals(3, list.size());
     }
@@ -48,7 +53,7 @@ class CoordinateListGeneratorTest {
         var list = new com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateListGenerator()
                 .length(5)
                 .within(env)
-                .generate(null);
+                .generate(random);
 
         assertEquals(5, list.size());
         for (Coordinate c : list) {

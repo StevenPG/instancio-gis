@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -24,6 +27,8 @@ import org.locationtech.jts.geom.LinearRing;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinearRingGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGenerateLinearRingUsingInstancio() {
@@ -42,7 +47,7 @@ class LinearRingGeneratorTest {
     void shouldGenerateLinearRingUsingGenerator() {
         var linearRing = GenLocationtechJtsCore.linearRing()
                 .length(5)
-                .generate(null);
+                .generate(random);
 
         assertNotNull(linearRing);
         assertTrue(linearRing.isClosed());
@@ -57,7 +62,7 @@ class LinearRingGeneratorTest {
         var envelope = new org.locationtech.jts.geom.Envelope(-10, 10, -5, 5);
         var linearRing = GenLocationtechJtsCore.linearRing()
                 .within(envelope)
-                .generate(null);
+                .generate(random);
 
         assertNotNull(linearRing);
         assertTrue(linearRing.isClosed());
@@ -69,7 +74,7 @@ class LinearRingGeneratorTest {
         var factory = new org.locationtech.jts.geom.GeometryFactory();
         var linearRing = GenLocationtechJtsCore.linearRing()
                 .geometryFactory(factory)
-                .generate(null);
+                .generate(random);
 
         assertNotNull(linearRing);
         assertTrue(linearRing.isClosed());

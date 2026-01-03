@@ -50,17 +50,16 @@ public class MultiLineStringGenerator implements Generator<MultiLineString>, Num
 
     @Override
     public MultiLineString generate(Random random) {
-        final java.util.Random r = random != null ? new java.util.Random(random.longRange(Long.MIN_VALUE, Long.MAX_VALUE)) : new java.util.Random();
-        int m = minElements + r.nextInt(maxElements - minElements + 1);
+        int m = random.intRange(minElements, maxElements);
         StringBuilder sb = new StringBuilder("MULTILINESTRING(");
         for (int j = 0; j < m; j++) {
             if (j > 0) sb.append(", ");
-            int n = 2 + r.nextInt(4);
+            int n = random.intRange(2, 5);
             sb.append('(');
             for (int i = 0; i < n; i++) {
                 if (i > 0) sb.append(", ");
-                double x = minX + (maxX - minX) * r.nextDouble();
-                double y = minY + (maxY - minY) * r.nextDouble();
+                double x = random.doubleRange(minX, maxX);
+                double y = random.doubleRange(minY, maxY);
                 sb.append(x).append(' ').append(y);
             }
             sb.append(')');

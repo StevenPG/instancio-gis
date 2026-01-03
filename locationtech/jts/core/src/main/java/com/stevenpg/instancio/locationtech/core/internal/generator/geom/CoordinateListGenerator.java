@@ -36,8 +36,6 @@ import java.util.List;
 public class CoordinateListGenerator implements CoordinateListSpec, CoordinateListGeneratorSpec,
         Generator<CoordinateList>, EnvelopableGenerator<CoordinateList> {
 
-    private static final java.util.Random rnd = new java.util.Random();
-
     private List<Coordinate> providedCoordinates;
     private Envelope inputEnvelope;
 
@@ -106,10 +104,8 @@ public class CoordinateListGenerator implements CoordinateListSpec, CoordinateLi
         int count;
         if (fixedLength != null) {
             count = fixedLength;
-        } else if (random != null) {
-            count = random.intRange(minLength, maxLength);
         } else {
-            count = rnd.nextInt(minLength, maxLength + 1);
+            count = random.intRange(minLength, maxLength);
         }
 
         final List<Coordinate> coords = new ArrayList<>(count);

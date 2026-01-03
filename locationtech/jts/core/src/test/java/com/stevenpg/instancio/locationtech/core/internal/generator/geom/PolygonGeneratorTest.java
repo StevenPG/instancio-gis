@@ -16,6 +16,8 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.*;
 
@@ -24,11 +26,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class PolygonGeneratorTest {
 
     private final GeometryFactory geometryFactory = new GeometryFactory();
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGeneratePolygon() {
         var generator = new PolygonGenerator();
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertNotNull(polygon);
         assertNotNull(polygon.getExteriorRing());
@@ -48,7 +51,7 @@ class PolygonGeneratorTest {
         var exteriorRing = geometryFactory.createLinearRing(coordinates);
 
         var generator = new PolygonGenerator().exteriorRing(exteriorRing);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertArrayEquals(coordinates, polygon.getExteriorRing().getCoordinates());
         assertEquals(0, polygon.getNumInteriorRing());
@@ -75,7 +78,7 @@ class PolygonGeneratorTest {
         var hole = geometryFactory.createLinearRing(holeCoords);
 
         var generator = new PolygonGenerator().rings(exteriorRing, hole);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertArrayEquals(exteriorCoords, polygon.getExteriorRing().getCoordinates());
         assertEquals(1, polygon.getNumInteriorRing());
@@ -86,7 +89,7 @@ class PolygonGeneratorTest {
     void shouldGeneratePolygonWithCustomVertices() {
         int vertices = 6;
         var generator = new PolygonGenerator().vertices(vertices);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         // The exterior ring should have vertices + 1 coordinates (closed ring)
         assertEquals(vertices + 1, polygon.getExteriorRing().getCoordinates().length);
@@ -95,7 +98,7 @@ class PolygonGeneratorTest {
     @Test
     void shouldGeneratePolygonWithMinimumVertices() {
         var generator = new PolygonGenerator().vertices(2); // Should be adjusted to minimum of 3
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         // Should have at least 4 coordinates (3 unique + 1 closing)
         assertTrue(polygon.getExteriorRing().getCoordinates().length >= 4);
@@ -105,7 +108,7 @@ class PolygonGeneratorTest {
     void shouldGeneratePolygonWithHoles() {
         int holesCount = 2;
         var generator = new PolygonGenerator().holes(holesCount);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertEquals(holesCount, polygon.getNumInteriorRing());
 
@@ -122,7 +125,7 @@ class PolygonGeneratorTest {
     void shouldGeneratePolygonWithCustomGeometryFactory() {
         var customFactory = new GeometryFactory();
         var generator = new PolygonGenerator().geometryFactory(customFactory);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertSame(customFactory, polygon.getFactory());
     }
@@ -131,7 +134,7 @@ class PolygonGeneratorTest {
     void shouldGeneratePolygonWithinEnvelope() {
         var envelope = new Envelope(0, 10, 0, 10);
         var generator = new PolygonGenerator().within(envelope);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertTrue(envelope.contains(polygon.getEnvelopeInternal()));
     }
@@ -141,7 +144,7 @@ class PolygonGeneratorTest {
         var envelope = new Envelope(5, 15, 5, 15);
         int vertices = 5;
         var generator = new PolygonGenerator().vertices(vertices).within(envelope);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertEquals(vertices + 1, polygon.getExteriorRing().getCoordinates().length);
         assertTrue(envelope.contains(polygon.getEnvelopeInternal()));
@@ -152,7 +155,7 @@ class PolygonGeneratorTest {
         var envelope = new Envelope(0, 20, 0, 20);
         int holesCount = 1;
         var generator = new PolygonGenerator().holes(holesCount).within(envelope);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertEquals(holesCount, polygon.getNumInteriorRing());
         assertTrue(envelope.contains(polygon.getEnvelopeInternal()));
@@ -165,7 +168,7 @@ class PolygonGeneratorTest {
     @Test
     void shouldGeneratePolygonWithZeroHoles() {
         var generator = new PolygonGenerator().holes(0);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertEquals(0, polygon.getNumInteriorRing());
     }
@@ -174,7 +177,7 @@ class PolygonGeneratorTest {
     void shouldGeneratePolygonWithMultipleHoles() {
         int holesCount = 3;
         var generator = new PolygonGenerator().holes(holesCount);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertEquals(holesCount, polygon.getNumInteriorRing());
     }
@@ -191,7 +194,7 @@ class PolygonGeneratorTest {
                 .holes(holesCount)
                 .geometryFactory(customFactory)
                 .within(envelope);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertEquals(vertices + 1, polygon.getExteriorRing().getCoordinates().length);
         assertEquals(holesCount, polygon.getNumInteriorRing());
@@ -212,7 +215,7 @@ class PolygonGeneratorTest {
 
         // Test using exteriorRing method (not rings method)
         var generator = new PolygonGenerator().exteriorRing(exteriorRing);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertArrayEquals(coordinates, polygon.getExteriorRing().getCoordinates());
         assertEquals(0, polygon.getNumInteriorRing());
@@ -224,7 +227,7 @@ class PolygonGeneratorTest {
         var generator = new PolygonGenerator();
         assertNotNull(generator);
 
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
         assertNotNull(polygon);
     }
 
@@ -233,7 +236,7 @@ class PolygonGeneratorTest {
         // Test hole creation with larger polygon to ensure holes fit properly
         var envelope = new Envelope(0, 100, 0, 100);
         var generator = new PolygonGenerator().holes(1).within(envelope);
-        var polygon = generator.generate(null);
+        var polygon = generator.generate(random);
 
         assertEquals(1, polygon.getNumInteriorRing());
         var hole = polygon.getInteriorRingN(0);

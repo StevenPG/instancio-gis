@@ -16,6 +16,9 @@
 
 package com.stevenpg.app.postgis.jdbc;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.postgis.jdbc.GenPostgisJdbc;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -26,6 +29,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PostgresGeometricGeneratorTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void shouldGeneratePGpointWithInstancio() {
@@ -99,7 +104,7 @@ class PostgresGeometricGeneratorTest {
 
     @Test
     void shouldGeneratePGpointWithGenerator() {
-        PGpoint p = GenPostgisJdbc.pgPoint().xRange(10, 10).yRange(20, 20).generate(null);
+        PGpoint p = GenPostgisJdbc.pgPoint().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(p);
         assertEquals(10, p.x);
         assertEquals(20, p.y);
@@ -107,14 +112,14 @@ class PostgresGeometricGeneratorTest {
 
     @Test
     void shouldGeneratePGcircleWithGenerator() {
-        PGcircle c = GenPostgisJdbc.pgCircle().radiusRange(5, 5).generate(null);
+        PGcircle c = GenPostgisJdbc.pgCircle().radiusRange(5, 5).generate(random);
         assertNotNull(c);
         assertEquals(5, c.radius);
     }
 
     @Test
     void shouldGeneratePGbox2dWithGenerator() {
-        net.postgis.jdbc.PGbox2d p = GenPostgisJdbc.pgBox2d().xRange(10, 10).yRange(20, 20).generate(null);
+        net.postgis.jdbc.PGbox2d p = GenPostgisJdbc.pgBox2d().xRange(10, 10).yRange(20, 20).generate(random);
         assertNotNull(p);
         assertEquals(10, p.getLLB().x);
         assertEquals(20, p.getLLB().y);
@@ -122,7 +127,7 @@ class PostgresGeometricGeneratorTest {
 
     @Test
     void shouldGeneratePGbox3dWithGenerator() {
-        net.postgis.jdbc.PGbox3d p = GenPostgisJdbc.pgBox3d().xRange(10, 10).yRange(20, 20).zRange(30, 30).generate(null);
+        net.postgis.jdbc.PGbox3d p = GenPostgisJdbc.pgBox3d().xRange(10, 10).yRange(20, 20).zRange(30, 30).generate(random);
         assertNotNull(p);
         assertEquals(10, p.getLLB().x);
         assertEquals(20, p.getLLB().y);

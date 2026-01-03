@@ -16,13 +16,18 @@
 
 package com.stevenpg.instancio.locationtech.core.internal.generator.geom.utility;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Envelope;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WithinUtilityTest {
+
+    private final Random random = new DefaultRandom();
 
     @Test
     void getBounds() {
@@ -37,7 +42,7 @@ class WithinUtilityTest {
     @RepeatedTest(10)
     void randomLongitudeInBounds() {
         var testEnvelope = new Envelope(-70, -80, 38, 42);
-        var testRecord = WithinUtility.randomLonLatInBounds(testEnvelope);
+        var testRecord = WithinUtility.randomLonLatInBounds(random, testEnvelope);
         var lon = testRecord.longitude();
         var lat = testRecord.latitude();
 
@@ -47,7 +52,7 @@ class WithinUtilityTest {
 
     @RepeatedTest(10)
     void randomLongitudeNoBounds() {
-        var testRecord = WithinUtility.randomLonLatInBounds();
+        var testRecord = WithinUtility.randomLonLatInBounds(random);
         var lon = testRecord.longitude();
         var lat = testRecord.latitude();
 
@@ -57,7 +62,7 @@ class WithinUtilityTest {
 
     @RepeatedTest(10)
     void randomLongitudeNullBounds() {
-        var testRecord = WithinUtility.randomLonLatInBounds(null);
+        var testRecord = WithinUtility.randomLonLatInBounds(random, null);
         var lon = testRecord.longitude();
         var lat = testRecord.latitude();
 

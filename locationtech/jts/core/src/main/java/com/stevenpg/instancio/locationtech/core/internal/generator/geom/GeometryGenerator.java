@@ -35,8 +35,6 @@ import java.util.List;
  */
 public class GeometryGenerator implements GeometrySpec, GeometryGeneratorSpec, EnvelopableGenerator<Geometry>, Generator<Geometry> {
 
-    private static final java.util.Random backupRandom = new java.util.Random();
-
     private Envelope inputEnvelope;
     private Point inputPoint;
     private LineString inputLineString;
@@ -116,7 +114,7 @@ public class GeometryGenerator implements GeometrySpec, GeometryGeneratorSpec, E
         var geometryCollectionGen = new GeometryCollectionGenerator();
         generators.add(hasEnvelope ? (Generator<GeometryCollection>) geometryCollectionGen.within(inputEnvelope) : geometryCollectionGen);
 
-        int index = random != null ? random.intRange(0, generators.size() - 1) : backupRandom.nextInt(generators.size());
+        int index = random.intRange(0, generators.size() - 1);
         @SuppressWarnings("unchecked")
         var selected = (Generator<Geometry>) generators.get(index);
         return selected.generate(random);

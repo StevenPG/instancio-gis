@@ -16,10 +16,12 @@
 
 package com.stevenpg.app.locationtech;
 
+import org.instancio.Random;
+import org.instancio.support.DefaultRandom;
+
 import com.stevenpg.instancio.locationtech.core.GenLocationtechJtsCore;
 import com.stevenpg.instancio.locationtech.core.internal.generator.geom.CoordinateXYMGenerator;
 import org.instancio.Instancio;
-import org.instancio.support.DefaultRandom;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.CoordinateXYM;
@@ -29,9 +31,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CoordinateXYMGeneratorTest {
 
+    private final Random random = new DefaultRandom();
+
     @Test
     void coordinateXYMGenerator() {
-        assertInstanceOf(CoordinateXYM.class, GenLocationtechJtsCore.coordinateXYM().generate(null));
+        assertInstanceOf(CoordinateXYM.class, GenLocationtechJtsCore.coordinateXYM().generate(random));
     }
 
     @Test
@@ -40,7 +44,7 @@ class CoordinateXYMGeneratorTest {
                 .latitude(30)
                 .longitude(-60)
                 .measure(25)
-                .generate(null);
+                .generate(random);
         assertInstanceOf(CoordinateXYM.class, coordinate);
         assertEquals(30, coordinate.y);
         assertEquals(-60, coordinate.x);
@@ -65,7 +69,7 @@ class CoordinateXYMGeneratorTest {
     @RepeatedTest(5)
     void within() {
         var bounds = new Envelope(-90, 90, -45, 45);
-        var coordinate = new CoordinateXYMGenerator().within(bounds).generate(null);
+        var coordinate = new CoordinateXYMGenerator().within(bounds).generate(random);
         assertNotNull(coordinate);
         assertTrue(coordinate.x > -90 && coordinate.x < 90);
         assertTrue(coordinate.y > -45 && coordinate.y < 45);

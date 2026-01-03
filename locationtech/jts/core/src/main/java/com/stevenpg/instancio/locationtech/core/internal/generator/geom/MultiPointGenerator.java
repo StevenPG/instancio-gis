@@ -33,7 +33,6 @@ import java.util.List;
 public class MultiPointGenerator implements MultiPointSpec, MultiPointGeneratorSpec, EnvelopableGenerator<MultiPoint> {
 
     private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private static final java.util.Random random = new java.util.Random();
     private static final PointGenerator pointGenerator = new PointGenerator();
 
     private GeometryFactory inputGeometryFactory;
@@ -78,10 +77,7 @@ public class MultiPointGenerator implements MultiPointSpec, MultiPointGeneratorS
         if (inputPoints != null) {
             return new MultiPoint(inputPoints.toArray(new Point[0]), geometryFactory);
         } else {
-
-            var length = random != null
-                    ? random.intRange(2, 10)
-                    : MultiPointGenerator.random.nextInt(2, 10);
+            var length = random.intRange(2, 10);
             if (inputLength != null) {
                 length = inputLength;
             }

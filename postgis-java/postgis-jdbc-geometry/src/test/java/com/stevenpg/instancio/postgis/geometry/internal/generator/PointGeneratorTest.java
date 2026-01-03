@@ -46,7 +46,7 @@ class PointGeneratorTest {
 
     @Test
     void generateWithNullRandom() {
-        Point p = generator.generate(null);
+        Point p = generator.generate(random);
         assertNotNull(p);
     }
 

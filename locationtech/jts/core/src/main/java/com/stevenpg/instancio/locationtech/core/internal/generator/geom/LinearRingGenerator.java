@@ -35,7 +35,6 @@ import org.locationtech.jts.geom.LinearRing;
 public class LinearRingGenerator implements LinearRingSpec, LinearRingGeneratorSpec, EnvelopableGenerator<LinearRing> {
 
     private static final GeometryFactory defaultGeometryFactory = new GeometryFactory();
-    private static final java.util.Random random = new java.util.Random();
 
     private GeometryFactory inputGeometryFactory;
     private CoordinateSequence inputCoordinateSequence;
@@ -81,9 +80,7 @@ public class LinearRingGenerator implements LinearRingSpec, LinearRingGeneratorS
         } else {
             var sequenceGenerator = new CoordinateSequenceGenerator();
             // When generating from scratch, always generate at least 3 unique coordinates
-            var uniqueCoordinateCount = random != null
-                    ? random.intRange(3, 9)
-                    : LinearRingGenerator.random.nextInt(3, 9);
+            var uniqueCoordinateCount = random.intRange(3, 9);
             if (inputLength != null) {
                 // User requested specific number of unique coordinates - ensure minimum of 3
                 uniqueCoordinateCount = Math.max(3, inputLength);
