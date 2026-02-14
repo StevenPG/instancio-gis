@@ -39,18 +39,38 @@ release:
 
 files:
   artifacts:
-    - path: locationtech/jts/core/build/libs/locationtech-core-0.0.3.jar
-    - path: locationtech/jts/core/build/libs/locationtech-core-0.0.3-javadoc.jar
-    - path: locationtech/jts/core/build/libs/locationtech-core-0.0.3-sources.jar
+    - path: locationtech/jts/core/build/libs/locationtech-core-0.0.4.jar
+    - path: locationtech/jts/core/build/libs/locationtech-core-0.0.4-javadoc.jar
+    - path: locationtech/jts/core/build/libs/locationtech-core-0.0.4-sources.jar
 
-    - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.3.jar
-    - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.3-javadoc.jar
-    - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.3-sources.jar
+    - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.4.jar
+    - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.4-javadoc.jar
+    - path: postgis-java/postgis-jdbc/build/libs/postgis-java-jdbc-0.0.4-sources.jar
 
-    - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry-0.0.3.jar
-    - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry-0.0.3-javadoc.jar
-    - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry-0.0.3-sources.jar
+    - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry-0.0.4.jar
+    - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry-0.0.4-javadoc.jar
+    - path: postgis-java/postgis-jdbc-geometry/build/libs/postgis-java-jdbc-geometry-0.0.4-sources.jar
 
-    - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts-0.0.3.jar
-    - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts-0.0.3-javadoc.jar
-    - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts-0.0.3-sources.jar
+    - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts-0.0.4.jar
+    - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts-0.0.4-javadoc.jar
+    - path: postgis-java/postgis-jdbc-jts/build/libs/postgis-java-jdbc-jts-0.0.4-sources.jar
+
+    - path: locationtech/spatial4j/build/libs/locationtech-spatial4j-0.0.4.jar
+    - path: locationtech/spatial4j/build/libs/locationtech-spatial4j-0.0.4-javadoc.jar
+    - path: locationtech/spatial4j/build/libs/locationtech-spatial4j-0.0.4-sources.jar
+
+    - path: geolatte/geom/build/libs/geolatte-geom-0.0.4.jar
+    - path: geolatte/geom/build/libs/geolatte-geom-0.0.4-javadoc.jar
+    - path: geolatte/geom/build/libs/geolatte-geom-0.0.4-sources.jar
+
+    - path: esri/geometry-api/build/libs/esri-geometry-api-0.0.4.jar
+    - path: esri/geometry-api/build/libs/esri-geometry-api-0.0.4-javadoc.jar
+    - path: esri/geometry-api/build/libs/esri-geometry-api-0.0.4-sources.jar
+
+    - path: uber/h3/build/libs/uber-h3-0.0.4.jar
+    - path: uber/h3/build/libs/uber-h3-0.0.4-javadoc.jar
+    - path: uber/h3/build/libs/uber-h3-0.0.4-sources.jar
+
+    - path: locationtech/proj4j/build/libs/locationtech-proj4j-0.0.4.jar
+    - path: locationtech/proj4j/build/libs/locationtech-proj4j-0.0.4-javadoc.jar
+    - path: locationtech/proj4j/build/libs/locationtech-proj4j-0.0.4-sources.jar

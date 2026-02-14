@@ -22,8 +22,13 @@ This is achieved using the [Instancio Service Provider Interface](https://www.in
 
 Currently, the following libraries are supported:
 
-- [LocationTech JTS](https://locationtech.org/jts/)
-- PostGIS-Java
+- [LocationTech JTS](https://locationtech.github.io/jts/) (`jts-core:1.20.0`)
+- [PostGIS-Java](https://github.com/postgis/postgis-java) (`postgis-jdbc:2025.1.1`)
+- [Spatial4j](https://projects.eclipse.org/projects/locationtech.spatial4j) (`spatial4j:0.8`)
+- [Geolatte-geom](https://github.com/GeoLatte/geolatte-geom) (`geolatte-geom:1.10`)
+- [ESRI Geometry API](https://github.com/Esri/geometry-api-java) (`esri-geometry-api:2.2.4`)
+- [Uber H3](https://h3geo.org/) (`h3:4.4.0`)
+- [Proj4J](https://github.com/locationtech/proj4j) (`proj4j:1.4.1`)
 
 ## How To
 
@@ -97,6 +102,76 @@ Kotlin - build.gradle.kts
 
 ```kotlin
   testImplementation("com.stevenpg.instancio:postgis-jdbc:${version}")
+```
+
+### Spatial4j
+
+Root Dependency
+
+```gradle
+implementation("org.locationtech.spatial4j:spatial4j:0.8")
+```
+
+Kotlin - build.gradle.kts
+
+```kotlin
+  testImplementation("com.stevenpg.instancio:locationtech-spatial4j:${version}")
+```
+
+### Geolatte-geom
+
+Root Dependency
+
+```gradle
+implementation("org.geolatte:geolatte-geom:1.10")
+```
+
+Kotlin - build.gradle.kts
+
+```kotlin
+  testImplementation("com.stevenpg.instancio:geolatte-geom:${version}")
+```
+
+### ESRI Geometry API
+
+Root Dependency
+
+```gradle
+implementation("com.esri.geometry:esri-geometry-api:2.2.4")
+```
+
+Kotlin - build.gradle.kts
+
+```kotlin
+  testImplementation("com.stevenpg.instancio:esri-geometry-api:${version}")
+```
+
+### Uber H3
+
+Root Dependency
+
+```gradle
+implementation("com.uber:h3:4.4.0")
+```
+
+Kotlin - build.gradle.kts
+
+```kotlin
+  testImplementation("com.stevenpg.instancio:uber-h3:${version}")
+```
+
+### Proj4J
+
+Root Dependency
+
+```gradle
+implementation("org.locationtech.proj4j:proj4j:1.4.1")
+```
+
+Kotlin - build.gradle.kts
+
+```kotlin
+  testImplementation("com.stevenpg.instancio:locationtech-proj4j:${version}")
 ```
 
 ## Contributing
