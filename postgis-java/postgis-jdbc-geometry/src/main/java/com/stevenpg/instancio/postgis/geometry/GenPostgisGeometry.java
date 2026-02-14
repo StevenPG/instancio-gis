@@ -19,7 +19,32 @@ package com.stevenpg.instancio.postgis.geometry;
 import com.stevenpg.instancio.postgis.geometry.internal.generator.*;
 
 /**
- * Provides access to the PostGIS geometry generator provider.
+ * Facade for accessing PostGIS JDBC geometry type generators.
+ *
+ * <p>Provides factory methods for creating configurable generators for PostGIS
+ * geometry types such as {@code Point}, {@code LineString}, {@code Polygon},
+ * and their multi-geometry counterparts.
+ *
+ * <p>Usage examples:
+ * <pre>{@code
+ * // Generate a random PostGIS point in the SF area
+ * Point point = GenPostgisGeometry.point()
+ *     .xRange(-122.5, -122.3)
+ *     .yRange(37.7, 37.8)
+ *     .generate(random);
+ *
+ * // Generate a line string with coordinate ranges
+ * LineString line = GenPostgisGeometry.lineString()
+ *     .xRange(-74.05, -73.90)
+ *     .yRange(40.70, 40.80)
+ *     .generate(random);
+ *
+ * // Generate a polygon with coordinate ranges
+ * Polygon polygon = GenPostgisGeometry.polygon()
+ *     .xRange(-0.2, 0.0)
+ *     .yRange(51.4, 51.6)
+ *     .generate(random);
+ * }</pre>
  *
  * @since 1.0.0
  */
@@ -35,6 +60,17 @@ public final class GenPostgisGeometry {
 
     /**
      * Access to the Generator for {@link net.postgis.jdbc.geometry.Point}.
+     *
+     * <p>Example:
+     * <pre>{@code
+     * // Generate a 3D point near Tokyo
+     * Point point = GenPostgisGeometry.point()
+     *     .xRange(139.6, 139.8)
+     *     .yRange(35.6, 35.7)
+     *     .zRange(0, 100)
+     *     .generate(random);
+     * }</pre>
+     *
      * @return generator
      */
     public static PointGenerator point() {
@@ -43,6 +79,16 @@ public final class GenPostgisGeometry {
 
     /**
      * Access to the Generator for {@link net.postgis.jdbc.geometry.LineString}.
+     *
+     * <p>Example:
+     * <pre>{@code
+     * // Generate a line string in central London
+     * LineString line = GenPostgisGeometry.lineString()
+     *     .xRange(-0.15, -0.05)
+     *     .yRange(51.49, 51.53)
+     *     .generate(random);
+     * }</pre>
+     *
      * @return generator
      */
     public static LineStringGenerator lineString() {
@@ -51,6 +97,16 @@ public final class GenPostgisGeometry {
 
     /**
      * Access to the Generator for {@link net.postgis.jdbc.geometry.Polygon}.
+     *
+     * <p>Example:
+     * <pre>{@code
+     * // Generate a polygon in the NYC area
+     * Polygon polygon = GenPostgisGeometry.polygon()
+     *     .xRange(-74.05, -73.90)
+     *     .yRange(40.70, 40.80)
+     *     .generate(random);
+     * }</pre>
+     *
      * @return generator
      */
     public static PolygonGenerator polygon() {
