@@ -43,6 +43,16 @@ public final class GenProj4j {
      * Creates a new {@link ProjCoordinateGenerator} for generating
      * random {@link org.locationtech.proj4j.ProjCoordinate} instances.
      *
+     * <p>Example:
+     * <pre>{@code
+     * // Generate a projected coordinate in the SF area with elevation
+     * ProjCoordinate coord = GenProj4j.projCoordinate()
+     *     .xRange(-122.5, -122.3)
+     *     .yRange(37.7, 37.8)
+     *     .zRange(0, 500)
+     *     .generate(random);
+     * }</pre>
+     *
      * @return a new ProjCoordinateGenerator with default bounds
      */
     public static ProjCoordinateGenerator projCoordinate() {
@@ -52,6 +62,14 @@ public final class GenProj4j {
     /**
      * Creates a new {@link CoordinateReferenceSystemGenerator} for generating
      * random {@link org.locationtech.proj4j.CoordinateReferenceSystem} instances.
+     *
+     * <p>Example:
+     * <pre>{@code
+     * // Generate a CRS from a set of common EPSG codes
+     * CoordinateReferenceSystem crs = GenProj4j.crs()
+     *     .epsgCodes("EPSG:4326", "EPSG:3857", "EPSG:32632")
+     *     .generate(random);
+     * }</pre>
      *
      * @return a new CoordinateReferenceSystemGenerator with default EPSG codes
      */

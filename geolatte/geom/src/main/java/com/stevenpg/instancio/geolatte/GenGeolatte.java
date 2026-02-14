@@ -26,13 +26,32 @@ import com.stevenpg.instancio.geolatte.internal.generator.PointGenerator;
 import com.stevenpg.instancio.geolatte.internal.generator.PolygonGenerator;
 
 /**
- * Provides access to the Geolatte Geom generator provider.
- * This is the main entry point for obtaining generators for Geolatte geometry types.
+ * Facade for accessing Geolatte Geom geometry generators.
  *
- * <p>Example usage:
+ * <p>This is the main entry point for obtaining generators for Geolatte geometry
+ * types. Each method returns a configurable generator that produces random
+ * instances of the corresponding geometry type.
+ *
+ * <p>Usage examples:
  * <pre>{@code
- * PointGenerator gen = GenGeolatte.point().xRange(-10, 10).yRange(-5, 5);
- * Point result = gen.generate(random);
+ * // Generate a random point in the San Francisco area
+ * Point point = GenGeolatte.point()
+ *     .xRange(-122.5, -122.3)
+ *     .yRange(37.7, 37.8)
+ *     .generate(random);
+ *
+ * // Generate a line string with 3 to 8 coordinates near London
+ * LineString line = GenGeolatte.lineString()
+ *     .xRange(-0.15, -0.05)
+ *     .yRange(51.49, 51.53)
+ *     .length(3, 8)
+ *     .generate(random);
+ *
+ * // Generate a polygon in the NYC area
+ * Polygon polygon = GenGeolatte.polygon()
+ *     .xRange(-74.05, -73.90)
+ *     .yRange(40.70, 40.80)
+ *     .generate(random);
  * }</pre>
  *
  * @since 1.0.0
@@ -42,6 +61,15 @@ public final class GenGeolatte {
     /**
      * Access to the Generator for {@link org.geolatte.geom.Point}.
      *
+     * <p>Example:
+     * <pre>{@code
+     * // Generate a point near Paris
+     * Point point = GenGeolatte.point()
+     *     .xRange(2.2, 2.4)
+     *     .yRange(48.8, 48.9)
+     *     .generate(random);
+     * }</pre>
+     *
      * @return a new PointGenerator instance
      */
     public static PointGenerator point() {
@@ -50,6 +78,16 @@ public final class GenGeolatte {
 
     /**
      * Access to the Generator for {@link org.geolatte.geom.LineString}.
+     *
+     * <p>Example:
+     * <pre>{@code
+     * // Generate a line string with 5 to 10 coordinates
+     * LineString line = GenGeolatte.lineString()
+     *     .xRange(-122.5, -122.3)
+     *     .yRange(37.7, 37.8)
+     *     .length(5, 10)
+     *     .generate(random);
+     * }</pre>
      *
      * @return a new LineStringGenerator instance
      */
@@ -68,6 +106,15 @@ public final class GenGeolatte {
 
     /**
      * Access to the Generator for {@link org.geolatte.geom.Polygon}.
+     *
+     * <p>Example:
+     * <pre>{@code
+     * // Generate a polygon in central Tokyo
+     * Polygon polygon = GenGeolatte.polygon()
+     *     .xRange(139.6, 139.8)
+     *     .yRange(35.6, 35.7)
+     *     .generate(random);
+     * }</pre>
      *
      * @return a new PolygonGenerator instance
      */
